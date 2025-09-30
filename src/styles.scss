@@ -1,0 +1,113 @@
+/* Design tokens and themes */
+@use 'sass:map';
+
+/* Base color palette (brand + support) */
+:root {
+  /* Brand */
+  --color-primary: #0077cc; /* techy blue */
+  --color-accent: #ff9800;  /* creative orange */
+  --color-success: #4caf50; /* progress green */
+  --color-secondary: #673ab7; /* scientific purple */
+  --color-error: #f44336; /* error red */
+
+  /* Neutrals */
+  --color-bg: #f9fafb; /* light bg */
+  --color-surface: #ffffff; /* cards */
+  --color-text: #212121; /* primary text */
+  --color-text-muted: #616161; /* secondary text */
+
+  /* Pastel accents (icons/illustrations) */
+  --color-blue-pastel: #81d4fa;
+  --color-orange-pastel: #ffcc80;
+  --color-green-pastel: #a5d6a7;
+
+  /* Semantic tokens */
+  --bg-app: var(--color-bg);
+  --bg-surface: var(--color-surface);
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-muted);
+  --link: var(--color-secondary);
+  --link-hover: color-mix(in oklab, var(--color-secondary), black 10%);
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-text: #ffffff;
+  --btn-accent-bg: var(--color-accent);
+  --btn-accent-text: #1a1a1a;
+  --border-soft: color-mix(in oklab, var(--color-text) 12%, transparent);
+}
+
+/* Dark theme (prefers-color-scheme) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1115;
+    --color-surface: #171a20;
+    --color-text: #e6e6e6;
+    --color-text-muted: #a1a1a1;
+
+    --link-hover: color-mix(in oklab, var(--color-secondary), white 15%);
+    --border-soft: color-mix(in oklab, var(--color-text) 20%, transparent);
+  }
+}
+
+/* Explicit theme classes (manual toggle) */
+.theme-light {
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text: #212121;
+  --color-text-muted: #616161;
+  --link-hover: color-mix(in oklab, var(--color-secondary), black 10%);
+  --border-soft: color-mix(in oklab, var(--color-text) 12%, transparent);
+}
+
+.theme-dark {
+  --color-bg: #0f1115;
+  --color-surface: #171a20;
+  --color-text: #e6e6e6;
+  --color-text-muted: #a1a1a1;
+  --link-hover: color-mix(in oklab, var(--color-secondary), white 15%);
+  --border-soft: color-mix(in oklab, var(--color-text) 20%, transparent);
+}
+
+// SVG icons color inheritance
+img[src$=".svg"] {
+  color: var(--text-primary);
+  fill: currentColor;
+}
+
+// Ensure SVG icons inherit theme colors
+svg {
+  color: inherit;
+  fill: currentColor;
+}
+
+/* Base application styles wiring tokens */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg-app);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--border-soft);
+}
+
+.btn-accent {
+  background: var(--btn-accent-bg);
+  color: var(--btn-accent-text);
+  border: 1px solid var(--border-soft);
+}
+/* You can add global styles to this file, and also import other style files */

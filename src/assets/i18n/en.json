@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "learn": "Learn",
+    "docs": "Docs",
+    "build": "Build",
+    "learning": "Learning",
+    "blog": "Blog",
+    "community": "Community"
+  },
+  "lang": {"en": "English", "uk": "Ukrainian", "ru": "Russian"}
+}
