@@ -8,8 +8,16 @@ interface CarouselSlide {
   title: string;
   subtitle: string;
   description: string;
+  buttons?: CarouselButton[];
 }
 
+type CarouselButtonColor = 'primary' | 'accent' | 'secondary' | 'success' | 'neutral';
+
+interface CarouselButton {
+  href: string;
+  color: CarouselButtonColor;
+  text: string; // i18n key
+}
 interface FeatureCard {
   id: string;
   title: string;
@@ -38,6 +46,15 @@ interface FeatureCard {
                   <h1 class="carousel-title">{{ slide.title | translate }}</h1>
                   <p class="carousel-subtitle">{{ slide.subtitle | translate }}</p>
                   <p class="carousel-description">{{ slide.description | translate }}</p>
+                  @if (slide.buttons?.length) {
+                    <div class="carousel-buttons">
+                      @for (btn of slide.buttons | slice: 0 : 2; track btn.href) {
+                        <a [href]="btn.href" class="btn" [ngClass]="'btn--' + btn.color">{{
+                          btn.text | translate
+                        }}</a>
+                      }
+                    </div>
+                  }
                 </div>
               </div>
             </div>
@@ -89,6 +106,14 @@ export class HeroCarouselComponent {
       title: 'hero.slide1.title',
       subtitle: 'hero.slide1.subtitle',
       description: 'hero.slide1.description',
+      buttons: [
+        {
+          href: 'https://github.com/ByByte-diy/ByByteNano',
+          color: 'primary',
+          text: 'hero.buttons.letsBuild',
+        },
+        { href: '/#community', color: 'accent', text: 'hero.buttons.letsLearn' },
+      ],
     },
   ]);
 

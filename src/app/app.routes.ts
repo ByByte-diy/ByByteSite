@@ -12,5 +12,9 @@ export const routes: Routes = [
   },
   { path: 'learn', loadComponent: () => import('./pages/learn/learn.js').then((m) => m.Learn) },
   { path: 'docs', loadComponent: () => import('./pages/docs/docs.js').then((m) => m.Docs) },
+  {
+    path: 'community',
+    loadComponent: () => import('./pages/community/community.js').then((m) => m.Community),
+  },
   { path: '**', redirectTo: '' },
 ];

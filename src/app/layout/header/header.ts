@@ -29,7 +29,7 @@ import { SocialLinks } from '../../shared/social-links/social-links.js';
           <a class="nav__link" href="/#build">{{ 'nav.build' | translate }}</a>
           <a class="nav__link" routerLink="/learn">{{ 'nav.learning' | translate }}</a>
           <a class="nav__link" href="/#blog">{{ 'nav.blog' | translate }}</a>
-          <a class="nav__link" href="/#community">{{ 'nav.community' | translate }}</a>
+          <a class="nav__link" routerLink="/community">{{ 'nav.community' | translate }}</a>
           <div class="nav__tools">
             <app-social-links class="actions__socials actions__socials--in-menu" />
             <app-theme-toggle></app-theme-toggle>

@@ -4,15 +4,16 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { HeroCarouselComponent } from './hero-carousel';
 
-describe('HeroCarouselComponent', () => {
-  let component: HeroCarouselComponent;
-  let fixture: ComponentFixture<HeroCarouselComponent>;
+import { WhyImportantComponent } from './why-important';
+
+describe('WhyImportantComponent', () => {
+  let component: WhyImportantComponent;
+  let fixture: ComponentFixture<WhyImportantComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeroCarouselComponent],
+      imports: [WhyImportantComponent, TranslateModule],
       providers: [
         provideRouter([]),
         provideHttpClient(),
@@ -20,15 +21,15 @@ describe('HeroCarouselComponent', () => {
         {
           provide: TranslateService,
           useValue: {
-            get: () => of('Test'),
+            get: () => of(''),
             instant: (key: string) => key,
-            getCurrentLang: () => 'en',
-            onLangChange: of({ lang: 'en' }),
+            onLangChange: of({}),
             onTranslationChange: of({}),
             onDefaultLangChange: of({}),
             onFallbackLangChange: of({}),
             getLangs: () => ['en', 'uk', 'ru'],
             currentLang: 'en',
+            getCurrentLang: () => 'en',
             getDefaultLang: () => 'en',
             use: () => {},
             addLangs: () => {},
@@ -38,7 +39,7 @@ describe('HeroCarouselComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeroCarouselComponent);
+    fixture = TestBed.createComponent(WhyImportantComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -47,12 +48,12 @@ describe('HeroCarouselComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have initial slide at 0', () => {
-    expect(component['currentSlide']()).toBe(0);
-  });
-
-  it('should go to specific slide', () => {
-    component['goToSlide'](1);
-    expect(component['currentSlide']()).toBe(1);
+  it('should have points configuration', () => {
+    const points = (component as any).points();
+    expect(points.length).toBe(4);
+    expect(points[0].icon).toBe('📚');
+    expect(points[1].icon).toBe('🛠️');
+    expect(points[2].icon).toBe('🌍');
+    expect(points[3].icon).toBe('🚀');
   });
 });

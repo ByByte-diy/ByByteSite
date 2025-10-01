@@ -10,7 +10,7 @@
   },
   "hero": {
     "slide1": {
-      "title": "Welcome to ByByte",
+      "title": "Welcome to ByByte.DIY",
       "subtitle": "STEM Robotics Platform",
       "description": "Learn robotics, programming, and engineering through hands-on projects with our innovative educational platform."
     },
@@ -29,6 +29,112 @@
     "feature4": {
       "title": "Expandable Platform",
       "description": "Start with the basics and gradually add sensors and modules to explore advanced robotics."
+    },
+    "buttons": {
+      "letsBuild": "Lets Build",
+      "letsLearn": "Lets Learn"
+    }
+  },
+  "about": {
+    "title": "What is ByByte?",
+    "description": "ByByte is an open educational robotics platform designed for children and students aged 7 to 16. We have developed two levels of robots:",
+    "mega": {
+      "title": "ByByteMega",
+      "subtitle": "Maximum platform with all possible sensors",
+      "features": [
+        "Complete sensor suite",
+        "Advanced programming capabilities",
+        "Modular expansion system",
+        "Professional-grade components"
+      ]
+    },
+    "nano": {
+      "title": "ByByteNano",
+      "subtitle": "Lightweight version with minimal components for quick and easy assembly",
+      "features": [
+        "Essential sensors only",
+        "Beginner-friendly design",
+        "Quick assembly time",
+        "Affordable components"
+      ]
+    },
+    "compatibility": "Both options are fully compatible with Arduino IDE, have open schematics, code and documentation."
+  },
+  "whyImportant": {
+    "title": "Learning the future – available today",
+    "points": [
+      {
+        "icon": "📚",
+        "title": "Practical knowledge",
+        "description": "Children learn not only theory, but also real skills."
+      },
+      {
+        "icon": "🛠️",
+        "title": "Accessibility",
+        "description": "Simple modules, easy assembly, minimal tools required."
+      },
+      {
+        "icon": "🌍",
+        "title": "Openness",
+        "description": "Anyone can download schematics and lessons."
+      },
+      {
+        "icon": "🚀",
+        "title": "Interest development",
+        "description": "From basic experiments to robot competitions."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Start your robotics journey",
+    "steps": [
+      {
+        "number": "1️⃣",
+        "title": "Download schematics and instructions from GitHub"
+      },
+      {
+        "number": "2️⃣", 
+        "title": "Assemble the robot from available parts"
+      },
+      {
+        "number": "3️⃣",
+        "title": "Start programming with ready-made lessons"
+      }
+    ],
+    "buttons": {
+      "github": "GitHub Repository",
+      "lessons": "Lessons & Examples"
+    }
+  },
+  "community": {
+    "hero": {
+      "title": "ByByte community",
+      "description": "We share knowledge, solve problems, give support to overcome obstacles, you can meet like minded people but at the same time we are the most diverse DIY robot community in the world!",
+      "tagline": "A free network of robot builders, beginners, makers, parents and educators.",
+      "joinButton": "Join the community"
+    },
+    "benefits": {
+      "title": "What does community participation give?",
+      "support": {
+        "title": "Support",
+        "description": "Get help from other participants and teachers."
+      },
+      "ideas": {
+        "title": "Ideas & Inspiration",
+        "description": "Share your own projects and learn about new ones."
+      },
+      "resources": {
+        "title": "Shared Resources",
+        "description": "Access to libraries, lessons, code examples."
+      },
+      "growth": {
+        "title": "Development",
+        "description": "Competitions, challenges and educational initiatives."
+      }
+    },
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "We're working hard to bring you an amazing community experience. Stay tuned for updates!"
     }
   }
 }

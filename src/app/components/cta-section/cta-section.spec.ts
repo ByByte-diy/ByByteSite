@@ -4,15 +4,16 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { HeroCarouselComponent } from './hero-carousel';
 
-describe('HeroCarouselComponent', () => {
-  let component: HeroCarouselComponent;
-  let fixture: ComponentFixture<HeroCarouselComponent>;
+import { CtaSectionComponent } from './cta-section';
+
+describe('CtaSectionComponent', () => {
+  let component: CtaSectionComponent;
+  let fixture: ComponentFixture<CtaSectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeroCarouselComponent],
+      imports: [CtaSectionComponent, TranslateModule],
       providers: [
         provideRouter([]),
         provideHttpClient(),
@@ -20,15 +21,15 @@ describe('HeroCarouselComponent', () => {
         {
           provide: TranslateService,
           useValue: {
-            get: () => of('Test'),
+            get: () => of(''),
             instant: (key: string) => key,
-            getCurrentLang: () => 'en',
-            onLangChange: of({ lang: 'en' }),
+            onLangChange: of({}),
             onTranslationChange: of({}),
             onDefaultLangChange: of({}),
             onFallbackLangChange: of({}),
             getLangs: () => ['en', 'uk', 'ru'],
             currentLang: 'en',
+            getCurrentLang: () => 'en',
             getDefaultLang: () => 'en',
             use: () => {},
             addLangs: () => {},
@@ -38,7 +39,7 @@ describe('HeroCarouselComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeroCarouselComponent);
+    fixture = TestBed.createComponent(CtaSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -47,12 +48,11 @@ describe('HeroCarouselComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have initial slide at 0', () => {
-    expect(component['currentSlide']()).toBe(0);
-  });
-
-  it('should go to specific slide', () => {
-    component['goToSlide'](1);
-    expect(component['currentSlide']()).toBe(1);
+  it('should have steps configuration', () => {
+    const steps = (component as any).steps();
+    expect(steps.length).toBe(3);
+    expect(steps[0].icon).toBe('/icons/download.svg');
+    expect(steps[1].icon).toBe('/icons/electronics.svg');
+    expect(steps[2].icon).toBe('/icons/code.svg');
   });
 });

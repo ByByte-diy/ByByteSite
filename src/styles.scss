@@ -190,6 +190,16 @@ body {
   line-height: 1.6;
 }
 
+/* Hide scrollbars (keep scrolling enabled) */
+html, body {
+  scrollbar-width: none; /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 /* Prevent images from causing horizontal overflow */
 img {
   max-width: 100%;
