@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { LangSwitcher } from './lang-switcher.ts';
+import { LangSwitcher } from './lang-switcher';
 import { provideRouter } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { provideHttpClient } from '@angular/common/http';
@@ -22,6 +22,7 @@ describe('LangSwitcher', () => {
           useValue: {
             getLangs: () => ['en', 'uk', 'ru'],
             currentLang: 'en',
+            getCurrentLang: () => 'en',
             getDefaultLang: () => 'en',
             use: () => {},
             get: (key: string) => of(key),

@@ -19,7 +19,8 @@
   gap: 8px;
   text-decoration: none;
   color: var(--text-primary);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
 }
 .logo-img {
   width: 48px;
@@ -27,8 +28,9 @@
   object-fit: contain;
 }
 .logo-text {
-  font-size: 16px;
+  font-size: var(--text-2xl);
   letter-spacing: 0.2px;
+  font-weight: var(--font-weight-bold);
 }
 
 .nav {
@@ -43,6 +45,8 @@
   text-decoration: none;
   padding: 6px 8px;
   border-radius: 8px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-2xl);
 }
 .nav__link:hover {
   background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
@@ -57,9 +61,11 @@
 }
 .actions__socials {
   display: flex;
-  gap: 10px;
+  gap: 4px;
   color: var(--text-secondary);
 }
+.actions__socials--desktop { display: flex; }
+.actions__socials--in-menu { display: none; }
 .social {
   color: var(--text-secondary);
   display: flex;
@@ -127,19 +133,28 @@
     gap: 8px;
   }
   .actions {
-    gap: 8px;
+    gap: 0px;
+  }
+  .actions__socials {
+    gap: 0px;
   }
   .burger {
     display: inline-flex;
   }
   .actions__theme,
-  .actions__lang {
+  .actions__lang,
+  .actions__socials--desktop {
     display: none;
   }
   .nav__tools {
     display: flex;
     gap: 8px;
     margin-top: 8px;
+    align-items: center;
+  }
+  .actions__socials--in-menu {
+    display: flex;
+    gap: 10px;
   }
   .logo-img {
     width: 28px;

@@ -4,7 +4,22 @@
 - i18n via @ngx-translate, JSON in src/assets/i18n.
 - No API yet; target: GitHub Pages.
 - Environments in src/environments.
-- Testing: Jest.
+## Testing
+
+- Framework: Karma + Jasmine
+- Headless browser: Firefox (via `karma-firefox-launcher`)
+- Config file: `karma.conf.cjs`
+- Test command: `npm test`
+
+Rationale:
+- Angular 20 + ESM works reliably with Karma; Jest ESM setup was removed.
+
+## Recent UI additions
+
+- Reusable Social Links component (standalone) at `src/app/shared/social-links/`.
+- Header mobile: socials moved into menu; theme/lang toggles remain right-aligned.
+- Hero carousel feature icons switched to CSS mask approach; color via CSS variables.
+- Global overflow fixes to prevent horizontal scroll; responsive icon sizes on mobile.
 
 ## Current technologies
 

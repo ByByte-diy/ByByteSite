@@ -1,13 +1,34 @@
 {
   "nav": {
-    "home": "Home",
-    "products": "Products",
-    "learn": "Learn",
-    "docs": "Docs",
     "build": "Build",
     "learning": "Learning",
     "blog": "Blog",
     "community": "Community"
   },
-  "lang": {"en": "English", "uk": "Ukrainian", "ru": "Russian"}
+  "brand": {
+    "name": "ByByte.DIY"
+  },
+  "hero": {
+    "slide1": {
+      "title": "Welcome to ByByte",
+      "subtitle": "STEM Robotics Platform",
+      "description": "Learn robotics, programming, and engineering through hands-on projects with our innovative educational platform."
+    },
+    "feature1": {
+      "title": "Easy to Assemble",
+      "description": "All components are modular and simple to connect, so even beginners can build the robot with ease."
+    },
+    "feature2": {
+      "title": "Affordable & Open",
+      "description": "The project is open-source and based on widely available parts, making it accessible to everyone."
+    },
+    "feature3": {
+      "title": "Learn by Doing",
+      "description": "Students gain practical skills in electronics, programming, and robotics through real experiments."
+    },
+    "feature4": {
+      "title": "Expandable Platform",
+      "description": "Start with the basics and gradually add sensors and modules to explore advanced robotics."
+    }
+  }
 }

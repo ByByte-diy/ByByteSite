@@ -1,8 +1,86 @@
-/* Design tokens and themes */
+/* SCSS imports */
 @use 'sass:map';
+
+/* Fonts */
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('./assets/fonts/Comfortaa/Comfortaa-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('./assets/fonts/Comfortaa/Comfortaa-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('./assets/fonts/Comfortaa/Comfortaa-Bold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fonts/Nutino/Nunito-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fonts/Nutino/Nunito-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fonts/Nutino/Nunito-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fonts/Nutino/Nunito-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Design tokens and themes */
 
 /* Base color palette (brand + support) */
 :root {
+  /* Typography */
+  --font-primary: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-weight-normal: 500;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 900;
+  
+  /* Font sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+
   /* Brand */
   --color-primary: #0077cc; /* techy blue */
   --color-accent: #ff9800;  /* creative orange */
@@ -20,6 +98,10 @@
   --color-blue-pastel: #81d4fa;
   --color-orange-pastel: #ffcc80;
   --color-green-pastel: #a5d6a7;
+
+  /* Icon colors */
+  --icon-bg: #ffffff;
+  --icon-color: #6B46C1; /* Dark purple for light theme */
 
   /* Semantic tokens */
   --bg-app: var(--color-bg);
@@ -43,6 +125,10 @@
     --color-text: #e6e6e6;
     --color-text-muted: #a1a1a1;
 
+    /* Icon colors for dark theme */
+    --icon-bg: var(--color-surface);
+    --icon-color: #A78BFA; /* Light purple for dark theme */
+
     --link-hover: color-mix(in oklab, var(--color-secondary), white 15%);
     --border-soft: color-mix(in oklab, var(--color-text) 20%, transparent);
   }
@@ -56,6 +142,10 @@
   --color-text-muted: #616161;
   --link-hover: color-mix(in oklab, var(--color-secondary), black 10%);
   --border-soft: color-mix(in oklab, var(--color-text) 12%, transparent);
+  
+  /* Icon colors for light theme */
+  --icon-bg: #ffffff;
+  --icon-color: #6B46C1; /* Dark purple for light theme */
 }
 
 .theme-dark {
@@ -65,6 +155,10 @@
   --color-text-muted: #a1a1a1;
   --link-hover: color-mix(in oklab, var(--color-secondary), white 15%);
   --border-soft: color-mix(in oklab, var(--color-text) 20%, transparent);
+  
+  /* Icon colors for dark theme */
+  --icon-bg: var(--color-surface);
+  --icon-color: #A78BFA; /* Light purple for dark theme */
 }
 
 // SVG icons color inheritance
@@ -84,11 +178,23 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--bg-app);
   color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+}
+
+/* Prevent images from causing horizontal overflow */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 a {
@@ -110,4 +216,46 @@ a:hover {
   color: var(--btn-accent-text);
   border: 1px solid var(--border-soft);
 }
+
+// Feature icon styles moved to hero-carousel component
+
+/* Typography utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
 /* You can add global styles to this file, and also import other style files */
