@@ -1,0 +1,197 @@
+@use '../ui/common-ui.scss' as *;
+
+.info-card {
+  @extend .ui-card;
+  height: 100%;
+}
+
+.info-card__image {
+  @extend .ui-card__image;
+  height: 200px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+}
+
+/* Variants for different card types */
+.info-card--nano .info-card__image {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-success) 100%);
+}
+
+.info-card--point:nth-child(2) .info-card__image {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-success) 100%);
+}
+
+.info-card--point:nth-child(3) .info-card__image {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+}
+
+.info-card--point:nth-child(4) .info-card__image {
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-secondary) 100%);
+}
+
+/* Compact variant for point cards */
+.info-card--compact .info-card__image {
+  height: 120px;
+}
+
+.image-placeholder {
+  @extend .ui-image-placeholder;
+  width: 80px;
+  height: 80px;
+}
+
+.info-card--compact .image-placeholder {
+  width: 60px;
+  height: 60px;
+}
+
+.placeholder-icon {
+  @extend .ui-placeholder-icon;
+  font-size: 2rem;
+}
+
+.info-card--compact .placeholder-icon {
+  font-size: 1.5rem;
+}
+
+.info-card__content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.info-card--compact .info-card__title {
+  font-size: var(--text-2xl);
+  margin-bottom: 1rem;
+}
+
+.info-card__subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.info-card__description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.info-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: var(--text-base);
+}
+
+.feature-icon {
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.info-card--nano .feature-icon {
+  background: var(--color-secondary);
+}
+
+.feature-text {
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .info-card__image {
+    height: 150px;
+  }
+
+  .info-card--compact .info-card__image {
+    height: 100px;
+  }
+
+  .image-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+
+  .info-card--compact .image-placeholder {
+    width: 50px;
+    height: 50px;
+  }
+
+  .placeholder-icon {
+    font-size: 1.5rem;
+  }
+
+  .info-card--compact .placeholder-icon {
+    font-size: 1.25rem;
+  }
+
+  .info-card__content {
+    padding: 1.5rem;
+  }
+
+  .info-card__title {
+    font-size: var(--text-2xl);
+  }
+
+  .info-card--compact .info-card__title {
+    font-size: var(--text-xl);
+  }
+
+  .info-card__subtitle {
+    font-size: var(--text-base);
+  }
+
+  .info-card__description {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .info-card__content {
+    padding: 1rem;
+  }
+
+  .info-card__title {
+    font-size: var(--text-xl);
+  }
+
+  .info-card--compact .info-card__title {
+    font-size: var(--text-lg);
+  }
+
+  .info-card__subtitle {
+    font-size: var(--text-sm);
+  }
+
+  .info-card__description {
+    font-size: var(--text-sm);
+  }
+}

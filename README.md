@@ -37,6 +37,15 @@ Notes:
   - Full-width slides with text overlay, dots navigation (if >1 slide)
   - Feature cards under the carousel (responsive grid)
   - Feature icons rendered via CSS masks with theme-driven colors
+- Shared components
+  - **BenefitCard** (`app/shared/benefit-card/`) - reusable colored cards with icons
+  - **InfoCard** (`app/shared/info-card/`) - universal info cards with features support
+  - **Button** (`app/shared/ui/button/`) - comprehensive button system with presets
+- Button system
+  - 8 variants: primary, secondary, accent, success, warning, danger, ghost, outline
+  - 4 sizes: sm, md, lg, xl
+  - Presets for common use cases: cta, link, externalLink, submit, loading, disabled
+  - Support for icons, loading states, and external links
 - Theming and icons
   - Icon background and glyph colors are controlled by CSS variables: `--icon-bg`, `--icon-color`
   - Dark theme uses `--icon-bg: var(--color-surface)`; light theme uses `--icon-bg: #fff`

@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { ButtonComponent, BUTTON_PRESETS } from '../../shared/ui/button';
+import type { ButtonData, ButtonVariant } from '../../shared/ui/button';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cta-section',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, ButtonComponent],
   template: `
     <section class="cta-section">
       <div class="cta-container">
@@ -27,17 +30,8 @@ import { TranslateModule } from '@ngx-translate/core';
         </div>
 
         <div class="cta-buttons">
-          <a
-            href="https://github.com/ByByte-diy"
-            target="_blank"
-            rel="noopener"
-            class="cta-button cta-button--github"
-          >
-            {{ 'cta.buttons.github' | translate }}
-          </a>
-          <a href="/learn" class="cta-button cta-button--lessons">
-            {{ 'cta.buttons.lessons' | translate }}
-          </a>
+          <app-button [data]="githubButtonData()" />
+          <app-button [data]="lessonsButtonData()" />
         </div>
       </div>
     </section>
@@ -59,4 +53,14 @@ export class CtaSectionComponent {
       title: 'cta.steps.2.title',
     },
   ]);
+
+  protected githubButtonData = signal<ButtonData>({
+    ...BUTTON_PRESETS.externalLink('cta.buttons.github', environment.links.githubOrg, '🔵'),
+    variant: 'primary' as ButtonVariant,
+  });
+
+  protected lessonsButtonData = signal<ButtonData>({
+    ...BUTTON_PRESETS.link('cta.buttons.lessons', '/learn', '🟠'),
+    variant: 'accent' as ButtonVariant,
+  });
 }

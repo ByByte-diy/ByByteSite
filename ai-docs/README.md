@@ -20,6 +20,11 @@ Rationale:
 - Header mobile: socials moved into menu; theme/lang toggles remain right-aligned.
 - Hero carousel feature icons switched to CSS mask approach; color via CSS variables.
 - Global overflow fixes to prevent horizontal scroll; responsive icon sizes on mobile.
+- Shared component system:
+  - **BenefitCard** (`src/app/shared/benefit-card/`) - colored cards for community benefits
+  - **InfoCard** (`src/app/shared/info-card/`) - universal cards with features support, used in about-section and why-important
+  - **Button** (`src/app/shared/ui/button/`) - comprehensive button system with variants, sizes, and presets
+- Button system integration: replaced custom buttons in community page and CTA section with standardized Button component
 
 ## Current technologies
 

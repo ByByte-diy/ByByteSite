@@ -38,6 +38,15 @@ Troubleshooting:
 - Hero Carousel
   - Feature icons via CSS masks (`mask-image` / `-webkit-mask-image`) for theme-aware coloring
   - Icon colors controlled via CSS variables (`--icon-bg`, `--icon-color`)
+- Shared Components
+  - **BenefitCard** (`src/app/shared/benefit-card/`) - colored cards with icons for community benefits
+  - **InfoCard** (`src/app/shared/info-card/`) - universal info cards supporting features, used in about-section and why-important
+  - **Button** (`src/app/shared/ui/button/`) - comprehensive button system with 8 variants, 4 sizes, and presets
+- Button System
+  - Variants: primary, secondary, accent, success, warning, danger, ghost, outline
+  - Sizes: sm, md, lg, xl
+  - Presets: cta, link, externalLink, submit, loading, disabled
+  - Used throughout: community page, CTA section, carousel buttons
 - Styling and overflow
   - Global `overflow-x: hidden` and safe image defaults to prevent horizontal scroll
   - Mobile adjustments for feature icon circle size

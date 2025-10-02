@@ -136,86 +136,88 @@
   gap: 2rem;
 }
 
-.benefit-card {
-  background: var(--color-surface);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.benefit-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-
-.benefit-card__icon {
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.benefit-icon {
-  font-size: 5rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-.benefit-card__content {
-  padding: 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.benefit-card__title {
-  font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 1rem;
-  color: white;
-}
-
-.benefit-card__description {
-  font-size: var(--text-lg);
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
-  margin: 0;
-  flex: 1;
-}
-
-.coming-soon {
+/* Contribute Section */
+.contribute-section {
+  margin: 1rem 0;
   text-align: center;
-  padding: 3rem 2rem;
-  background: var(--color-surface);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 100%;
 }
 
-.coming-soon-icon {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.coming-soon-title {
+.contribute-title {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-4xl);
   font-weight: var(--font-weight-bold);
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   color: var(--text-primary);
 }
 
-.coming-soon-description {
+.contribute-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contribute-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.contribute-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contribute-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contribute-item__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.contribute-item__text {
   font-size: var(--text-lg);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.contribute-cta {
+  margin-top: 2rem;
+}
+
+.contribute-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: var(--color-success);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contribute-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  background: color-mix(in srgb, var(--color-success) 90%, black);
+}
+
+.contribute-btn__icon {
+  font-size: 1.25rem;
 }
 
 /* Mobile Responsive */
@@ -270,57 +272,30 @@
     gap: 1.5rem;
   }
 
-  .benefit-card__icon {
-    height: 100px;
+  .contribute-section {
+    margin: 3rem 0;
   }
 
-  .benefit-icon {
-    font-size: 3rem;
+  .contribute-title {
+    font-size: var(--text-3xl);
+    margin-bottom: 2rem;
   }
 
-  .benefit-card__content {
-    padding: 1.5rem;
+  .contribute-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  .benefit-card__title {
-    font-size: var(--text-xl);
+  .contribute-item {
+    padding: 1rem;
   }
 
-  .benefit-card__description {
+  .contribute-item__text {
     font-size: var(--text-base);
   }
 
-  .coming-soon {
-    padding: 2rem 1rem;
-  }
-
-  .coming-soon-icon {
-    font-size: 3rem;
-  }
-
-  .coming-soon-title {
-    font-size: var(--text-2xl);
-  }
-
-  .coming-soon-description {
+  .contribute-btn {
+    padding: 0.875rem 1.5rem;
     font-size: var(--text-base);
-  }
-}
-
-@media (max-width: 480px) {
-  .coming-soon {
-    padding: 1.5rem 1rem;
-  }
-
-  .coming-soon-icon {
-    font-size: 2.5rem;
-  }
-
-  .coming-soon-title {
-    font-size: var(--text-xl);
-  }
-
-  .coming-soon-description {
-    font-size: var(--text-sm);
   }
 }

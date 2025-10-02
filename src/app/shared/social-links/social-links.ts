@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-social-links',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
   template: `
     <a
       class="social"
-      href="https://instagram.com"
+      [href]="env.links.instagram"
       target="_blank"
       rel="noopener"
       aria-label="Instagram"
@@ -17,19 +18,25 @@ import { Component } from '@angular/core';
     </a>
     <a
       class="social"
-      href="https://facebook.com"
+      [href]="env.links.facebook"
       target="_blank"
       rel="noopener"
       aria-label="Facebook"
     >
       <span class="social-icon" style="--icon: url(/icons/facebook.svg)"></span>
     </a>
-    <a class="social" href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram">
+    <a
+      class="social"
+      [href]="env.links.telegram"
+      target="_blank"
+      rel="noopener"
+      aria-label="Telegram"
+    >
       <span class="social-icon" style="--icon: url(/icons/telegram.svg)"></span>
     </a>
     <a
       class="social"
-      href="https://discord.com"
+      [href]="env.links.discord"
       target="_blank"
       rel="noopener"
       aria-label="Discord"
@@ -38,7 +45,7 @@ import { Component } from '@angular/core';
     </a>
     <a
       class="social"
-      href="https://github.com/ByByte-diy"
+      [href]="env.links.githubOrg"
       target="_blank"
       rel="noopener"
       aria-label="GitHub"
@@ -84,4 +91,6 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class SocialLinks {}
+export class SocialLinks {
+  protected env = environment;
+}

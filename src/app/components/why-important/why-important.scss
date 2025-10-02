@@ -1,6 +1,6 @@
 .why-important-section {
   padding: 4rem 0;
-  background: var(--color-surface);
+  background: var(--color-bg);
   color: var(--text-primary);
 }
 
@@ -29,80 +29,6 @@
   gap: 2rem;
 }
 
-.point-card {
-  background: var(--color-bg);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.point-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-
-.point-card__image {
-  height: 120px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.point-card:nth-child(2) .point-card__image {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-success) 100%);
-}
-
-.point-card:nth-child(3) .point-card__image {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
-}
-
-.point-card:nth-child(4) .point-card__image {
-  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-secondary) 100%);
-}
-
-.image-placeholder {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-}
-
-.placeholder-icon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-.point-card__content {
-  padding: 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.point-card__title {
-  font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.point-card__description {
-  font-size: var(--text-lg);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0;
-  flex: 1;
-}
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
@@ -123,30 +49,6 @@
     gap: 1.5rem;
   }
 
-  .point-card__image {
-    height: 100px;
-  }
-
-  .image-placeholder {
-    width: 50px;
-    height: 50px;
-  }
-
-  .placeholder-icon {
-    font-size: 1.25rem;
-  }
-
-  .point-card__content {
-    padding: 1.5rem;
-  }
-
-  .point-card__title {
-    font-size: var(--text-xl);
-  }
-
-  .point-card__description {
-    font-size: var(--text-base);
-  }
 }
 
 @media (max-width: 480px) {
@@ -158,15 +60,4 @@
     font-size: var(--text-3xl);
   }
 
-  .point-card__content {
-    padding: 1rem;
-  }
-
-  .point-card__title {
-    font-size: var(--text-lg);
-  }
-
-  .point-card__description {
-    font-size: var(--text-sm);
-  }
 }

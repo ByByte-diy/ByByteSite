@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { InfoCardComponent, InfoCardData } from '../../shared/info-card/info-card';
 
 @Component({
   selector: 'app-about-section',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, InfoCardComponent],
   template: `
     <section class="about-section">
       <div class="about-container">
@@ -15,30 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
         </div>
 
         <div class="robots-grid">
-          @for (robot of robots(); track robot.key) {
-            <div [ngClass]="['robot-card', robot.class]">
-              <div class="robot-card__image">
-                <div class="image-placeholder">
-                  <span class="placeholder-icon">{{ robot.icon }}</span>
-                </div>
-              </div>
-              <div class="robot-card__content">
-                <h3 class="robot-card__title">{{ 'about.' + robot.key + '.title' | translate }}</h3>
-                <p class="robot-card__subtitle">
-                  {{ 'about.' + robot.key + '.subtitle' | translate }}
-                </p>
-                <ul class="robot-card__features">
-                  @for (i of featureIndexes(); track i) {
-                    <li class="feature-item">
-                      <span class="feature-icon">✓</span>
-                      <span class="feature-text">{{
-                        'about.' + robot.key + '.features.' + i | translate
-                      }}</span>
-                    </li>
-                  }
-                </ul>
-              </div>
-            </div>
+          @for (robot of robots(); track robot.title) {
+            <app-info-card [data]="robot" />
           }
         </div>
 
@@ -51,10 +30,30 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./about-section.scss'],
 })
 export class AboutSectionComponent {
-  protected robots = signal([
-    { key: 'mega', icon: '🤖', class: 'robot-card--mega' },
-    { key: 'nano', icon: '🔧', class: 'robot-card--nano' },
+  protected robots = signal<InfoCardData[]>([
+    {
+      icon: '🤖',
+      title: 'about.mega.title',
+      subtitle: 'about.mega.subtitle',
+      features: [
+        'about.mega.features.0',
+        'about.mega.features.1',
+        'about.mega.features.2',
+        'about.mega.features.3',
+      ],
+      class: 'info-card--mega',
+    },
+    {
+      icon: '🔧',
+      title: 'about.nano.title',
+      subtitle: 'about.nano.subtitle',
+      features: [
+        'about.nano.features.0',
+        'about.nano.features.1',
+        'about.nano.features.2',
+        'about.nano.features.3',
+      ],
+      class: 'info-card--nano',
+    },
   ]);
-
-  protected featureIndexes = signal([0, 1, 2, 3]);
 }

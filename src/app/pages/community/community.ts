@@ -1,10 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card/benefit-card';
+import { ButtonComponent, BUTTON_PRESETS } from '../../shared/ui/button';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-community',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, BenefitCardComponent, ButtonComponent],
   template: `
     <div class="community-page">
       <div class="community-container">
@@ -19,15 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
               <h1 class="community-title">{{ 'community.hero.title' | translate }}</h1>
               <p class="community-description">{{ 'community.hero.description' | translate }}</p>
               <p class="community-tagline">{{ 'community.hero.tagline' | translate }}</p>
-              <a
-                class="community-join-btn"
-                href="https://discord.com"
-                target="_blank"
-                rel="noopener"
-              >
-                <span class="join-icon">✌️</span>
-                {{ 'community.hero.joinButton' | translate }}
-              </a>
+              <app-button [data]="joinButtonData()" />
             </div>
           </div>
         </header>
@@ -37,26 +32,27 @@ import { TranslateModule } from '@ngx-translate/core';
             <h2 class="benefits-title">{{ 'community.benefits.title' | translate }}</h2>
             <div class="benefits-grid">
               @for (benefit of benefits(); track $index) {
-                <div class="benefit-card" [style.background-color]="benefit.color">
-                  <div class="benefit-card__icon">
-                    <span class="benefit-icon">{{ benefit.icon }}</span>
-                  </div>
-                  <div class="benefit-card__content">
-                    <h3 class="benefit-card__title">{{ benefit.title | translate }}</h3>
-                    <p class="benefit-card__description">{{ benefit.description | translate }}</p>
-                  </div>
-                </div>
+                <app-benefit-card [data]="benefit" />
               }
             </div>
           </section>
 
-          <div class="coming-soon">
-            <div class="coming-soon-icon">🚧</div>
-            <h2 class="coming-soon-title">{{ 'community.comingSoon.title' | translate }}</h2>
-            <p class="coming-soon-description">
-              {{ 'community.comingSoon.description' | translate }}
-            </p>
-          </div>
+          <section class="contribute-section">
+            <h2 class="contribute-title">{{ 'community.contribute.title' | translate }}</h2>
+            <div class="contribute-content">
+              <ul class="contribute-list">
+                @for (item of contributeItems(); track $index) {
+                  <li class="contribute-item">
+                    <span class="contribute-item__icon">{{ item.icon }}</span>
+                    <span class="contribute-item__text">{{ item.text | translate }}</span>
+                  </li>
+                }
+              </ul>
+              <div class="contribute-cta">
+                <app-button [data]="contributeButtonData()" />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -64,7 +60,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./community.scss'],
 })
 export class Community {
-  protected benefits = signal([
+  protected benefits = signal<BenefitCardData[]>([
     {
       icon: '🤝',
       title: 'community.benefits.support.title',
@@ -90,4 +86,35 @@ export class Community {
       color: 'var(--color-success)',
     },
   ]);
+
+  protected contributeItems = signal([
+    {
+      icon: '💻',
+      text: 'community.contribute.codeExample',
+    },
+    {
+      icon: '📚',
+      text: 'community.contribute.documentation',
+    },
+    {
+      icon: '🧪',
+      text: 'community.contribute.testing',
+    },
+    {
+      icon: '💡',
+      text: 'community.contribute.ideas',
+    },
+  ]);
+
+  protected joinButtonData = signal(
+    BUTTON_PRESETS.externalLink('community.hero.joinButton', environment.links.discord, '✌️'),
+  );
+
+  protected contributeButtonData = signal(
+    BUTTON_PRESETS.externalLink(
+      'community.contribute.button',
+      environment.links.contributeGuide,
+      '👉',
+    ),
+  );
 }

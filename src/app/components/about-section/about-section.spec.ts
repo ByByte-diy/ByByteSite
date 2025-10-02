@@ -51,13 +51,14 @@ describe('AboutSectionComponent', () => {
   it('should have robots configuration', () => {
     const robots = (component as any).robots();
     expect(robots.length).toBe(2);
-    expect(robots[0].key).toBe('mega');
-    expect(robots[1].key).toBe('nano');
+    expect(robots[0].title).toBe('about.mega.title');
+    expect(robots[1].title).toBe('about.nano.title');
   });
 
-  it('should have feature indexes', () => {
-    const indexes = (component as any).featureIndexes();
-    expect(indexes.length).toBe(4);
-    expect(indexes).toEqual([0, 1, 2, 3]);
+  it('each robot should expose 4 features', () => {
+    const robots = (component as any).robots();
+    expect(
+      robots.every((r: any) => Array.isArray(r.features) && r.features.length === 4),
+    ).toBeTrue();
   });
 });

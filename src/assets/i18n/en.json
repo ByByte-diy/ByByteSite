@@ -132,9 +132,41 @@
         "description": "Competitions, challenges and educational initiatives."
       }
     },
-    "comingSoon": {
-      "title": "Coming Soon",
-      "description": "We're working hard to bring you an amazing community experience. Stay tuned for updates!"
+    "contribute": {
+      "title": "How can you help?",
+      "codeExample": "Add your own code example or lesson.",
+      "documentation": "Help with documentation.",
+      "testing": "Test platforms and leave feedback.",
+      "ideas": "Suggest new ideas for sensors or projects.",
+      "button": "Make a contribution"
+    }
+  },
+  "build": {
+    "title": "Robot Assembly",
+    "description": "Here we will add steps, guides and resources for assembling the robot.",
+    "hero": {
+      "title": "Build your first robot with ByByte",
+      "subtitle": "Simple assembly from ready-made modules. All you need is some time, a soldering iron and curiosity.",
+      "ctaMega": "Build MEGA",
+      "ctaNano": "Build NANO"
+    },
+    "steps": {
+      "title": "How it works?",
+      "items": [
+        { "title": "Components", "description": "Prepare all parts, modules and boards." },
+        { "title": "Electronics", "description": "Assemble all components and modules on the board." },
+        { "title": "Mechanics", "description": "Connect the chassis, motors and wheels." },
+        { "title": "Power", "description": "Connect the battery and check operation." }
+      ]
+    },
+    "docs": {
+      "title": "Documentation & Instructions",
+      "description": "We have prepared all detailed manuals in a convenient format. Choose what you need:",
+      "items": [
+        { "title": "Complete Assembly Guide", "description": "Detailed assembly instructions with all steps and tips." },
+        { "title": "Programming", "description": "Learn robot programming with code examples and tasks." },
+        { "title": "Lessons", "description": "Step-by-step lessons for beginners with practical tasks." }
+      ]
     }
   }
 }

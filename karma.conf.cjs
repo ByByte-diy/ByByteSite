@@ -2,16 +2,22 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
+  const safeRequire = (name) => {
+    try { return require(name); } catch { return null; }
+  };
+
+  const plugins = [
+    safeRequire('karma-jasmine'),
+    safeRequire('karma-chrome-launcher'),
+    safeRequire('karma-firefox-launcher'),
+    safeRequire('karma-jasmine-html-reporter'),
+    safeRequire('karma-coverage')
+  ].filter(Boolean);
+
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-firefox-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage')
-    ],
+    plugins,
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
@@ -33,6 +39,7 @@ module.exports = function (config) {
       ]
     },
     reporters: ['progress', 'kjhtml'],
+    // Default browsers; will extend below based on host capabilities
     browsers: ['FirefoxHeadless'],
     restartOnFileChange: true,
     // Fallback configuration for systems without Chrome
@@ -40,7 +47,20 @@ module.exports = function (config) {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox', '--disable-setuid-sandbox']
+      },
+      SafariTechPreview: {
+        base: 'SafariTechPreview'
       }
     }
   });
+
+  // Dynamically add Chrome headless iff launcher AND CHROME_BIN present
+  if (safeRequire('karma-chrome-launcher') && process.env.CHROME_BIN) {
+    config.browsers.push('ChromeHeadlessNoSandbox');
+  }
+
+  // Add Safari on macOS only if launcher exists
+  if (process.platform === 'darwin' && safeRequire('karma-safari-launcher')) {
+    config.browsers.push('Safari');
+  }
 };
