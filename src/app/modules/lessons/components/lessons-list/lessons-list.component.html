@@ -1,0 +1,43 @@
+<div class="lessons-container">
+  <app-lesson-filter
+    [platforms]="lessonsService.lessonsIndex() ? lessonsService.lessonsIndex()!.platforms : []"
+    [levels]="lessonsService.lessonsIndex() ? lessonsService.lessonsIndex()!.levels : []"
+    [tags]="lessonsService.lessonsIndex() ? lessonsService.lessonsIndex()!.tags : []"
+    [selectedPlatform]="platform"
+    [selectedLevel]="level"
+    [selectedTag]="tag"
+    [searchTerm]="searchTerm"
+    (filterChange)="onFilterChange($event)"
+  ></app-lesson-filter>
+
+  <div class="lessons-list">
+    <div class="lessons-header">
+      <h2>{{ 'lessons.title' | translate }}</h2>
+      @if (platform) {
+        <p>{{ 'lessons.platform.' + platform | translate }}</p>
+      }
+      @if (level) {
+        <p>{{ 'lessons.level.' + level | translate }}</p>
+      }
+    </div>
+
+    <div class="lessons-grid">
+      @if (!lessonsService.isLoading()) {
+        @if (filteredLessons.length) {
+          @for (lesson of filteredLessons; track lesson.slug) {
+            <app-lesson-card [lesson]="lesson"></app-lesson-card>
+          }
+        } @else {
+          <div class="lessons-empty">
+            <p>{{ 'lessons.noLessons' | translate }}</p>
+          </div>
+        }
+      } @else {
+        <div class="lessons-loading">
+          <p>{{ 'lessons.loading' | translate }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</div>

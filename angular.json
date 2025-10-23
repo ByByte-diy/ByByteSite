@@ -39,7 +39,10 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+              "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
+              "node_modules/emoji-toolkit/extras/css/joypixels.min.css"
             ]
           },
           "configurations": {
@@ -103,7 +106,10 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+              "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
+              "node_modules/emoji-toolkit/extras/css/joypixels.min.css"
             ],
             "karmaConfig": "karma.conf.cjs"
           }

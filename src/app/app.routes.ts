@@ -14,7 +14,10 @@ export const routes: Routes = [
     path: 'build',
     loadComponent: () => import('./pages/build/build.js').then((m) => m.BuildPage),
   },
-  { path: 'learn', loadComponent: () => import('./pages/learn/learn.js').then((m) => m.Learn) },
+  {
+    path: 'learn',
+    loadChildren: () => import('./modules/lessons/lessons.routes.js').then((m) => m.lessonsRoutes),
+  },
   { path: 'docs', loadComponent: () => import('./pages/docs/docs.js').then((m) => m.Docs) },
   {
     path: 'community',

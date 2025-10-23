@@ -168,5 +168,32 @@
         { "title": "Lessons", "description": "Step-by-step lessons for beginners with practical tasks." }
       ]
     }
+  },
+  "lessons": {
+    "pageTitle": "Lessons and Learning Materials",
+    "pageDescription": "Learn robotics with ByByte through practical lessons of varying difficulty levels",
+    "title": "Available Lessons",
+    "loading": "Loading lessons...",
+    "noLessons": "No lessons found. Try changing the filters.",
+    "backToList": "Back to lessons list",
+    "filter": {
+      "platform": "Platform",
+      "level": "Difficulty Level",
+      "tags": "Tags",
+      "search": "Search lessons...",
+      "all": "All",
+      "reset": "Reset filters"
+    },
+    "platform": {
+      "arduino": "Arduino",
+      "raspberry": "Raspberry Pi",
+      "esp8266": "ESP8266",
+      "esp32": "ESP32"
+    },
+    "level": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    }
   }
 }

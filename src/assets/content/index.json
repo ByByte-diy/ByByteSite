@@ -1,0 +1,96 @@
+{
+  "lessons": [
+    {
+      "title": "Перше знайомство з Arduino",
+      "slug": "intro-to-arduino",
+      "lang": "uk",
+      "platforms": ["arduino"],
+      "level": "beginner",
+      "tags": ["основи", "електроніка", "програмування"],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Базовий урок для знайомства з платформою Arduino та її можливостями."
+    },
+    {
+      "title": "Мигаючий світлодіод",
+      "slug": "blink",
+      "lang": "uk",
+      "platforms": ["arduino"],
+      "level": "beginner",
+      "tags": ["світлодіод", "цифрові виходи"],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Класичний приклад з мигаючим світлодіодом для Arduino."
+    },
+    {
+      "title": "Робот на Arduino: перші кроки",
+      "slug": "robot-basics",
+      "lang": "uk",
+      "platforms": ["arduino"],
+      "level": "intermediate",
+      "tags": ["робот", "мотори", "датчики"],
+      "published": true,
+      "version": "1.1.0",
+      "description": "Збірка та програмування простого робота на Arduino."
+    },
+    {
+      "title": "Introduction to Arduino",
+      "slug": "intro-to-arduino",
+      "lang": "en",
+      "platforms": ["arduino"],
+      "level": "beginner",
+      "tags": ["basics", "electronics", "programming"],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Basic lesson for getting to know the Arduino platform and its capabilities."
+    },
+    {
+      "title": "Blinking LED",
+      "slug": "blink",
+      "lang": "en",
+      "platforms": ["arduino"],
+      "level": "beginner",
+      "tags": ["led", "digital outputs"],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Classic example with a blinking LED for Arduino."
+    },
+    {
+      "title": "Введение в Raspberry Pi",
+      "slug": "intro-to-raspberry",
+      "lang": "ru",
+      "platforms": ["raspberry"],
+      "level": "beginner",
+      "tags": ["основы", "linux", "python"],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Базовый урок для знакомства с Raspberry Pi и его возможностями."
+    },
+    {
+      "title": "ESP8266 Wi-Fi проекти",
+      "slug": "esp8266-wifi-projects",
+      "lang": "uk",
+      "platforms": ["esp8266"],
+      "level": "intermediate",
+      "tags": ["wifi", "iot", "датчики"],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Створення проектів з використанням Wi-Fi модуля ESP8266."
+    },
+    {
+      "title": "Advanced Robotics with ESP32",
+      "slug": "advanced-esp32-robotics",
+      "lang": "en",
+      "platforms": ["esp32"],
+      "level": "advanced",
+      "tags": ["robotics", "bluetooth", "wifi", "sensors"],
+      "published": true,
+      "version": "1.2.0",
+      "description": "Building advanced robots with ESP32 microcontroller."
+    }
+  ],
+  "platforms": ["arduino", "raspberry", "esp8266", "esp32"],
+  "levels": ["beginner", "intermediate", "advanced"],
+  "tags": ["основи", "електроніка", "програмування", "світлодіод", "цифрові виходи", "робот", "мотори", "датчики", "basics", "electronics", "programming", "led", "digital outputs", "основы", "linux", "python", "wifi", "iot", "robotics", "bluetooth", "sensors"],
+  "languages": ["uk", "en", "ru"]
+}

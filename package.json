@@ -46,6 +46,10 @@
     "@angular/router": "^20.3.0",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
+    "emoji-toolkit": "^9.0.1",
+    "marked": "^16.4.1",
+    "ngx-markdown": "^20.1.0",
+    "prismjs": "^1.30.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -55,6 +59,7 @@
     "@angular/cli": "^20.3.3",
     "@angular/compiler-cli": "^20.3.0",
     "@types/jasmine": "^5.1.9",
+    "@types/prismjs": "^1.26.5",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",
     "angular-cli-ghpages": "^2.0.3",

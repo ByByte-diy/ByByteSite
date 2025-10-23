@@ -2,6 +2,7 @@ export const environment = {
   production: false,
   defaultLang: 'en',
   supportedLangs: ['en', 'uk', 'ru'],
+  contentBasePath: '/assets/content',
   links: {
     telegram: 'https://t.me',
     facebook: 'https://www.facebook.com',

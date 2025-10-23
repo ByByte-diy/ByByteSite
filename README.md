@@ -1,57 +1,113 @@
-# ByByteSite
+# ByByte Lessons Module
 
-Angular site for STEM robotic platform.
+Модуль для відображення та управління уроками з робототехніки для проекту ByByte.
 
-## Local dev
-- npm start
-- npm run test
-- npm run build
+## Структура модуля
 
-## GitHub Pages
-- npm run deploy:gh
+### Моделі даних
+- `LessonMeta` - метадані уроку (frontmatter)
+- `Lesson` - повний урок з контентом
+- `LessonIndex` - індекс усіх уроків з метаданими
 
-## i18n
-JSON files under src/assets/i18n (en, uk, ru).
+### Сервіси
+- `LessonsService` - завантаження та фільтрація уроків
 
-## Testing
-Karma + Jasmine (headless Firefox by default).
+### Компоненти
+- `LessonsListComponent` - відображення списку уроків
+- `LessonFilterComponent` - фільтрація уроків
+- `LessonCardComponent` - картка уроку в списку
+- `LessonViewComponent` - відображення окремого уроку
 
-Run tests:
+### Сторінки
+- `LessonsPageComponent` - сторінка зі списком уроків
+- `LessonDetailPageComponent` - сторінка з окремим уроком
 
-```bash
-npm test
+## Структура контенту
+
+```
+/content
+  /uk
+    /arduino
+      /beginner
+        blink.md
+  /en
+    /arduino
+      /beginner
+        blink.md
+  /ru/...
+  /assets
 ```
 
-Notes:
-- If Chrome is not installed, tests run with Firefox headless (`karma-firefox-launcher`).
-- Config: `karma.conf.cjs` (CommonJS because `package.json` uses `type: "module"`).
-- Angular builder: `@angular/build:karma` configured in `angular.json`.
+## Frontmatter уроків
 
-## New UI features
+```yaml
+---
+title: Назва уроку
+slug: унікальний-ідентифікатор
+lang: uk
+platforms: 
+  - arduino
+level: beginner
+tags: 
+  - світлодіод
+  - цифрові виходи
+published: true
+version: 1.0.0
+description: Короткий опис уроку.
+---
+```
 
-- Header
-  - Responsive mobile menu with burger button
-  - Social links component reused in desktop and mobile (`app/shared/social-links/`)
-  - In mobile, social icons render inside the menu; theme and language toggles stay on the right
-- Hero carousel
-  - Full-width slides with text overlay, dots navigation (if >1 slide)
-  - Feature cards under the carousel (responsive grid)
-  - Feature icons rendered via CSS masks with theme-driven colors
-- Shared components
-  - **BenefitCard** (`app/shared/benefit-card/`) - reusable colored cards with icons
-  - **InfoCard** (`app/shared/info-card/`) - universal info cards with features support
-  - **Button** (`app/shared/ui/button/`) - comprehensive button system with presets
-- Button system
-  - 8 variants: primary, secondary, accent, success, warning, danger, ghost, outline
-  - 4 sizes: sm, md, lg, xl
-  - Presets for common use cases: cta, link, externalLink, submit, loading, disabled
-  - Support for icons, loading states, and external links
-- Theming and icons
-  - Icon background and glyph colors are controlled by CSS variables: `--icon-bg`, `--icon-color`
-  - Dark theme uses `--icon-bg: var(--color-surface)`; light theme uses `--icon-bg: #fff`
-  - External SVGs use `fill: var(--svg-fill)` for color via CSS variable
+## JSON-індекс
 
-## Mobile specifics
+Під час CI генерується `index.json` з метаданими всіх уроків, який використовується для швидкої фільтрації та пошуку.
 
-- Prevented horizontal scroll globally; images constrained to container width
-- Smaller feature icon circle on small screens (`@media (max-width: 640px)`)
+## Фільтрація
+
+Уроки можна фільтрувати за:
+- Платформою (Arduino, Raspberry Pi, ESP8266, ESP32)
+- Рівнем складності (початковий, середній, просунутий)
+- Мовою (українська, англійська, російська)
+- Тегами
+- Пошуковим запитом
+
+## Встановлення залежностей
+
+```bash
+npm install ngx-markdown marked --save
+```
+
+## Інтеграція в проект
+
+1. Додати модуль уроків до маршрутизації:
+
+```typescript
+{ 
+  path: 'learn',
+  loadChildren: () => import('./modules/lessons/lessons.routes.js').then((m) => m.lessonsRoutes),
+}
+```
+
+2. Налаштувати шлях до контенту в `environment.ts`:
+
+```typescript
+contentBasePath: '/assets/content'
+```
+
+3. Додати переклади для інтерфейсу уроків в `i18n` файли.
+
+## CI/CD
+
+Для автоматичного оновлення уроків з окремого репозиторію використовується GitHub Actions:
+
+1. Клонування репозиторію з уроками
+2. Копіювання уроків у папку `/content`
+3. Генерація `index.json` з метаданими
+4. Збірка проекту
+
+## Додаткові можливості для розширення
+
+- Пагінація для великої кількості уроків
+- Пошук за вмістом уроків
+- Коментарі та обговорення
+- Система оцінювання уроків
+- Відстеження прогресу користувача

@@ -1,0 +1,79 @@
+<div class="filter-container">
+  <div class="filter-search">
+    <input
+      type="text"
+      [placeholder]="'lessons.filter.search' | translate"
+      [value]="searchTerm"
+      (input)="onSearchChange($event)"
+    />
+  </div>
+  
+  <div class="filter-options">
+    <div class="filter-group">
+      <label>{{ 'lessons.filter.platform' | translate }}</label>
+      <div class="filter-buttons">
+        <button
+          class="filter-button"
+          [class.active]="!selectedPlatform"
+          (click)="onPlatformChange(null)"
+        >
+          {{ 'lessons.filter.all' | translate }}
+        </button>
+        @for (platform of platforms; track platform) {
+          <button
+            class="filter-button"
+            [class.active]="selectedPlatform === platform"
+            (click)="onPlatformChange(platform)"
+          >
+            {{ 'lessons.platform.' + platform | translate }}
+          </button>
+        }
+      </div>
+    </div>
+    
+    <div class="filter-group">
+      <label>{{ 'lessons.filter.level' | translate }}</label>
+      <div class="filter-buttons">
+        <button
+          class="filter-button"
+          [class.active]="!selectedLevel"
+          (click)="onLevelChange(null)"
+        >
+          {{ 'lessons.filter.all' | translate }}
+        </button>
+        @for (level of levels; track level) {
+          <button
+            class="filter-button"
+            [class.active]="selectedLevel === level"
+            (click)="onLevelChange(level)"
+          >
+            {{ 'lessons.level.' + level | translate }}
+          </button>
+        }
+      </div>
+    </div>
+    
+    @if (tags.length) {
+      <div class="filter-group">
+        <label>{{ 'lessons.filter.tags' | translate }}</label>
+        <div class="filter-tags">
+          @for (tag of tags; track tag) {
+            <span
+              class="filter-tag"
+              [class.active]="selectedTag === tag"
+              (click)="onTagChange(tag === selectedTag ? null : tag)"
+            >
+              {{ tag }}
+            </span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  
+  <div class="filter-actions">
+    <button class="reset-button" (click)="resetFilters()">
+      {{ 'lessons.filter.reset' | translate }}
+    </button>
+  </div>
+</div>
