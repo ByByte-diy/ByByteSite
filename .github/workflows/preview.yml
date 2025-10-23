@@ -1,0 +1,114 @@
+name: Preview Deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download lessons content (if available)
+        run: |
+          if [ -d "src/assets/content" ]; then
+            echo "Content already available"
+          else
+            echo "Downloading lessons content..."
+            mkdir -p temp-lessons
+            curl -L -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/ByByte-diy/ByByteLessons/zipball/main" \
+              -o lessons.zip
+            unzip lessons.zip -d temp-lessons
+            REPO_DIR=$(find temp-lessons -maxdepth 1 -type d -name "ByByte-diy-ByByteLessons-*" | head -1)
+            if [ -d "$REPO_DIR/content" ]; then
+              cp -r "$REPO_DIR/content"/* src/assets/content/
+              echo "Content downloaded successfully"
+            else
+              echo "Content directory not found, using placeholder"
+              mkdir -p src/assets/content
+              echo '{"lessons":[],"platforms":[],"levels":[],"tags":[],"languages":[]}' > src/assets/content/index.json
+            fi
+          fi
+
+      - name: Generate lessons index
+        run: |
+          if [ -f "scripts/generate-index.js" ]; then
+            node scripts/generate-index.js
+          else
+            echo "Index generation script not found, using existing index"
+          fi
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/ByByteSite/browser
+          destination_dir: preview/pr-${{ github.event.number }}
+
+      - name: Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const previewUrl = `https://bybyte.diy/preview/pr-${{ github.event.number }}/`;
+            const comment = `🚀 **Preview deployed!**
+
+            Your changes are now available at: [${previewUrl}](${previewUrl})
+            
+            This preview will be automatically updated when you push new commits to this PR.
+            
+            **Note:** This is a preview environment and may not reflect the final production state.`;
+
+            // Знаходимо існуючий коментар
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            const existingComment = comments.data.find(comment => 
+              comment.user.type === 'Bot' && comment.body.includes('Preview deployed!')
+            );
+
+            if (existingComment) {
+              // Оновлюємо існуючий коментар
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body: comment
+              });
+            } else {
+              // Створюємо новий коментар
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }

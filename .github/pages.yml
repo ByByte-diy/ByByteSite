@@ -1,0 +1,16 @@
+# GitHub Pages configuration
+# This file is used to configure GitHub Pages settings
+
+# Enable GitHub Pages
+# Source: GitHub Actions
+# Branch: gh-pages (automatically created by the deployment action)
+
+# Custom domain (if applicable)
+# CNAME: bybyte.diy
+
+# Build settings
+# Build command: npm run build
+# Output directory: dist/ByByteSite/browser
+
+# Environment variables
+# NODE_ENV: production

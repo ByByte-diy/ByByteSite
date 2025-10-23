@@ -14,7 +14,9 @@
     "deploy:gh": "npm run build:gh && npx -y angular-cli-ghpages --dir=dist/ByByteSite/browser",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "eslint \"src/**/*.ts\" --fix",
-    "prepare": "npx simple-git-hooks"
+    "prepare": "npx simple-git-hooks",
+    "generate-index": "node scripts/generate-index.js",
+    "validate-content": "node scripts/validate-content.js"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -47,6 +49,7 @@
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "emoji-toolkit": "^9.0.1",
+    "js-yaml": "^4.1.0",
     "marked": "^16.4.1",
     "ngx-markdown": "^20.1.0",
     "prismjs": "^1.30.0",

@@ -1,0 +1,172 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '22'
+  CONTENT_REPO: 'ByByte-diy/ByByteLessons'
+  CONTENT_BRANCH: 'main'
+
+jobs:
+  # Job для підвантаження та валідації контенту
+  content-validation:
+    runs-on: ubuntu-latest
+    outputs:
+      content-valid: ${{ steps.validate.outputs.valid }}
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download lessons content
+        run: |
+          echo "Downloading lessons from ${{ env.CONTENT_REPO }}..."
+          mkdir -p temp-lessons
+          curl -L -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ env.CONTENT_REPO }}/zipball/${{ env.CONTENT_BRANCH }}" \
+            -o lessons.zip
+          unzip lessons.zip -d temp-lessons
+          # Знаходимо кореневу папку репозиторію
+          REPO_DIR=$(find temp-lessons -maxdepth 1 -type d -name "ByByte-diy-ByByteLessons-*" | head -1)
+          if [ -d "$REPO_DIR/content" ]; then
+            cp -r "$REPO_DIR/content"/* src/assets/content/
+            echo "Content downloaded successfully"
+          else
+            echo "Content directory not found"
+            exit 1
+          fi
+
+      - name: Generate lessons index
+        run: |
+          echo "Generating lessons index..."
+          node scripts/generate-index.js
+
+      - name: Validate content structure
+        id: validate
+        run: |
+          echo "Validating content structure..."
+          node scripts/validate-content.js
+          echo "valid=true" >> $GITHUB_OUTPUT
+
+      - name: Upload content artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lessons-content
+          path: src/assets/content/
+          retention-days: 1
+
+  # Job для збірки та тестування
+  build-and-test:
+    runs-on: ubuntu-latest
+    needs: content-validation
+    if: needs.content-validation.outputs.content-valid == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download content artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: lessons-content
+          path: src/assets/content/
+
+      - name: Generate lessons index
+        run: node scripts/generate-index.js
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: dist/
+          retention-days: 1
+
+  # Job для деплою на GitHub Pages
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [content-validation, build-and-test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: dist/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/ByByteSite/browser
+          cname: bybyte.diy
+
+      - name: Deployment status
+        id: deployment
+        run: echo "page_url=https://bybyte.diy" >> $GITHUB_OUTPUT
+
+  # Job для preview деплою (для PR)
+  preview-deploy:
+    runs-on: ubuntu-latest
+    needs: [content-validation, build-and-test]
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: dist/
+
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/ByByteSite/browser
+          destination_dir: preview/pr-${{ github.event.number }}
+
+      - name: Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🚀 **Preview deployed!**\n\nYour changes are now available at: https://bybyte.diy/preview/pr-${{ github.event.number }}/`
+            })
