@@ -30,7 +30,7 @@ This lesson is a classic example for beginners learning Arduino. We'll learn how
 1. Connect the long leg of the LED (anode) to digital pin 13 of the Arduino through a 220 Ohm resistor.
 2. Connect the short leg of the LED (cathode) to the GND pin (ground) of the Arduino.
 
-![LED Connection Diagram](/assets/content/assets/blink_circuit.png)
+![LED Connection Diagram](/content/assets/img/arduino_blink.png)
 
 ## Program Code
 
