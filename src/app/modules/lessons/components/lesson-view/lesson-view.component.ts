@@ -101,7 +101,7 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked {
     const fixedContent = content.replace(
       imagePathRegex,
       (match, prefix, contentPath, imagePath, suffix) => {
-        const newPath = prefix + '/assets/content/' + imagePath + suffix;
+        const newPath = prefix + 'assets/content/' + imagePath + suffix;
         return newPath;
       },
     );
