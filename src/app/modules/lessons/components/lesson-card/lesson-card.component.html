@@ -1,0 +1,38 @@
+<div class="lesson-card" (click)="navigateToLesson()">
+  <div class="lesson-card__header">
+    <div class="lesson-platform">
+      <span class="platform-icon">{{ iconsService.getPlatformIcon(lesson.platforms[0]) }}</span>
+      <span class="platform-name">{{ 'lessons.platform.' + lesson.platforms[0] | translate }}</span>
+    </div>
+    <div class="lesson-level">
+      <span class="level-icon">{{ iconsService.getLevelIcon(lesson.level) }}</span>
+      <span class="level-name">{{ 'lessons.level.' + lesson.level | translate }}</span>
+    </div>
+  </div>
+  
+  <div class="lesson-card__content">
+    <h3 class="lesson-title">{{ lesson.title }}</h3>
+    @if (lesson.description) {
+      <p class="lesson-description">{{ lesson.description }}</p>
+    }
+  </div>
+  
+  <div class="lesson-card__footer">
+    @if (lesson.tags.length) {
+      <div class="lesson-tags">
+        @for (tag of lesson.tags.slice(0, 3); track tag) {
+          <span class="lesson-tag">{{ tag }}</span>
+        }
+        @if (lesson.tags.length > 3) {
+          <span class="lesson-tag more">+{{ lesson.tags.length - 3 }}</span>
+        }
+      </div>
+    }
+    
+    @if (lesson.version) {
+      <div class="lesson-version">
+        <span class="version-label">v{{ lesson.version }}</span>
+      </div>
+    }
+  </div>
+</div>

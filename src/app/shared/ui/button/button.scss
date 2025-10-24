@@ -1,0 +1,217 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* Sizes */
+.btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+  min-height: 2rem;
+}
+
+.btn--md {
+  padding: 0.75rem 1.5rem;
+  font-size: var(--text-base);
+  min-height: 2.5rem;
+}
+
+.btn--lg {
+  padding: 1rem 2rem;
+  font-size: var(--text-lg);
+  min-height: 3rem;
+}
+
+.btn--xl {
+  padding: 1.25rem 2.5rem;
+  font-size: var(--text-xl);
+  min-height: 3.5rem;
+}
+
+/* Variants */
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-primary) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-secondary) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-accent) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn--success {
+  background: var(--color-success);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-success) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn--warning {
+  background: var(--color-warning);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-warning) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn--danger {
+  background: var(--color-danger);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-danger) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  
+  &:hover:not(:disabled) {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+  }
+}
+
+/* States */
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn--loading {
+  cursor: wait;
+}
+
+.btn__icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.btn__spinner {
+  animation: spin 1s linear infinite;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.btn__text {
+  line-height: 1;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Dark theme adjustments */
+:host-context(.theme-dark) {
+  .btn--ghost {
+    color: var(--color-primary);
+    border-color: var(--color-border);
+    
+    &:hover:not(:disabled) {
+      background: var(--color-surface);
+      border-color: var(--color-primary);
+    }
+  }
+  
+  .btn--outline {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    
+    &:hover:not(:disabled) {
+      background: var(--color-primary);
+      color: white;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host:not(.theme-light) {
+    .btn--ghost {
+      color: var(--color-primary);
+      border-color: var(--color-border);
+      
+      &:hover:not(:disabled) {
+        background: var(--color-surface);
+        border-color: var(--color-primary);
+      }
+    }
+    
+    .btn--outline {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      
+      &:hover:not(:disabled) {
+        background: var(--color-primary);
+        color: white;
+      }
+    }
+  }
+}

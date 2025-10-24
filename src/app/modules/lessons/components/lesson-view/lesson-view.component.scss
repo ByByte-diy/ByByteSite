@@ -1,0 +1,248 @@
+.lesson-view {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.lesson-header {
+  margin-bottom: 2rem;
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-platform,
+.lesson-level {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  background: var(--color-surface);
+  border-radius: 16px;
+}
+
+.platform-icon,
+.level-icon {
+  font-size: 1.2em;
+}
+
+.lesson-title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.lesson-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.lesson-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lesson-tag {
+  padding: 0.25rem 0.75rem;
+  background: var(--color-bg);
+  border-radius: 16px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.lesson-version {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.lesson-content {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Basic styles for Markdown
+::ng-deep .markdown-content {
+  line-height: 1.6;
+  color: var(--text-primary);
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+  }
+  
+  h1 {
+    font-size: var(--text-3xl);
+  }
+  
+  h2 {
+    font-size: var(--text-2xl);
+  }
+  
+  h3 {
+    font-size: var(--text-xl);
+  }
+  
+  p {
+    margin-bottom: 1.5em;
+  }
+  
+  ul, ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.5em;
+  }
+  
+  li {
+    margin-bottom: 0.5em;
+  }
+  
+  code:not([class*="language-"]) {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    background: var(--color-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  pre {
+    padding: 0; // Important for correct Prism.js display
+    margin-bottom: 1.5em;
+    border-radius: 8px;
+    overflow: auto;
+    
+    // Style scrollbars
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.4);
+    }
+    
+    // Show scrollbars only on hover
+    &:hover::-webkit-scrollbar-thumb {
+      opacity: 1;
+    }
+    
+    // For Firefox
+    scrollbar-width: auto;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+    code {
+      background: transparent;
+      padding: 0;
+    }
+  }
+  
+  // Additional styles for code highlighting
+  pre[class*="language-"] {
+    position: relative;
+    margin: 1em 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  // Improvement for line-numbers
+  .line-numbers .line-numbers-rows {
+    padding: 1em 0;
+  }
+  
+  // Improvement for toolbar
+  div.code-toolbar > .toolbar {
+    top: 0.3em;
+    right: 0.3em;
+    transition: opacity 0.3s ease;
+  }
+  
+  div.code-toolbar > .toolbar button {
+    cursor: pointer;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5em 0;
+  }
+  
+  blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+    
+    th, td {
+      border: 1px solid var(--color-border);
+      padding: 0.5em;
+      text-align: left;
+    }
+    
+    th {
+      background: var(--color-bg);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+  
+  // Styles for code highlighting
+  pre[class*="language-"] {
+    text-shadow: none;
+    // overflow: auto;
+  }
+}
+
+.lesson-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  
+  p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+  }
+}
+
+@media (max-width: 768px) {
+  .lesson-title {
+    font-size: var(--text-3xl);
+  }
+  
+  .lesson-content {
+    padding: 1.5rem;
+  }
+}

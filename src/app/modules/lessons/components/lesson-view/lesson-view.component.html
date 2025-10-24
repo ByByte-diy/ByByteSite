@@ -1,0 +1,42 @@
+@if (lesson) {
+  <div class="lesson-view">
+    <div class="lesson-header">
+      <div class="lesson-meta">
+        <div class="lesson-platform">
+          <span class="platform-icon">{{ iconsService.getPlatformIcon(lesson.platforms[0]) }}</span>
+          <span class="platform-name">{{ 'lessons.platform.' + lesson.platforms[0] | translate }}</span>
+        </div>
+        <div class="lesson-level">
+          <span class="level-icon">{{ iconsService.getLevelIcon(lesson.level) }}</span>
+          <span class="level-name">{{ 'lessons.level.' + lesson.level | translate }}</span>
+        </div>
+      </div>
+      
+      <h1 class="lesson-title">{{ lesson.title }}</h1>
+      
+      <div class="lesson-info">
+        @if (lesson.tags && lesson.tags.length) {
+          <div class="lesson-tags">
+            @for (tag of lesson.tags; track tag) {
+              <span class="lesson-tag">{{ tag }}</span>
+            }
+          </div>
+        }
+        
+        @if (lesson.version) {
+          <div class="lesson-version">
+            <span class="version-label">v{{ lesson.version }}</span>
+          </div>
+        }
+      </div>
+    </div>
+    
+    <div #markdownContainer class="lesson-content">
+      <markdown [data]="markdownContent" class="markdown-content" lineNumbers emoji></markdown>
+    </div>
+  </div>
+} @else {
+  <div class="lesson-loading">
+    <p>{{ 'lessons.loading' | translate }}</p>
+  </div>
+}
