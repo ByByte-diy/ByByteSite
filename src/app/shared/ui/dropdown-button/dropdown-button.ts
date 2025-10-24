@@ -61,7 +61,7 @@ export class DropdownButtonComponent implements OnDestroy {
 
   @HostListener('document:click', ['$event'])
   onDocClick(ev: MouseEvent) {
-    const path = ev.composedPath() as Array<EventTarget>;
+    const path = ev.composedPath?.() as Array<EventTarget>;
     const isInside = path.some((n: any) => n?.classList?.contains?.('dropdown'));
     if (!isInside) this.close();
   }
