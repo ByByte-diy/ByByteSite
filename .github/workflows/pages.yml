@@ -84,6 +84,16 @@ jobs:
           ls -la dist/ByByteSite/browser/
           echo "Build output verified"
 
+      - name: Verify content files
+        run: |
+          if [ -f "dist/ByByteSite/browser/assets/content/index.json" ]; then
+            echo "Content index.json found in build output"
+            ls -la dist/ByByteSite/browser/assets/content/
+          else
+            echo "WARNING: Content index.json not found in build output"
+            ls -la dist/ByByteSite/browser/assets/ || echo "Assets directory not found"
+          fi
+
       - name: Clean up temporary files
         run: |
           rm -rf temp-lessons lessons.zip

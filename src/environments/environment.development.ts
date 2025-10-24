@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   defaultLang: 'en',
   supportedLangs: ['en', 'uk', 'ru'],
-  contentBasePath: '/assets/content',
+  contentBasePath: 'assets/content',
   siteName: 'ByByte STEM School',
   siteUrl: 'http://localhost:4200',
   siteDescription: 'Learn robotics and programming with ByByte STEM School',
