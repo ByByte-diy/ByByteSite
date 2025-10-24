@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
       rel="noopener"
       aria-label="Instagram"
     >
-      <span class="social-icon" style="--icon: url(/icons/instagram.svg)"></span>
+      <span class="social-icon" style="--icon: url(icons/instagram.svg)"></span>
     </a>
     <a
       class="social"
@@ -23,7 +23,7 @@ import { environment } from '../../../environments/environment';
       rel="noopener"
       aria-label="Facebook"
     >
-      <span class="social-icon" style="--icon: url(/icons/facebook.svg)"></span>
+      <span class="social-icon" style="--icon: url(icons/facebook.svg)"></span>
     </a>
     <a
       class="social"
@@ -32,7 +32,7 @@ import { environment } from '../../../environments/environment';
       rel="noopener"
       aria-label="Telegram"
     >
-      <span class="social-icon" style="--icon: url(/icons/telegram.svg)"></span>
+      <span class="social-icon" style="--icon: url(icons/telegram.svg)"></span>
     </a>
     <a
       class="social"
@@ -41,7 +41,7 @@ import { environment } from '../../../environments/environment';
       rel="noopener"
       aria-label="Discord"
     >
-      <span class="social-icon" style="--icon: url(/icons/discord.svg)"></span>
+      <span class="social-icon" style="--icon: url(icons/discord.svg)"></span>
     </a>
     <a
       class="social"
@@ -50,7 +50,7 @@ import { environment } from '../../../environments/environment';
       rel="noopener"
       aria-label="GitHub"
     >
-      <span class="social-icon" style="--icon: url(/icons/github.svg)"></span>
+      <span class="social-icon" style="--icon: url(icons/github.svg)"></span>
     </a>
   `,
   styles: [

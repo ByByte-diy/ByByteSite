@@ -41,15 +41,15 @@ import { environment } from '../../../environments/environment';
 export class CtaSectionComponent {
   protected steps = signal([
     {
-      icon: '/icons/download.svg',
+      icon: 'icons/download.svg',
       title: 'cta.steps.0.title',
     },
     {
-      icon: '/icons/electronics.svg',
+      icon: 'icons/electronics.svg',
       title: 'cta.steps.1.title',
     },
     {
-      icon: '/icons/code.svg',
+      icon: 'icons/code.svg',
       title: 'cta.steps.2.title',
     },
   ]);

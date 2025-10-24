@@ -21,7 +21,7 @@ import { SocialLinks } from '../../shared/social-links/social-links.js';
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" routerLink="/" [attr.aria-label]="'brand.name' | translate">
-          <img src="/img/logo.png" [attr.alt]="'brand.name' | translate" class="logo-img" />
+          <img src="img/logo.png" [attr.alt]="'brand.name' | translate" class="logo-img" />
           <span class="logo-text">{{ 'brand.name' | translate }}</span>
         </a>
 

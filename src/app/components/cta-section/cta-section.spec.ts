@@ -51,8 +51,8 @@ describe('CtaSectionComponent', () => {
   it('should have steps configuration', () => {
     const steps = (component as any).steps();
     expect(steps.length).toBe(3);
-    expect(steps[0].icon).toBe('/icons/download.svg');
-    expect(steps[1].icon).toBe('/icons/electronics.svg');
-    expect(steps[2].icon).toBe('/icons/code.svg');
+    expect(steps[0].icon).toBe('icons/download.svg');
+    expect(steps[1].icon).toBe('icons/electronics.svg');
+    expect(steps[2].icon).toBe('icons/code.svg');
   });
 });

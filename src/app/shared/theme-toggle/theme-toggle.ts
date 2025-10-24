@@ -11,7 +11,7 @@ import { ThemeService } from '../../core/theme/theme.service.js';
       <span
         dropdownTrigger
         class="icon-mask"
-        [style.--icon]="effectiveTheme === 'dark' ? 'url(/icons/moon.svg)' : 'url(/icons/sun.svg)'"
+        [style.--icon]="effectiveTheme === 'dark' ? 'url(icons/moon.svg)' : 'url(icons/sun.svg)'"
         aria-hidden="true"
       ></span>
       <ng-container dropdownMenu>

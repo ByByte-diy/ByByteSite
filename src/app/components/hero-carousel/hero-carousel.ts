@@ -102,7 +102,7 @@ export class HeroCarouselComponent {
   protected slides = signal<CarouselSlide[]>([
     {
       id: 'slide-1',
-      image: '/img/car.png',
+      image: 'img/car.png',
       title: 'hero.slide1.title',
       subtitle: 'hero.slide1.subtitle',
       description: 'hero.slide1.description',
@@ -123,28 +123,28 @@ export class HeroCarouselComponent {
       title: 'hero.feature1.title',
       description: 'hero.feature1.description',
       color: 'var(--color-primary)', // Blue for assembling
-      icon: '/icons/carusel/assembling.svg',
+      icon: 'icons/carusel/assembling.svg',
     },
     {
       id: 'feature-2',
       title: 'hero.feature2.title',
       description: 'hero.feature2.description',
       color: 'var(--color-success)', // Green for like/affordable
-      icon: '/icons/carusel/like.svg',
+      icon: 'icons/carusel/like.svg',
     },
     {
       id: 'feature-3',
       title: 'hero.feature3.title',
       description: 'hero.feature3.description',
       color: 'var(--color-secondary)', // Orange for learning
-      icon: '/icons/carusel/rocket.svg',
+      icon: 'icons/carusel/rocket.svg',
     },
     {
       id: 'feature-4',
       title: 'hero.feature4.title',
       description: 'hero.feature4.description',
       color: 'var(--color-accent)', // Purple for expandable
-      icon: '/icons/carusel/expand.svg',
+      icon: 'icons/carusel/expand.svg',
     },
   ]);
 

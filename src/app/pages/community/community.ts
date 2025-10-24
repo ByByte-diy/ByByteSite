@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
           <div class="community-hero">
             <div class="community-hero__icon">
               <div class="hero-icon">
-                <img src="/img/community.png" alt="community" class="hero-icon-img" />
+                <img src="img/community.png" alt="community" class="hero-icon-img" />
               </div>
             </div>
             <div class="community-hero__content">

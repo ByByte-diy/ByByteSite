@@ -12,7 +12,7 @@ import { DropdownButtonComponent } from '../ui/dropdown-button/dropdown-button.j
       <span
         dropdownTrigger
         class="icon-mask"
-        [style.--icon]="'url(/icons/globe.svg)'"
+        [style.--icon]="'url(icons/globe.svg)'"
         aria-hidden="true"
       ></span>
       <ng-container dropdownMenu>
