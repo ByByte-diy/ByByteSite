@@ -108,11 +108,11 @@ export class HeroCarouselComponent {
       description: 'hero.slide1.description',
       buttons: [
         {
-          href: 'https://github.com/ByByte-diy/ByByteNano',
+          href: '/build',
           color: 'primary',
           text: 'hero.buttons.letsBuild',
         },
-        { href: '/#community', color: 'accent', text: 'hero.buttons.letsLearn' },
+        { href: '/learn', color: 'accent', text: 'hero.buttons.letsLearn' },
       ],
     },
   ]);

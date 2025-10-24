@@ -28,7 +28,7 @@ import { SocialLinks } from '../../shared/social-links/social-links.js';
         <nav class="nav" [class.nav--open]="isMobileMenuOpen()">
           <a class="nav__link" routerLink="/build">{{ 'nav.build' | translate }}</a>
           <a class="nav__link" routerLink="/learn">{{ 'nav.learning' | translate }}</a>
-          <a class="nav__link" href="/#blog">{{ 'nav.blog' | translate }}</a>
+          <a class="nav__link" routerLink="/blog">{{ 'nav.blog' | translate }}</a>
           <a class="nav__link" routerLink="/community">{{ 'nav.community' | translate }}</a>
           <div class="nav__tools">
             <app-social-links class="actions__socials actions__socials--in-menu" />

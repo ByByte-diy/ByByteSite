@@ -8,6 +8,34 @@
   "brand": {
     "name": "ByByte.DIY"
   },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Go to Home",
+    "goBack": "Go Back"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Stay updated with the latest tutorials, tips, and projects from our community.",
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "We're working on bringing you amazing content. Stay tuned for tutorials, tips, and community projects!"
+    },
+    "features": {
+      "tutorials": {
+        "title": "Step-by-Step Tutorials",
+        "description": "Learn robotics and programming with detailed, easy-to-follow guides."
+      },
+      "tips": {
+        "title": "Pro Tips & Tricks",
+        "description": "Get insider knowledge and best practices from experienced makers."
+      },
+      "projects": {
+        "title": "Community Projects",
+        "description": "Discover inspiring projects and share your own creations."
+      }
+    }
+  },
   "hero": {
     "slide1": {
       "title": "Welcome to ByByte.DIY",

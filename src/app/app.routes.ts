@@ -23,5 +23,12 @@ export const routes: Routes = [
     path: 'community',
     loadComponent: () => import('./pages/community/community.js').then((m) => m.Community),
   },
-  { path: '**', redirectTo: '' },
+  {
+    path: 'blog',
+    loadComponent: () => import('./pages/blog/blog.js').then((m) => m.BlogComponent),
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./pages/not-found/not-found.js').then((m) => m.NotFoundComponent),
+  },
 ];

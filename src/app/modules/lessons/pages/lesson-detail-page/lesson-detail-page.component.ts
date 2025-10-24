@@ -217,16 +217,18 @@ export class LessonDetailPageComponent implements OnInit, OnDestroy {
       },
     };
 
-    // Remove existing structured data
-    const existingScript = document.querySelector('script[type="application/ld+json"]');
-    if (existingScript) {
-      existingScript.remove();
-    }
+    // Remove existing structured data (browser only)
+    if (typeof document !== 'undefined') {
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
 
-    // Add new structured data
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(structuredData);
-    document.head.appendChild(script);
+      // Add new structured data
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(structuredData);
+      document.head.appendChild(script);
+    }
   }
 }

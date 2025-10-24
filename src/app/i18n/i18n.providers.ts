@@ -4,14 +4,29 @@ import {
   inject,
   makeEnvironmentProviders,
   provideEnvironmentInitializer,
+  PLATFORM_ID,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export const httpTranslateLoaderFactory = (http: HttpClient) => ({
-  getTranslation: (lang: string) => http.get(`assets/i18n/${lang}.json`),
-});
+export const httpTranslateLoaderFactory = (http: HttpClient, platformId: any) => {
+  if (isPlatformBrowser(platformId)) {
+    return {
+      getTranslation: (lang: string) => http.get(`assets/i18n/${lang}.json`),
+    };
+  }
+
+  // Server-side mock loader
+  return {
+    getTranslation: (lang: string): Observable<any> => {
+      // Return empty translations for server-side rendering
+      return of({});
+    },
+  };
+};
 
 export function provideI18n(): Array<Provider | EnvironmentProviders> {
   return [
@@ -21,7 +36,7 @@ export function provideI18n(): Array<Provider | EnvironmentProviders> {
         loader: {
           provide: TranslateLoader,
           useFactory: httpTranslateLoaderFactory,
-          deps: [HttpClient],
+          deps: [HttpClient, PLATFORM_ID],
         },
       }).providers!,
     ]),
