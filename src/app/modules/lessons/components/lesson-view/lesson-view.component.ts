@@ -59,7 +59,7 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked {
         return this.processCodeBlocks(markdownContent);
       }
     }
-    return content;
+    return this.processCodeBlocks(content);
   }
 
   /**
@@ -70,7 +70,7 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked {
     const codeBlockRegex = /```(\w+)?\s*([\s\S]*?)```/g;
 
     // Replace code blocks with correct language
-    return content.replace(codeBlockRegex, (match, language, code) => {
+    let processedContent = content.replace(codeBlockRegex, (match, language, code) => {
       // If language is not specified, use text
       if (!language) {
         return '```text\n' + code + '```';
@@ -81,6 +81,32 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked {
 
       return '```' + normalizedLanguage + '\n' + code + '```';
     });
+
+    // Fix image paths from /content/ to /assets/content/
+    processedContent = this.fixImagePaths(processedContent);
+
+    return processedContent;
+  }
+
+  /**
+   * Fix image paths from /content/ to /assets/content/
+   */
+  private fixImagePaths(content: string): string {
+    // Regular expression to match image paths in Markdown
+    // Matches: ![alt](path) and <img src="path">
+    // Handles both absolute (/content/) and relative (content/) paths
+    const imagePathRegex =
+      /(!\[.*?\]\(|\<img[^>]+src=["'])(\/?content\/)([^"')]+)(["'][^>]*\>|\))/g;
+
+    const fixedContent = content.replace(
+      imagePathRegex,
+      (match, prefix, contentPath, imagePath, suffix) => {
+        const newPath = prefix + '/assets/content/' + imagePath + suffix;
+        return newPath;
+      },
+    );
+
+    return fixedContent;
   }
 
   /**
@@ -123,7 +149,6 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked {
       setTimeout(() => {
         // Use standard Prism.js highlighting
         if (this.markdownContentRef && typeof window !== 'undefined' && (window as any).Prism) {
-          console.log('Highlighting code in lesson view container');
           (window as any).Prism.highlightAll();
         }
       }, 500);

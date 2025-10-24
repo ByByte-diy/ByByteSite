@@ -36,6 +36,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src",
+                "output": "/"
               }
             ],
             "styles": [
@@ -43,7 +48,8 @@
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
               "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
               "node_modules/emoji-toolkit/extras/css/joypixels.min.css"
-            ]
+            ],
+            "outputMode": "static"
           },
           "configurations": {
             "production": {

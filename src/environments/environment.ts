@@ -3,6 +3,9 @@ export const environment = {
   defaultLang: 'en',
   supportedLangs: ['en', 'uk', 'ru'],
   contentBasePath: '/assets/content',
+  siteName: 'ByByte STEM School',
+  siteUrl: 'https://bybyte.diy',
+  siteDescription: 'Learn robotics and programming with ByByte STEM School',
   links: {
     telegram: 'https://t.me',
     facebook: 'https://www.facebook.com',

@@ -17,7 +17,7 @@ export function provideI18n(): Array<Provider | EnvironmentProviders> {
   return [
     makeEnvironmentProviders([
       TranslateModule.forRoot({
-        defaultLanguage: environment.defaultLang,
+        fallbackLang: environment.defaultLang,
         loader: {
           provide: TranslateLoader,
           useFactory: httpTranslateLoaderFactory,
