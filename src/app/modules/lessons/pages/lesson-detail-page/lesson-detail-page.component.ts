@@ -1,8 +1,9 @@
-import { Component, OnInit, inject, effect } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { LessonsService } from '../../../../services/lessons.service';
 import { LessonViewComponent } from '../../components/lesson-view/lesson-view.component';
 import { Lesson } from '../../../../models/lesson.model';
@@ -74,7 +75,7 @@ import { SeoService } from '../../../../services/seo.service';
     `,
   ],
 })
-export class LessonDetailPageComponent implements OnInit {
+export class LessonDetailPageComponent implements OnInit, OnDestroy {
   protected readonly lessonsService = inject(LessonsService);
   private readonly _route = inject(ActivatedRoute);
   private readonly _router = inject(Router);
@@ -82,6 +83,7 @@ export class LessonDetailPageComponent implements OnInit {
   private readonly _meta = inject(Meta);
   private readonly _title = inject(Title);
   private readonly _seoService = inject(SeoService);
+  private _paramMapSubscription?: Subscription;
 
   constructor() {
     // Watch lesson changes for SEO updates
@@ -112,10 +114,19 @@ export class LessonDetailPageComponent implements OnInit {
   }
 
   /**
+   * Clean up subscriptions to prevent memory leaks
+   */
+  ngOnDestroy(): void {
+    if (this._paramMapSubscription) {
+      this._paramMapSubscription.unsubscribe();
+    }
+  }
+
+  /**
    * Load lesson by parameters from URL
    */
   private _loadLesson(): void {
-    this._route.paramMap.subscribe((params) => {
+    this._paramMapSubscription = this._route.paramMap.subscribe((params) => {
       const slug = params.get('slug');
       const platform = params.get('platform');
       const level = params.get('level');
