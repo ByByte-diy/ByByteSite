@@ -7,11 +7,13 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-# Налаштування permissions для GitHub Pages
+# Налаштування permissions для GitHub Pages та коментарів
 permissions:
   contents: read
   pages: write
   id-token: write
+  pull-requests: write
+  issues: write
 
 env:
   NODE_VERSION: '22'
@@ -169,13 +171,8 @@ jobs:
           publish_dir: ./dist/ByByteSite/browser
           destination_dir: preview/pr-${{ github.event.number }}
 
-      - name: Comment PR with preview link
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🚀 **Preview deployed!**\n\nYour changes are now available at: https://bybyte-diy.github.io/ByByteSite/preview/pr-${{ github.event.number }}/`
-            })
+      - name: Preview deployed notification
+        run: |
+          echo "🚀 Preview deployed!"
+          echo "Preview URL: https://bybyte-diy.github.io/ByByteSite/preview/pr-${{ github.event.number }}/"
+          echo "This preview will be automatically updated when you push new commits to this PR."

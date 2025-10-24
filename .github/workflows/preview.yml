@@ -4,9 +4,11 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-# Налаштування permissions для preview деплою
+# Налаштування permissions для preview деплою та коментарів
 permissions:
   contents: write
+  pull-requests: write
+  issues: write
 
 env:
   NODE_VERSION: '22'
@@ -75,44 +77,8 @@ jobs:
           publish_dir: ./dist/ByByteSite/browser
           destination_dir: preview/pr-${{ github.event.number }}
 
-      - name: Comment PR with preview link
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const previewUrl = `https://bybyte-diy.github.io/ByByteSite/preview/pr-${{ github.event.number }}/`;
-            const comment = `🚀 **Preview deployed!**
-
-            Your changes are now available at: [${previewUrl}](${previewUrl})
-            
-            This preview will be automatically updated when you push new commits to this PR.
-            
-            **Note:** This is a preview environment and may not reflect the final production state.`;
-
-            // Знаходимо існуючий коментар
-            const comments = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number
-            });
-
-            const existingComment = comments.data.find(comment => 
-              comment.user.type === 'Bot' && comment.body.includes('Preview deployed!')
-            );
-
-            if (existingComment) {
-              // Оновлюємо існуючий коментар
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existingComment.id,
-                body: comment
-              });
-            } else {
-              // Створюємо новий коментар
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: comment
-              });
-            }
+      - name: Preview deployed notification
+        run: |
+          echo "🚀 Preview deployed!"
+          echo "Preview URL: https://bybyte-diy.github.io/ByByteSite/preview/pr-${{ github.event.number }}/"
+          echo "This preview will be automatically updated when you push new commits to this PR."
