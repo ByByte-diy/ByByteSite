@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:gh": "ng build --base-href=/ByByteSite/",
+    "build:gh": "ng build --base-href=/ByByteSite/ --configuration=production",
     "postbuild:gh": "cp -f dist/ByByteSite/browser/index.html dist/ByByteSite/browser/404.html || true",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

@@ -10,7 +10,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { environment } from '../../environments/environment';
 
 export const httpTranslateLoaderFactory = (http: HttpClient) => ({
-  getTranslation: (lang: string) => http.get(`/assets/i18n/${lang}.json`),
+  getTranslation: (lang: string) => http.get(`assets/i18n/${lang}.json`),
 });
 
 export function provideI18n(): Array<Provider | EnvironmentProviders> {
