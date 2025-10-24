@@ -4,7 +4,7 @@ export const environment = {
   supportedLangs: ['en', 'uk', 'ru'],
   contentBasePath: '/assets/content',
   siteName: 'ByByte STEM School',
-  siteUrl: 'https://bybyte.diy',
+  siteUrl: 'https://bybyte-diy.github.io/ByByteSite',
   siteDescription: 'Learn robotics and programming with ByByte STEM School',
   links: {
     telegram: 'https://t.me',
