@@ -1,0 +1,1 @@
+import{Bb as c,Ta as o,kb as s,lb as n}from"./chunk-Q37A7JF6.js";import"./chunk-2VMXMS7J.js";var r=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=o({type:e,selectors:[["app-products"]],decls:2,vars:0,template:function(t,p){t&1&&(s(0,"h1"),c(1,"Products"),n())},encapsulation:2})};export{r as Products};

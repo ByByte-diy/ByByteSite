@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-beasties-container>
+<head>
+  <meta charset="utf-8">
+  <title>ByByteSite</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0077CC">
+  <meta name="msapplication-TileColor" content="#0077CC">
+  <meta name="theme-color" content="#0077CC">
+  
+  <!-- Connect Emoji-Toolkit -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/extras/css/joypixels.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/lib/js/joypixels.min.js"></script>
+  
+  <!-- Connect styles for Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+  
+  <!-- Connect Prism.js before loading the app -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  
+  <!-- Programming languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-arduino.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+  
+<style>@font-face{font-family:Comfortaa;src:url("./media/Comfortaa-Medium-Y7GCEDU3.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:Comfortaa;src:url("./media/Comfortaa-SemiBold-HVXX7MUG.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:Comfortaa;src:url("./media/Comfortaa-Bold-BHW5IQYN.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}@font-face{font-family:Nunito;src:url("./media/Nunito-Medium-5PPWZI7K.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:Nunito;src:url("./media/Nunito-MediumItalic-COGUCSOR.ttf") format("truetype");font-weight:500;font-style:italic;font-display:swap}@font-face{font-family:Nunito;src:url("./media/Nunito-Black-F7N7R7KH.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}@font-face{font-family:Nunito;src:url("./media/Nunito-BlackItalic-V7HRIXKE.ttf") format("truetype");font-weight:900;font-style:italic;font-display:swap}:root{--font-primary:"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;--font-display:"Comfortaa", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;--font-weight-normal:500;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:900;--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--text-2xl:1.5rem;--text-3xl:1.875rem;--text-4xl:2.25rem;--text-5xl:3rem;--color-primary:#0077cc;--color-accent:#ff9800;--color-success:#4caf50;--color-warning:#f59e0b;--color-secondary:#673ab7;--color-error:#f44336;--color-bg:#f9fafb;--color-surface:#ffffff;--color-text:#212121;--color-text-muted:#616161;--color-blue-pastel:#81d4fa;--color-orange-pastel:#ffcc80;--color-green-pastel:#a5d6a7;--icon-bg:#ffffff;--icon-color:#6B46C1;--bg-app:var(--color-bg);--bg-surface:var(--color-surface);--text-primary:var(--color-text);--text-secondary:var(--color-text-muted);--link:var(--color-secondary);--link-hover:color-mix(in oklab, var(--color-secondary), black 10%);--btn-primary-bg:var(--color-primary);--btn-primary-text:#ffffff;--btn-accent-bg:var(--color-accent);--btn-accent-text:#1a1a1a;--border-soft:color-mix(in oklab, var(--color-text) 12%, transparent)}@media (prefers-color-scheme: dark){:root{--color-bg:#0f1115;--color-surface:#171a20;--color-text:#e6e6e6;--color-text-muted:#a1a1a1;--icon-bg:var(--color-surface);--icon-color:#A78BFA;--link-hover:color-mix(in oklab, var(--color-secondary), white 15%);--border-soft:color-mix(in oklab, var(--color-text) 20%, transparent)}}html,body{height:100%;width:100%;margin:0;overflow-x:hidden}body{background:var(--bg-app);color:var(--text-primary);font-family:var(--font-primary);font-size:var(--text-base);font-weight:var(--font-weight-normal);line-height:1.6}html,body{scrollbar-width:none}body::-webkit-scrollbar{width:0;height:0}</style><link rel="stylesheet" href="styles-7VCGK2BB.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-7VCGK2BB.css"></noscript></head>
+<body>
+  <app-root></app-root>
+<link rel="modulepreload" href="chunk-ADZSZRBJ.js"><link rel="modulepreload" href="chunk-7PP3K45Z.js"><link rel="modulepreload" href="chunk-JE6XUTR5.js"><link rel="modulepreload" href="chunk-RMAMC2FW.js"><link rel="modulepreload" href="chunk-Q37A7JF6.js"><link rel="modulepreload" href="chunk-2VMXMS7J.js"><script src="polyfills-5CFQRCPP.js" type="module"></script><script src="main-ITZ6VVGW.js" type="module"></script></body>
+</html>
