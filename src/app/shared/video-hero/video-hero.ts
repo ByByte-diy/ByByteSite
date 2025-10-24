@@ -56,6 +56,8 @@ export interface VideoHeroButton {
             frameborder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen
+            loading="lazy"
+            (error)="onVideoError($event)"
           ></iframe>
         </div>
       </div>
@@ -91,7 +93,11 @@ export class VideoHeroComponent implements OnInit, OnChanges {
     const m = base.match(/\/embed\/([^?&#/]+)/);
     if (m && m[1]) vid = m[1];
     const loopParams = vid ? `&loop=1&playlist=${vid}` : '';
-    const full = `${base}${sep}autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1${loopParams}`;
+    const full = `${base}${sep}autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1${loopParams}`;
     return this._sanitizer.bypassSecurityTrustResourceUrl(full);
+  }
+
+  protected onVideoError(event: Event): void {
+    console.warn('YouTube video failed to load, this is normal when ad blockers are active');
   }
 }
