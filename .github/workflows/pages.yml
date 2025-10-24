@@ -74,6 +74,21 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Create 404.html for GitHub Pages
+        run: |
+          cp dist/ByByteSite/browser/index.html dist/ByByteSite/browser/404.html
+          echo "404.html created successfully"
+
+      - name: Verify build output
+        run: |
+          ls -la dist/ByByteSite/browser/
+          echo "Build output verified"
+
+      - name: Clean up temporary files
+        run: |
+          rm -rf temp-lessons lessons.zip
+          echo "Temporary files cleaned up"
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
