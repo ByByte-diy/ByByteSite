@@ -3,6 +3,7 @@ import { Component, HostListener, inject, signal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment.js';
 import { DropdownButtonComponent } from '../ui/dropdown-button/dropdown-button.js';
+import { RouterService } from '../../services/router.service.js';
 
 @Component({
   selector: 'app-lang-switcher',
@@ -30,6 +31,7 @@ import { DropdownButtonComponent } from '../ui/dropdown-button/dropdown-button.j
 })
 export class LangSwitcher {
   private readonly translate = inject(TranslateService);
+  private readonly routerService = inject(RouterService);
   protected langs = signal(this.translate.getLangs());
   protected current = signal(this.translate.getCurrentLang() || environment.defaultLang);
   protected open = signal(false);
@@ -52,12 +54,10 @@ export class LangSwitcher {
     this.open.set(false);
   }
   protected choose(lang: string) {
-    this.translate.use(lang);
+    // Use RouterService to switch language and navigate
+    this.routerService.switchLanguage(lang);
     this.current.set(lang);
     this.open.set(false);
-    try {
-      localStorage.setItem('app-lang', lang);
-    } catch {}
   }
 
   @HostListener('document:click', ['$event'])

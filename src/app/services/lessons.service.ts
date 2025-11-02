@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Lesson, LessonIndex, LessonMeta } from '../models/lesson.model';
 import { environment } from '../../environments/environment';
+import lessonsIndexData from '../../assets/content/index.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LessonsService {
   private readonly _http = inject(HttpClient);
+  private readonly platformId = inject(PLATFORM_ID);
 
   // Signals for reactive state
   private _lessonsIndex = signal<LessonIndex | null>(null);
@@ -40,7 +43,7 @@ export class LessonsService {
     this._isLoading.set(true);
     this._error.set(null);
 
-    return this._http.get<LessonIndex>(`${environment.contentBasePath}/index.json`).pipe(
+    return of(lessonsIndexData as LessonIndex).pipe(
       tap((index) => {
         this._lessonsIndex.set(index);
         this._isLoading.set(false);
@@ -73,7 +76,44 @@ export class LessonsService {
     // Build path to lesson file
     const contentPath = this._buildLessonPath(lessonMeta);
 
-    // Load lesson content
+    // Load lesson content - різні підходи для server-side та browser
+    if (!isPlatformBrowser(this.platformId)) {
+      // Server-side: читаємо файл через fs
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const filePath = path.join(
+          process.cwd(),
+          'src/assets/content',
+          lang,
+          platform,
+          lessonMeta.level,
+          `${slug}.md`,
+        );
+        const content = fs.readFileSync(filePath, 'utf8');
+
+        const lesson: Lesson = {
+          ...lessonMeta,
+          content,
+          contentPath,
+        };
+        this._currentLesson.set(lesson);
+        this._isLoading.set(false);
+        return of(lesson);
+      } catch (error) {
+        console.error('Error reading lesson file:', error);
+        const lesson: Lesson = {
+          ...lessonMeta,
+          content: '',
+          contentPath,
+        };
+        this._currentLesson.set(lesson);
+        this._isLoading.set(false);
+        return of(lesson);
+      }
+    }
+
+    // Browser: використовуємо HTTP запит
     return this._http.get(contentPath, { responseType: 'text' }).pipe(
       map((content) => {
         const lesson: Lesson = {

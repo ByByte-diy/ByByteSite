@@ -1,6 +1,7 @@
-import { Component, NgZone, signal } from '@angular/core';
+import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 import { HeaderComponent } from './layout/header/header';
 import { FooterComponent } from './layout/footer/footer';
 
@@ -12,27 +13,21 @@ import { FooterComponent } from './layout/footer/footer';
 })
 export class App {
   protected readonly title = signal('ByByteSite');
+  private readonly platformId = inject(PLATFORM_ID);
 
-  constructor(
-    private _router: Router,
-    private _ngZone: NgZone,
-  ) {
-    const scrollTopAll = () => {
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      document.querySelector('.community-page')?.scrollTo?.(0, 0);
-    };
-
-    this._ngZone.runOutsideAngular(() => {
+  constructor(private _router: Router) {
+    // Browser only add scroll logic
+    if (isPlatformBrowser(this.platformId)) {
       this._router.events
         .pipe(filter((e) => e instanceof NavigationStart || e instanceof NavigationEnd))
         .subscribe(() => {
-          requestAnimationFrame(() => {
-            scrollTopAll();
-            setTimeout(scrollTopAll, 0);
-          });
+          // Simple scroll to top
+          setTimeout(() => {
+            if (typeof window !== 'undefined') {
+              window.scrollTo(0, 0);
+            }
+          }, 0);
         });
-    });
+    }
   }
 }

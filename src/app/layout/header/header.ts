@@ -5,6 +5,7 @@ import { LangSwitcher } from '../../shared/lang-switcher/lang-switcher.js';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.js';
 import { TranslateModule } from '@ngx-translate/core';
 import { SocialLinks } from '../../shared/social-links/social-links.js';
+import { RouterService } from '../../services/router.service.js';
 
 @Component({
   selector: 'app-header',
@@ -20,16 +21,28 @@ import { SocialLinks } from '../../shared/social-links/social-links.js';
   template: `
     <header class="header">
       <div class="header__inner">
-        <a class="header__logo" routerLink="/" [attr.aria-label]="'brand.name' | translate">
+        <a
+          class="header__logo"
+          [routerLink]="routerService.getLocalizedRoute('/')"
+          [attr.aria-label]="'brand.name' | translate"
+        >
           <img src="img/logo.png" [attr.alt]="'brand.name' | translate" class="logo-img" />
           <span class="logo-text">{{ 'brand.name' | translate }}</span>
         </a>
 
         <nav class="nav" [class.nav--open]="isMobileMenuOpen()">
-          <a class="nav__link" routerLink="/build">{{ 'nav.build' | translate }}</a>
-          <a class="nav__link" routerLink="/learn">{{ 'nav.learning' | translate }}</a>
-          <a class="nav__link" href="/#blog">{{ 'nav.blog' | translate }}</a>
-          <a class="nav__link" routerLink="/community">{{ 'nav.community' | translate }}</a>
+          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/build')">{{
+            'nav.build' | translate
+          }}</a>
+          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/learn')">{{
+            'nav.learning' | translate
+          }}</a>
+          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/blog')">{{
+            'nav.blog' | translate
+          }}</a>
+          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/community')">{{
+            'nav.community' | translate
+          }}</a>
           <div class="nav__tools">
             <app-social-links class="actions__socials actions__socials--in-menu" />
             <app-theme-toggle></app-theme-toggle>
@@ -53,6 +66,7 @@ import { SocialLinks } from '../../shared/social-links/social-links.js';
   styleUrls: ['./header.scss'],
 })
 export class HeaderComponent {
+  protected readonly routerService = inject(RouterService);
   protected isMobileMenuOpen = signal(false);
   private readonly host = inject(ElementRef<HTMLElement>);
 
