@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card/benefit-card';
 import { ButtonComponent, BUTTON_PRESETS } from '../../shared/ui/button';
 import { environment } from '../../../environments/environment';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-community',
@@ -59,7 +60,18 @@ import { environment } from '../../../environments/environment';
   `,
   styleUrls: ['./community.scss'],
 })
-export class Community {
+export class Community implements OnInit {
+  private readonly seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.updateSeoFromConfig({
+      titleKey: 'seo.community.title',
+      descriptionKey: 'seo.community.description',
+      keywordsKey: 'seo.community.keywords',
+      type: 'website',
+    });
+  }
+
   protected benefits = signal<BenefitCardData[]>([
     {
       icon: '🤝',

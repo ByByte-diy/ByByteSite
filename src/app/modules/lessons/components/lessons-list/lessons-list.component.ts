@@ -6,6 +6,7 @@ import { LessonsService } from '../../../../services/lessons.service';
 import { LessonMeta } from '../../../../models/lesson.model';
 import { LessonFilterComponent } from '../lesson-filter/lesson-filter.component';
 import { LessonCardComponent } from '../lesson-card/lesson-card.component';
+import { RouterService } from '../../../../services/router.service';
 
 @Component({
   selector: 'app-lessons-list',
@@ -18,6 +19,7 @@ export class LessonsListComponent implements OnInit {
   protected readonly lessonsService = inject(LessonsService);
   private readonly _route = inject(ActivatedRoute);
   private readonly _router = inject(Router);
+  private readonly _routerService = inject(RouterService);
   private readonly _translate = inject(TranslateService);
 
   // Filters
@@ -83,17 +85,17 @@ export class LessonsListComponent implements OnInit {
 
     // Update URL, if main parameters have changed
     if (filters.platform !== undefined || filters.level !== undefined) {
-      const urlParts = ['/learn'];
+      let lessonPath = '/learn';
 
       if (filters.platform) {
-        urlParts.push(filters.platform);
+        lessonPath += `/${filters.platform}`;
 
         if (filters.level) {
-          urlParts.push(filters.level);
+          lessonPath += `/${filters.level}`;
         }
       }
 
-      this._router.navigate(urlParts);
+      this._routerService.navigateTo(lessonPath);
     } else {
       // If only additional filters (tag, search) have changed, simply apply filters
       this._applyFilters();

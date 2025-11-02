@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { BUTTON_PRESETS } from '../../shared/ui/button';
 import { environment } from '../../../environments/environment';
 import { VideoHeroButton, VideoHeroComponent } from '../../shared/video-hero/video-hero';
 import { InfoCardComponent, InfoCardData } from '../../shared/info-card/info-card';
 import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card/benefit-card';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-build',
@@ -49,8 +50,18 @@ import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card
   `,
   styleUrls: ['./build.scss'],
 })
-export class BuildPage {
+export class BuildPage implements OnInit {
+  private readonly seoService = inject(SeoService);
   protected env = environment;
+
+  ngOnInit(): void {
+    this.seoService.updateSeoFromConfig({
+      titleKey: 'seo.build.title',
+      descriptionKey: 'seo.build.description',
+      keywordsKey: 'seo.build.keywords',
+      type: 'website',
+    });
+  }
   protected megaBtn = () => BUTTON_PRESETS.cta('build.hero.ctaMega', '🤖');
   protected nanoBtn = () => BUTTON_PRESETS.cta('build.hero.ctaNano', '🔧');
   protected videoButtons: VideoHeroButton[] = [

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LessonsService } from '../../../../services/lessons.service';
 import { LessonsListComponent } from '../../components/lessons-list/lessons-list.component';
+import { SeoService } from '../../../../services/seo.service';
 
 @Component({
   selector: 'app-lessons-page',
@@ -60,10 +61,18 @@ import { LessonsListComponent } from '../../components/lessons-list/lessons-list
 })
 export class LessonsPageComponent implements OnInit {
   private readonly _lessonsService = inject(LessonsService);
-  private readonly _route = inject(ActivatedRoute);
+  private readonly _seoService = inject(SeoService);
 
   ngOnInit(): void {
     // Завантажуємо індекс уроків
     this._lessonsService.loadLessonsIndex().subscribe();
+
+    // Setup SEO with translations
+    this._seoService.updateSeoFromConfig({
+      titleKey: 'seo.learn.title',
+      descriptionKey: 'seo.learn.description',
+      keywordsKey: 'seo.learn.keywords',
+      type: 'website',
+    });
   }
 }

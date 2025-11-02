@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+// Note: SEO is handled by LessonsPageComponent
 @Component({
   selector: 'app-learn',
   imports: [],
