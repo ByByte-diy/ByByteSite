@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ButtonComponent } from '../../shared/ui/button/button';
 import { Title, Meta } from '@angular/platform-browser';
 import { SeoService } from '../../services/seo.service';
@@ -136,35 +136,35 @@ export class NotFoundComponent implements OnInit {
   private readonly _title = inject(Title);
   private readonly _meta = inject(Meta);
   private readonly _seoService = inject(SeoService);
+  private readonly _translate = inject(TranslateService);
 
   ngOnInit(): void {
     this.setupSeo();
   }
 
   private setupSeo(): void {
-    const title = `404 - ${this._seoService.siteName}`;
-    const description = 'The page you are looking for does not exist or has been moved.';
-    const url = `${this._seoService.siteUrl}/404`;
+    // 404 pages should use translations but with noindex
+    const title = `${this._translate.instant('notFound.title')} - ${this._seoService.siteName}`;
+    const description = this._translate.instant('notFound.description');
 
-    // Update page title
-    this._title.setTitle(title);
+    this._seoService.updateSeoMeta({
+      title,
+      description,
+      url: `${this._seoService.siteUrl}/404`,
+      type: 'website',
+      siteName: this._seoService.siteName,
+      locale: this._seoService.getCurrentLanguage(),
+      openGraph: {
+        title,
+        description,
+        url: `${this._seoService.siteUrl}/404`,
+        type: 'website',
+        siteName: this._seoService.siteName,
+      },
+    });
 
-    // Update meta tags
-    this._meta.updateTag({ name: 'description', content: description });
+    // Add noindex for 404 pages
     this._meta.updateTag({ name: 'robots', content: 'noindex, nofollow' });
-    this._meta.updateTag({ name: 'viewport', content: 'width=device-width, initial-scale=1' });
-
-    // Open Graph tags
-    this._meta.updateTag({ property: 'og:title', content: title });
-    this._meta.updateTag({ property: 'og:description', content: description });
-    this._meta.updateTag({ property: 'og:url', content: url });
-    this._meta.updateTag({ property: 'og:type', content: 'website' });
-    this._meta.updateTag({ property: 'og:site_name', content: this._seoService.siteName });
-
-    // Twitter Card tags
-    this._meta.updateTag({ name: 'twitter:card', content: 'summary' });
-    this._meta.updateTag({ name: 'twitter:title', content: title });
-    this._meta.updateTag({ name: 'twitter:description', content: description });
   }
 
   protected goBack = () => {

@@ -171,8 +171,6 @@ import { SeoService } from '../../services/seo.service';
   ],
 })
 export class BlogComponent implements OnInit {
-  private readonly _title = inject(Title);
-  private readonly _meta = inject(Meta);
   private readonly _seoService = inject(SeoService);
 
   ngOnInit(): void {
@@ -180,27 +178,11 @@ export class BlogComponent implements OnInit {
   }
 
   private setupSeo(): void {
-    const title = `Blog - ${this._seoService.siteName}`;
-    const description =
-      'Stay updated with the latest tutorials, tips, and projects from ByByte.DIY community.';
-
-    // Update page title
-    this._title.setTitle(title);
-
-    // Update meta tags
-    this._meta.updateTag({ name: 'description', content: description });
-    this._meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this._meta.updateTag({ name: 'viewport', content: 'width=device-width, initial-scale=1' });
-
-    // Open Graph tags
-    this._meta.updateTag({ property: 'og:title', content: title });
-    this._meta.updateTag({ property: 'og:description', content: description });
-    this._meta.updateTag({ property: 'og:type', content: 'website' });
-    this._meta.updateTag({ property: 'og:site_name', content: this._seoService.siteName });
-
-    // Twitter Card tags
-    this._meta.updateTag({ name: 'twitter:card', content: 'summary' });
-    this._meta.updateTag({ name: 'twitter:title', content: title });
-    this._meta.updateTag({ name: 'twitter:description', content: description });
+    this._seoService.updateSeoFromConfig({
+      titleKey: 'seo.blog.title',
+      descriptionKey: 'seo.blog.description',
+      keywordsKey: 'seo.blog.keywords',
+      type: 'website',
+    });
   }
 }
