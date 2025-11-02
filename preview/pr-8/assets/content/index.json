@@ -1,0 +1,58 @@
+{
+  "lessons": [
+    {
+      "title": "Blinking LED",
+      "slug": "blink",
+      "lang": "en",
+      "platforms": [
+        "arduino"
+      ],
+      "level": "beginner",
+      "tags": [
+        "led",
+        "digital outputs"
+      ],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Classic example with a blinking LED for Arduino.",
+      "duration": null,
+      "difficulty": null
+    },
+    {
+      "title": "Мигаючий світлодіод",
+      "slug": "blink",
+      "lang": "uk",
+      "platforms": [
+        "arduino"
+      ],
+      "level": "beginner",
+      "tags": [
+        "світлодіод",
+        "цифрові виходи"
+      ],
+      "published": true,
+      "version": "1.0.0",
+      "description": "Класичний приклад з мигаючим світлодіодом для Arduino.",
+      "duration": null,
+      "difficulty": null
+    }
+  ],
+  "platforms": [
+    "arduino"
+  ],
+  "levels": [
+    "beginner"
+  ],
+  "tags": [
+    "digital outputs",
+    "led",
+    "світлодіод",
+    "цифрові виходи"
+  ],
+  "languages": [
+    "en",
+    "uk"
+  ],
+  "generatedAt": "2025-11-02T15:20:57.495Z",
+  "totalLessons": 2
+}
