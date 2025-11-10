@@ -63,17 +63,17 @@ jobs:
             echo "Index generation script not found, using existing index"
           fi
 
-      - name: Lint code
-        run: npm run lint
-
-      - name: Run tests
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
-
       - name: Generate prerender routes
         run: |
           npm run generate-prerender-routes
           echo "Prerender routes generated:"
           cat prerendered-routes.txt
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
 
       - name: Build for GitHub Pages
         run: npm run build:gh
