@@ -80,6 +80,20 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Generate sitemap
+        run: |
+          npm run generate-sitemap
+          echo "Sitemap generated successfully"
+          if [ -f "dist/ByByteSite/browser/sitemap.xml" ]; then
+            echo "✅ Sitemap.xml found in build output"
+            echo "Sitemap preview (first 20 lines):"
+            head -20 dist/ByByteSite/browser/sitemap.xml
+            SITEMAP_URLS=$(grep -c "<url>" dist/ByByteSite/browser/sitemap.xml || echo "0")
+            echo "Sitemap contains $SITEMAP_URLS URLs"
+          else
+            echo "❌ Sitemap.xml not found"
+          fi
+
       - name: Create 404.html for GitHub Pages
         run: |
           cp dist/ByByteSite/browser/index.html dist/ByByteSite/browser/404.html
@@ -119,6 +133,12 @@ jobs:
           echo "✅ Prerendered routes: $(find dist/ByByteSite/browser -name "*.html" | wc -l) HTML files"
           echo "✅ Static JSON import working"
           echo "✅ Assets properly referenced"
+          if [ -f "dist/ByByteSite/browser/sitemap.xml" ]; then
+            SITEMAP_URLS=$(grep -c "<url>" dist/ByByteSite/browser/sitemap.xml || echo "0")
+            echo "✅ Sitemap.xml generated with $SITEMAP_URLS URLs"
+          else
+            echo "⚠️  Sitemap.xml not found"
+          fi
           echo "=================="
           echo "Ready for deployment to GitHub Pages! 🚀"
 
