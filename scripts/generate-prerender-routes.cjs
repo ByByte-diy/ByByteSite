@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
 
@@ -22,7 +24,8 @@ function generateLocalizedRoutes(baseRoutes, lang) {
 function generatePrerenderRoutes() {
   console.log('Generating prerender routes with language support...');
   
-  // Base routes (without language prefix)
+  // Base routes (without language prefix) - only for generating localized routes
+  // Note: We only prerender root '/' and routes with language prefixes
   const baseRoutes = [
     '/',
     '/build',
@@ -33,41 +36,22 @@ function generatePrerenderRoutes() {
     '/learn'
   ];
 
-  // Start with base routes (for backwards compatibility)
-  let routes = [...baseRoutes];
+  // Start with root route only
+  const routes = ['/'];
 
   try {
     const indexContent = fs.readFileSync(indexPath, 'utf8');
     const index = JSON.parse(indexContent);
 
-    // Add routes for platforms
+    // Get platforms, levels, and lessons for localized routes
     const platforms = index.platforms || [];
-    platforms.forEach(platform => {
-      routes.push(`/learn/${platform}`);
-    });
-
-    // Add routes for levels
     const levels = index.levels || [];
-    platforms.forEach(platform => {
-      levels.forEach(level => {
-        routes.push(`/learn/${platform}/${level}`);
-      });
-    });
-
-    // Add routes for specific lessons
     const lessons = index.lessons || [];
-    lessons.forEach(lesson => {
-      if (lesson.platforms && lesson.platforms.length > 0 && lesson.level && lesson.slug) {
-        // Use first platform for route
-        const platform = lesson.platforms[0];
-        routes.push(`/learn/${platform}/${lesson.level}/${lesson.slug}`);
-      }
-    });
 
     // Generate localized routes for each language
     const localizedRoutes = [];
     supportedLangs.forEach(lang => {
-      // Add base localized routes
+      // Add base localized routes (home, build, community, etc.)
       const langBaseRoutes = generateLocalizedRoutes(baseRoutes, lang);
       localizedRoutes.push(...langBaseRoutes);
       
@@ -92,14 +76,14 @@ function generatePrerenderRoutes() {
       });
     });
 
-    // Combine base routes and localized routes
+    // Combine root route and localized routes (no base routes without language prefix)
     const allRoutes = [...routes, ...localizedRoutes];
 
     // Remove duplicates
     const uniqueRoutes = [...new Set(allRoutes)];
 
     console.log(`Generated ${uniqueRoutes.length} prerender routes`);
-    console.log(`- Base routes: ${routes.length}`);
+    console.log(`- Root route: 1`);
     console.log(`- Localized routes: ${localizedRoutes.length}`);
     console.log(`- Total unique routes: ${uniqueRoutes.length}`);
     
@@ -112,8 +96,8 @@ function generatePrerenderRoutes() {
   } catch (error) {
     console.error('Error generating prerender routes:', error.message);
     
-    // Fallback: generate at least base localized routes
-    const fallbackRoutes = [...routes];
+    // Fallback: generate at least root and basic localized routes
+    const fallbackRoutes = ['/'];
     supportedLangs.forEach(lang => {
       fallbackRoutes.push(...generateLocalizedRoutes(baseRoutes, lang));
     });

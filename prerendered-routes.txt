@@ -1,13 +1,4 @@
 /
-/build
-/community
-/products
-/docs
-/blog
-/learn
-/learn/arduino
-/learn/arduino/beginner
-/learn/arduino/beginner/blink
 /en
 /en/build
 /en/community

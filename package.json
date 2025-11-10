@@ -18,6 +18,9 @@
     "generate-index": "node scripts/generate-index.js",
     "validate-content": "node scripts/validate-content.js",
     "generate-prerender-routes": "node scripts/generate-prerender-routes.cjs",
+    "generate-sitemap": "node scripts/generate-sitemap.cjs",
+    "prebuild": "npm run generate-prerender-routes || true",
+    "postbuild": "node scripts/generate-sitemap.cjs",
     "serve:ssr:ByByteSite": "node dist/ByByteSite/server/server.mjs"
   },
   "lint-staged": {

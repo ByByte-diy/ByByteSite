@@ -42,13 +42,20 @@ const sharedRoutes: Routes = [
 ];
 
 export const routes: Routes = [
+  // Root route - renders Home component with default language
+  // This will be prerendered correctly by Angular
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./components/root-page/root-page.component.js').then((m) => m.RootPageComponent),
+  },
   // Routes with language prefix (e.g., /en, /uk, /ru)
+  // Only these routes are prerendered (no routes without language prefix)
   {
     path: ':lang',
     component: LanguageWrapperComponent,
     canActivate: [languageGuard],
     children: sharedRoutes,
   },
-  // Fallback routes without language prefix - use default language (en) implicitly
-  ...sharedRoutes,
 ];
