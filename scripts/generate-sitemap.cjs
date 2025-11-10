@@ -73,9 +73,10 @@ function generateSitemap() {
 
   // Check if prerendered routes file exists
   if (!fs.existsSync(prerenderRoutesFile)) {
-    console.error(`Prerendered routes file not found: ${prerenderRoutesFile}`);
-    console.error('Please run "npm run generate-prerender-routes" first');
-    process.exit(1);
+    console.warn(`⚠️  Prerendered routes file not found: ${prerenderRoutesFile}`);
+    console.warn('   Skipping sitemap generation. This is normal for development builds.');
+    console.warn('   For production builds, run "npm run generate-prerender-routes" first.');
+    return; // Exit gracefully instead of failing
   }
 
   // Read prerendered routes
@@ -86,8 +87,9 @@ function generateSitemap() {
     .filter(line => line && !line.startsWith('#'));
 
   if (routes.length === 0) {
-    console.error('No routes found in prerendered-routes.txt');
-    process.exit(1);
+    console.warn('⚠️  No routes found in prerendered-routes.txt');
+    console.warn('   Skipping sitemap generation. This is normal for development builds.');
+    return; // Exit gracefully instead of failing
   }
 
   // Get current date in ISO format
