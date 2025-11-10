@@ -7,10 +7,10 @@ export const environment = {
   siteUrl: 'https://bybyte-diy.github.io/ByByteSite',
   siteDescription: 'Learn robotics and programming with ByByte STEM School',
   links: {
-    telegram: 'https://t.me',
+    telegram: 'https://t.me/bybytediy',
     facebook: 'https://www.facebook.com',
     instagram: 'https://www.instagram.com',
-    discord: 'https://discord.com',
+    discord: 'https://discord.gg/t5wnTq3C',
     githubOrg: 'https://github.com/ByByte-diy',
     gitMega: 'https://github.com/ByByte-diy/ByByteMega',
     gitNano: 'https://github.com/ByByte-diy/ByByteNano',
