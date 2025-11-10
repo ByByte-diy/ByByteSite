@@ -1,0 +1,965 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <title>ByByte Community - Join Robot Builders</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0077CC">
+  <meta name="msapplication-TileColor" content="#0077CC">
+  <meta name="theme-color" content="#0077CC">
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  
+  <!-- Connect Emoji-Toolkit -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/extras/css/joypixels.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/lib/js/joypixels.min.js"></script>
+  
+  <!-- Connect styles for Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+  
+  <!-- Connect Prism.js before loading the app -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  
+  <!-- Programming languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-arduino.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+  
+  <!-- Language detection and redirect script -->
+  <script>
+    (function() {
+      // Only redirect if we're on root path
+      const currentPath = window.location.pathname;
+      const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+      const baseHrefNormalized = baseHref.replace(/^\/|\/$/g, '');
+      
+      // Check if we're on root path
+      const isOnRoot = currentPath === '/' || 
+                      currentPath === '/' + baseHrefNormalized ||
+                      currentPath === '/' + baseHrefNormalized + '/';
+      
+      if (isOnRoot) {
+        const supportedLangs = ['en', 'uk', 'ru'];
+        const defaultLang = 'en';
+        
+        // Get language from localStorage if available
+        let savedLang = null;
+        try {
+          savedLang = localStorage.getItem('app-lang');
+        } catch (e) {}
+        
+        // Get browser language
+        let browserLang = null;
+        if (typeof navigator !== 'undefined' && navigator.language) {
+          browserLang = navigator.language.split('-')[0].toLowerCase();
+        }
+        
+        // Determine target language
+        let targetLang = defaultLang;
+        if (savedLang && supportedLangs.includes(savedLang)) {
+          targetLang = savedLang;
+        } else if (browserLang && supportedLangs.includes(browserLang)) {
+          targetLang = browserLang;
+        }
+        
+        // Redirect to language route
+        const redirectPath = baseHref + targetLang;
+        const normalizedRedirect = redirectPath.replace(/([^:]\/)\/+/g, '$1');
+        window.location.replace(normalizedRedirect);
+      }
+    })();
+  </script>
+<link rel="stylesheet" href="styles.css"><style ng-app-id="ng">
+
+[_nghost-ng-c582792440] {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+app-header[_ngcontent-ng-c582792440] {
+  flex: 0 0 auto;
+}
+router-outlet[_ngcontent-ng-c582792440] {
+  flex: 1 0 auto;
+  display: block;
+}
+app-footer[_ngcontent-ng-c582792440] {
+  flex: 0 0 auto;
+}
+/*# sourceMappingURL=/app.css.map */</style><style ng-app-id="ng">
+
+.header[_ngcontent-ng-c3871101917] {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-soft);
+}
+.header__inner[_ngcontent-ng-c3871101917] {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+}
+.header__logo[_ngcontent-ng-c3871101917] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+}
+.logo-img[_ngcontent-ng-c3871101917] {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.logo-text[_ngcontent-ng-c3871101917] {
+  font-size: var(--text-2xl);
+  letter-spacing: 0.2px;
+  font-weight: var(--font-weight-bold);
+}
+.nav[_ngcontent-ng-c3871101917] {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nav__link[_ngcontent-ng-c3871101917] {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-2xl);
+}
+.nav__link[_ngcontent-ng-c3871101917]:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.actions[_ngcontent-ng-c3871101917] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.actions__socials[_ngcontent-ng-c3871101917] {
+  display: flex;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+.actions__socials--desktop[_ngcontent-ng-c3871101917] {
+  display: flex;
+}
+.actions__socials--in-menu[_ngcontent-ng-c3871101917] {
+  display: none;
+}
+.social[_ngcontent-ng-c3871101917] {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.social[_ngcontent-ng-c3871101917]:hover {
+  color: var(--text-primary);
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+}
+.social-icon[_ngcontent-ng-c3871101917] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+.actions__theme[_ngcontent-ng-c3871101917], 
+.actions__lang[_ngcontent-ng-c3871101917] {
+  display: inline-flex;
+}
+.nav__tools[_ngcontent-ng-c3871101917] {
+  display: none;
+}
+.burger[_ngcontent-ng-c3871101917] {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px;
+}
+.burger[_ngcontent-ng-c3871101917]   span[_ngcontent-ng-c3871101917] {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text-primary);
+}
+@media (max-width: 900px) {
+  .nav[_ngcontent-ng-c3871101917] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    padding: 12px 16px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-soft);
+    display: none;
+  }
+  .nav.nav--open[_ngcontent-ng-c3871101917] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .actions[_ngcontent-ng-c3871101917] {
+    gap: 0px;
+  }
+  .actions__socials[_ngcontent-ng-c3871101917] {
+    gap: 0px;
+  }
+  .burger[_ngcontent-ng-c3871101917] {
+    display: inline-flex;
+  }
+  .actions__theme[_ngcontent-ng-c3871101917], 
+   .actions__lang[_ngcontent-ng-c3871101917], 
+   .actions__socials--desktop[_ngcontent-ng-c3871101917] {
+    display: none;
+  }
+  .nav__tools[_ngcontent-ng-c3871101917] {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .actions__socials--in-menu[_ngcontent-ng-c3871101917] {
+    display: flex;
+    gap: 10px;
+  }
+  .logo-img[_ngcontent-ng-c3871101917] {
+    width: 28px;
+    height: 28px;
+  }
+}
+/*# sourceMappingURL=/header.css.map */</style><style ng-app-id="ng">
+
+.footer[_ngcontent-ng-c2556292501] {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+}
+.footer__inner[_ngcontent-ng-c2556292501] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+.footer__left[_ngcontent-ng-c2556292501] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer__links[_ngcontent-ng-c2556292501] {
+  display: inline-flex;
+  gap: 8px;
+}
+.footer__link[_ngcontent-ng-c2556292501] {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer__link[_ngcontent-ng-c2556292501]:hover {
+  color: var(--text-primary);
+}
+.footer__sep[_ngcontent-ng-c2556292501] {
+  color: var(--text-secondary);
+}
+.footer__right[_ngcontent-ng-c2556292501]   app-social-links[_ngcontent-ng-c2556292501] {
+  display: inline-flex;
+}
+@media (max-width: 768px) {
+  .footer__inner[_ngcontent-ng-c2556292501] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+/*# sourceMappingURL=/footer.css.map */</style><style ng-app-id="ng">
+
+[_nghost-ng-c1252698489] {
+  display: flex;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social[_ngcontent-ng-c1252698489] {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social[_ngcontent-ng-c1252698489]:hover {
+  color: var(--text-primary);
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social-icon[_ngcontent-ng-c1252698489] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">/* src/app/shared/ui/dropdown-button/dropdown-button.scss */
+.dropdown {
+  position: relative;
+}
+.dropdown__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 8px;
+}
+.dropdown__btn:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.dropdown__menu {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  min-width: 160px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 6px;
+  display: grid;
+  gap: 4px;
+  z-index: 100;
+}
+.dropdown__menu li {
+  list-style: none;
+}
+.dropdown__menu button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: transparent;
+  border: 0;
+  color: var(--text-primary);
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: none;
+}
+.dropdown__menu button:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.dropdown__flag {
+  font-size: 16px;
+  line-height: 1;
+}
+.dropdown__label {
+  font-size: 14px;
+}
+.dropdown__btn img {
+  filter: none;
+}
+.dropdown__btn svg,
+.dropdown__btn img[src$=".svg"] {
+  color: inherit;
+  fill: currentColor;
+}
+.icon-mask {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-color: var(--text-primary);
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+/*# sourceMappingURL=/dropdown-button.css.map */
+</style><style ng-app-id="ng">
+
+.community-page[_ngcontent-ng-c1554758032] {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--text-primary);
+  padding: 2rem 0;
+}
+.community-container[_ngcontent-ng-c1554758032] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.community-header[_ngcontent-ng-c1554758032] {
+  margin-bottom: 4rem;
+}
+.community-hero[_ngcontent-ng-c1554758032] {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  background: var(--color-surface);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.community-hero__icon[_ngcontent-ng-c1554758032] {
+  flex-shrink: 0;
+}
+.hero-icon[_ngcontent-ng-c1554758032] {
+  width: 80px;
+  height: 80px;
+  background: color-mix(in oklab, var(--color-surface) 90%, white);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.theme-dark[_nghost-ng-c1554758032]   .hero-icon[_ngcontent-ng-c1554758032], .theme-dark   [_nghost-ng-c1554758032]   .hero-icon[_ngcontent-ng-c1554758032] {
+  background: var(--color-bg);
+}
+@media (prefers-color-scheme: dark) {
+  [_nghost-ng-c1554758032]:not(.theme-light)   .hero-icon[_ngcontent-ng-c1554758032] {
+    background: var(--color-bg);
+  }
+}
+.hero-icon-img[_ngcontent-ng-c1554758032] {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+.community-hero__content[_ngcontent-ng-c1554758032] {
+  flex: 1;
+}
+.community-title[_ngcontent-ng-c1554758032] {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+.community-description[_ngcontent-ng-c1554758032] {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.community-tagline[_ngcontent-ng-c1554758032] {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+.community-join-btn[_ngcontent-ng-c1554758032] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--color-success);
+  color: white;
+  border-radius: 25px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-lg);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+.community-join-btn[_ngcontent-ng-c1554758032]:hover {
+  background: color-mix(in oklab, var(--color-success) 90%, black);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+}
+.join-icon[_ngcontent-ng-c1554758032] {
+  font-size: 1.2rem;
+}
+.community-content[_ngcontent-ng-c1554758032] {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.benefits-section[_ngcontent-ng-c1554758032] {
+  text-align: center;
+}
+.benefits-title[_ngcontent-ng-c1554758032] {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+}
+.benefits-grid[_ngcontent-ng-c1554758032] {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.contribute-section[_ngcontent-ng-c1554758032] {
+  margin: 1rem 0;
+  text-align: center;
+}
+.contribute-title[_ngcontent-ng-c1554758032] {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+}
+.contribute-content[_ngcontent-ng-c1554758032] {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.contribute-list[_ngcontent-ng-c1554758032] {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.contribute-item[_ngcontent-ng-c1554758032] {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.contribute-item[_ngcontent-ng-c1554758032]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+.contribute-item__icon[_ngcontent-ng-c1554758032] {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.contribute-item__text[_ngcontent-ng-c1554758032] {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+.contribute-cta[_ngcontent-ng-c1554758032] {
+  margin-top: 2rem;
+}
+.contribute-btn[_ngcontent-ng-c1554758032] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: var(--color-success);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.contribute-btn[_ngcontent-ng-c1554758032]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  background: color-mix(in srgb, var(--color-success) 90%, black);
+}
+.contribute-btn__icon[_ngcontent-ng-c1554758032] {
+  font-size: 1.25rem;
+}
+@media (max-width: 768px) {
+  .community-page[_ngcontent-ng-c1554758032] {
+    padding: 1rem 0;
+  }
+  .community-container[_ngcontent-ng-c1554758032] {
+    padding: 0 1rem;
+  }
+  .community-header[_ngcontent-ng-c1554758032] {
+    margin-bottom: 2rem;
+  }
+  .community-hero[_ngcontent-ng-c1554758032] {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+  .hero-icon[_ngcontent-ng-c1554758032] {
+    width: 60px;
+    height: 60px;
+  }
+  .hero-icon-img[_ngcontent-ng-c1554758032] {
+    width: 36px;
+    height: 36px;
+  }
+  .community-title[_ngcontent-ng-c1554758032] {
+    font-size: var(--text-3xl);
+  }
+  .community-description[_ngcontent-ng-c1554758032] {
+    font-size: var(--text-base);
+  }
+  .community-tagline[_ngcontent-ng-c1554758032] {
+    font-size: var(--text-lg);
+  }
+  .community-join-btn[_ngcontent-ng-c1554758032] {
+    padding: 0.875rem 1.5rem;
+    font-size: var(--text-base);
+  }
+  .benefits-grid[_ngcontent-ng-c1554758032] {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .contribute-section[_ngcontent-ng-c1554758032] {
+    margin: 3rem 0;
+  }
+  .contribute-title[_ngcontent-ng-c1554758032] {
+    font-size: var(--text-3xl);
+    margin-bottom: 2rem;
+  }
+  .contribute-list[_ngcontent-ng-c1554758032] {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .contribute-item[_ngcontent-ng-c1554758032] {
+    padding: 1rem;
+  }
+  .contribute-item__text[_ngcontent-ng-c1554758032] {
+    font-size: var(--text-base);
+  }
+  .contribute-btn[_ngcontent-ng-c1554758032] {
+    padding: 0.875rem 1.5rem;
+    font-size: var(--text-base);
+  }
+}
+/*# sourceMappingURL=/community.css.map */</style><style ng-app-id="ng">
+
+.btn[_ngcontent-ng-c4279124093] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn[_ngcontent-ng-c4279124093]:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.btn[_ngcontent-ng-c4279124093]:focus:not(:focus-visible) {
+  outline: none;
+}
+.btn--sm[_ngcontent-ng-c4279124093] {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+  min-height: 2rem;
+}
+.btn--md[_ngcontent-ng-c4279124093] {
+  padding: 0.75rem 1.5rem;
+  font-size: var(--text-base);
+  min-height: 2.5rem;
+}
+.btn--lg[_ngcontent-ng-c4279124093] {
+  padding: 1rem 2rem;
+  font-size: var(--text-lg);
+  min-height: 3rem;
+}
+.btn--xl[_ngcontent-ng-c4279124093] {
+  padding: 1.25rem 2.5rem;
+  font-size: var(--text-xl);
+  min-height: 3.5rem;
+}
+.btn--primary[_ngcontent-ng-c4279124093] {
+  background: var(--color-primary);
+  color: white;
+}
+.btn--primary[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-primary) 90%, black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn--secondary[_ngcontent-ng-c4279124093] {
+  background: var(--color-secondary);
+  color: white;
+}
+.btn--secondary[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-secondary) 90%, black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn--accent[_ngcontent-ng-c4279124093] {
+  background: var(--color-accent);
+  color: white;
+}
+.btn--accent[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-accent) 90%, black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn--success[_ngcontent-ng-c4279124093] {
+  background: var(--color-success);
+  color: white;
+}
+.btn--success[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-success) 90%, black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn--warning[_ngcontent-ng-c4279124093] {
+  background: var(--color-warning);
+  color: white;
+}
+.btn--warning[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-warning) 90%, black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn--danger[_ngcontent-ng-c4279124093] {
+  background: var(--color-danger);
+  color: white;
+}
+.btn--danger[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-danger) 90%, black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn--ghost[_ngcontent-ng-c4279124093] {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+.btn--ghost[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+}
+.btn--outline[_ngcontent-ng-c4279124093] {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.btn--outline[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: white;
+}
+.btn--disabled[_ngcontent-ng-c4279124093] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.btn--loading[_ngcontent-ng-c4279124093] {
+  cursor: wait;
+}
+.btn__icon[_ngcontent-ng-c4279124093] {
+  font-size: 1.2em;
+  line-height: 1;
+}
+.btn__spinner[_ngcontent-ng-c4279124093] {
+  animation: _ngcontent-ng-c4279124093_spin 1s linear infinite;
+  font-size: 1.2em;
+  line-height: 1;
+}
+.btn__text[_ngcontent-ng-c4279124093] {
+  line-height: 1;
+}
+@keyframes _ngcontent-ng-c4279124093_spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.theme-dark[_nghost-ng-c4279124093]   .btn--ghost[_ngcontent-ng-c4279124093], .theme-dark   [_nghost-ng-c4279124093]   .btn--ghost[_ngcontent-ng-c4279124093] {
+  color: var(--color-primary);
+  border-color: var(--color-border);
+}
+.theme-dark[_nghost-ng-c4279124093]   .btn--ghost[_ngcontent-ng-c4279124093]:hover:not(:disabled), .theme-dark   [_nghost-ng-c4279124093]   .btn--ghost[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+}
+.theme-dark[_nghost-ng-c4279124093]   .btn--outline[_ngcontent-ng-c4279124093], .theme-dark   [_nghost-ng-c4279124093]   .btn--outline[_ngcontent-ng-c4279124093] {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.theme-dark[_nghost-ng-c4279124093]   .btn--outline[_ngcontent-ng-c4279124093]:hover:not(:disabled), .theme-dark   [_nghost-ng-c4279124093]   .btn--outline[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: white;
+}
+@media (prefers-color-scheme: dark) {
+  [_nghost-ng-c4279124093]:not(.theme-light)   .btn--ghost[_ngcontent-ng-c4279124093] {
+    color: var(--color-primary);
+    border-color: var(--color-border);
+  }
+  [_nghost-ng-c4279124093]:not(.theme-light)   .btn--ghost[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+  }
+  [_nghost-ng-c4279124093]:not(.theme-light)   .btn--outline[_ngcontent-ng-c4279124093] {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  [_nghost-ng-c4279124093]:not(.theme-light)   .btn--outline[_ngcontent-ng-c4279124093]:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+  }
+}
+/*# sourceMappingURL=/button.css.map */</style><meta name="description" content="Join our diverse DIY robot community. Share knowledge, solve problems, get support, and meet like-minded people in the world's most diverse robot building community."><meta name="keywords" content="robot community, DIY community, robotics forum, maker community, STEM community, robot builders"><meta property="og:title" content="ByByte Community - Join Robot Builders"><meta property="og:description" content="Join our diverse DIY robot community. Share knowledge, solve problems, get support, and meet like-minded people in the world's most diverse robot building community."><meta property="og:image" content="/assets/img/logo.png"><meta property="og:url" content="http://localhost:4200"><meta property="og:type" content="website"><meta property="og:site_name" content="ByByte STEM School"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@bybyte_diy"><meta name="twitter:title" content="ByByte Community - Join Robot Builders"><meta name="twitter:description" content="Join our diverse DIY robot community. Share knowledge, solve problems, get support, and meet like-minded people in the world's most diverse robot building community."><meta name="twitter:image" content="/assets/img/logo.png"><style ng-app-id="ng">
+
+.ui-card[_ngcontent-ng-c372030312], 
+.benefit-card[_ngcontent-ng-c372030312] {
+  background: var(--color-surface);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.ui-card[_ngcontent-ng-c372030312]:hover, 
+.benefit-card[_ngcontent-ng-c372030312]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+.ui-card__image[_ngcontent-ng-c372030312] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.ui-image-placeholder[_ngcontent-ng-c372030312] {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.ui-placeholder-icon[_ngcontent-ng-c372030312] {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+.benefit-card[_ngcontent-ng-c372030312] {
+  min-height: 200px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.benefit-card[_ngcontent-ng-c372030312]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.benefit-card--link[_ngcontent-ng-c372030312] {
+  display: block;
+  cursor: pointer;
+}
+.benefit-card__icon[_ngcontent-ng-c372030312] {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 2rem;
+}
+.benefit-icon[_ngcontent-ng-c372030312] {
+  font-size: 5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+.benefit-card__content[_ngcontent-ng-c372030312] {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.benefit-card__title[_ngcontent-ng-c372030312] {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.benefit-card__description[_ngcontent-ng-c372030312] {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+@media (max-width: 768px) {
+  .benefit-card__icon[_ngcontent-ng-c372030312] {
+    height: 100px;
+  }
+  .benefit-icon[_ngcontent-ng-c372030312] {
+    font-size: 3rem;
+  }
+  .benefit-card__content[_ngcontent-ng-c372030312] {
+    padding: 1.5rem;
+  }
+  .benefit-card__title[_ngcontent-ng-c372030312] {
+    font-size: var(--text-xl);
+  }
+  .benefit-card__description[_ngcontent-ng-c372030312] {
+    font-size: var(--text-base);
+  }
+}
+/*# sourceMappingURL=/benefit-card.css.map */</style></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click","focusin"],[]);</script>
+  <app-root ng-version="20.3.7" _nghost-ng-c582792440="" ngh="8" ng-server-context="ssg"><app-header _ngcontent-ng-c582792440="" _nghost-ng-c3871101917="" ngh="0"><header _ngcontent-ng-c3871101917="" class="header"><div _ngcontent-ng-c3871101917="" class="header__inner"><a _ngcontent-ng-c3871101917="" class="header__logo" aria-label="ByByte.DIY" href="/en" jsaction="click:;"><img _ngcontent-ng-c3871101917="" src="img/logo.png" class="logo-img" alt="ByByte.DIY"><span _ngcontent-ng-c3871101917="" class="logo-text">ByByte.DIY</span></a><nav _ngcontent-ng-c3871101917="" class="nav"><a _ngcontent-ng-c3871101917="" class="nav__link" href="/en/build" jsaction="click:;">Build</a><a _ngcontent-ng-c3871101917="" class="nav__link" href="/en/learn" jsaction="click:;">Learning</a><a _ngcontent-ng-c3871101917="" class="nav__link" href="/en/blog" jsaction="click:;">Blog</a><a _ngcontent-ng-c3871101917="" class="nav__link" href="/en/community" jsaction="click:;">Community</a><div _ngcontent-ng-c3871101917="" class="nav__tools"><app-social-links _ngcontent-ng-c3871101917="" class="actions__socials actions__socials--in-menu" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links><app-theme-toggle _ngcontent-ng-c3871101917="" ngh="2"><app-dropdown-button arialabel="Theme" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Theme" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/sun.svg);"></span></button><!--container--></div></app-dropdown-button></app-theme-toggle><app-lang-switcher _ngcontent-ng-c3871101917="" ngh="3"><app-dropdown-button arialabel="Language" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Language" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/globe.svg);"></span></button><!--container--></div></app-dropdown-button></app-lang-switcher></div></nav><div _ngcontent-ng-c3871101917="" class="actions"><app-social-links _ngcontent-ng-c3871101917="" class="actions__socials actions__socials--desktop" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links><app-theme-toggle _ngcontent-ng-c3871101917="" class="actions__theme" ngh="2"><app-dropdown-button arialabel="Theme" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Theme" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/sun.svg);"></span></button><!--container--></div></app-dropdown-button></app-theme-toggle><app-lang-switcher _ngcontent-ng-c3871101917="" class="actions__lang" ngh="3"><app-dropdown-button arialabel="Language" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Language" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/globe.svg);"></span></button><!--container--></div></app-dropdown-button></app-lang-switcher><button _ngcontent-ng-c3871101917="" type="button" aria-label="Menu" class="burger" jsaction="click:;"><span _ngcontent-ng-c3871101917=""></span><span _ngcontent-ng-c3871101917=""></span><span _ngcontent-ng-c3871101917=""></span></button></div></div></header></app-header><router-outlet _ngcontent-ng-c582792440=""></router-outlet><app-language-wrapper ngh="7"><router-outlet></router-outlet><app-community _nghost-ng-c1554758032="" ngh="6"><div _ngcontent-ng-c1554758032="" class="community-page"><div _ngcontent-ng-c1554758032="" class="community-container"><header _ngcontent-ng-c1554758032="" class="community-header"><div _ngcontent-ng-c1554758032="" class="community-hero"><div _ngcontent-ng-c1554758032="" class="community-hero__icon"><div _ngcontent-ng-c1554758032="" class="hero-icon"><img _ngcontent-ng-c1554758032="" src="img/community.png" alt="community" class="hero-icon-img"></div></div><div _ngcontent-ng-c1554758032="" class="community-hero__content"><h1 _ngcontent-ng-c1554758032="" class="community-title">ByByte community</h1><p _ngcontent-ng-c1554758032="" class="community-description">We share knowledge, solve problems, give support to overcome obstacles, you can meet like minded people but at the same time we are the most diverse DIY robot community in the world!</p><p _ngcontent-ng-c1554758032="" class="community-tagline">A free network of robot builders, beginners, makers, parents and educators.</p><app-button _ngcontent-ng-c1554758032="" _nghost-ng-c4279124093="" ngh="4"><a _ngcontent-ng-c4279124093="" class="btn btn--outline btn--md" href="https://discord.com" target="_blank" rel="noopener"><span _ngcontent-ng-c4279124093="" class="btn__icon">✌️</span><!--container--><!--container--><span _ngcontent-ng-c4279124093="" class="btn__text">Join the community</span></a><!--container--><!--container--></app-button></div></div></header><div _ngcontent-ng-c1554758032="" class="community-content"><section _ngcontent-ng-c1554758032="" class="benefits-section"><h2 _ngcontent-ng-c1554758032="" class="benefits-title">What does community participation give?</h2><div _ngcontent-ng-c1554758032="" class="benefits-grid"><app-benefit-card _ngcontent-ng-c1554758032="" _nghost-ng-c372030312="" ngh="5"><!--container--><div _ngcontent-ng-c372030312="" class="benefit-card" style="background-color: var(--color-primary);"><div _ngcontent-ng-c372030312="" class="benefit-card__icon"><span _ngcontent-ng-c372030312="" class="benefit-icon">🤝</span></div><div _ngcontent-ng-c372030312="" class="benefit-card__content"><h3 _ngcontent-ng-c372030312="" class="benefit-card__title">Support</h3><p _ngcontent-ng-c372030312="" class="benefit-card__description">Get help from other participants and teachers.</p></div></div><!--container--></app-benefit-card><app-benefit-card _ngcontent-ng-c1554758032="" _nghost-ng-c372030312="" ngh="5"><!--container--><div _ngcontent-ng-c372030312="" class="benefit-card" style="background-color: var(--color-secondary);"><div _ngcontent-ng-c372030312="" class="benefit-card__icon"><span _ngcontent-ng-c372030312="" class="benefit-icon">💡</span></div><div _ngcontent-ng-c372030312="" class="benefit-card__content"><h3 _ngcontent-ng-c372030312="" class="benefit-card__title">Ideas &amp; Inspiration</h3><p _ngcontent-ng-c372030312="" class="benefit-card__description">Share your own projects and learn about new ones.</p></div></div><!--container--></app-benefit-card><app-benefit-card _ngcontent-ng-c1554758032="" _nghost-ng-c372030312="" ngh="5"><!--container--><div _ngcontent-ng-c372030312="" class="benefit-card" style="background-color: var(--color-accent);"><div _ngcontent-ng-c372030312="" class="benefit-card__icon"><span _ngcontent-ng-c372030312="" class="benefit-icon">📂</span></div><div _ngcontent-ng-c372030312="" class="benefit-card__content"><h3 _ngcontent-ng-c372030312="" class="benefit-card__title">Shared Resources</h3><p _ngcontent-ng-c372030312="" class="benefit-card__description">Access to libraries, lessons, code examples.</p></div></div><!--container--></app-benefit-card><app-benefit-card _ngcontent-ng-c1554758032="" _nghost-ng-c372030312="" ngh="5"><!--container--><div _ngcontent-ng-c372030312="" class="benefit-card" style="background-color: var(--color-success);"><div _ngcontent-ng-c372030312="" class="benefit-card__icon"><span _ngcontent-ng-c372030312="" class="benefit-icon">🚀</span></div><div _ngcontent-ng-c372030312="" class="benefit-card__content"><h3 _ngcontent-ng-c372030312="" class="benefit-card__title">Development</h3><p _ngcontent-ng-c372030312="" class="benefit-card__description">Competitions, challenges and educational initiatives.</p></div></div><!--container--></app-benefit-card><!--container--></div></section><section _ngcontent-ng-c1554758032="" class="contribute-section"><h2 _ngcontent-ng-c1554758032="" class="contribute-title">How can you help?</h2><div _ngcontent-ng-c1554758032="" class="contribute-content"><ul _ngcontent-ng-c1554758032="" class="contribute-list"><li _ngcontent-ng-c1554758032="" class="contribute-item"><span _ngcontent-ng-c1554758032="" class="contribute-item__icon">💻</span><span _ngcontent-ng-c1554758032="" class="contribute-item__text">Add your own code example or lesson.</span></li><li _ngcontent-ng-c1554758032="" class="contribute-item"><span _ngcontent-ng-c1554758032="" class="contribute-item__icon">📚</span><span _ngcontent-ng-c1554758032="" class="contribute-item__text">Help with documentation.</span></li><li _ngcontent-ng-c1554758032="" class="contribute-item"><span _ngcontent-ng-c1554758032="" class="contribute-item__icon">🧪</span><span _ngcontent-ng-c1554758032="" class="contribute-item__text">Test platforms and leave feedback.</span></li><li _ngcontent-ng-c1554758032="" class="contribute-item"><span _ngcontent-ng-c1554758032="" class="contribute-item__icon">💡</span><span _ngcontent-ng-c1554758032="" class="contribute-item__text">Suggest new ideas for sensors or projects.</span></li><!--container--></ul><div _ngcontent-ng-c1554758032="" class="contribute-cta"><app-button _ngcontent-ng-c1554758032="" _nghost-ng-c4279124093="" ngh="4"><a _ngcontent-ng-c4279124093="" class="btn btn--outline btn--md" href="https://github.com/ByByteDIY/ByByteSite/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener"><span _ngcontent-ng-c4279124093="" class="btn__icon">👉</span><!--container--><!--container--><span _ngcontent-ng-c4279124093="" class="btn__text">Make a contribution</span></a><!--container--><!--container--></app-button></div></div></section></div></div></div></app-community><!--container--></app-language-wrapper><!--container--><app-footer _ngcontent-ng-c582792440="" _nghost-ng-c2556292501="" ngh="0"><footer _ngcontent-ng-c2556292501="" class="footer"><div _ngcontent-ng-c2556292501="" class="footer__inner"><div _ngcontent-ng-c2556292501="" class="footer__left"><div _ngcontent-ng-c2556292501="" class="footer__legal"><span _ngcontent-ng-c2556292501="">©2025 All rights reserved | БАБАЙ (ByByte.diy)</span></div><nav _ngcontent-ng-c2556292501="" class="footer__links"><a _ngcontent-ng-c2556292501="" href="/terms" class="footer__link">Terms &amp; Conditions</a><span _ngcontent-ng-c2556292501="" class="footer__sep">·</span><a _ngcontent-ng-c2556292501="" href="/privacy" class="footer__link">Privacy Policy</a></nav></div><div _ngcontent-ng-c2556292501="" class="footer__right"><app-social-links _ngcontent-ng-c2556292501="" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links></div></div></footer></app-footer></app-root>
+<link rel="modulepreload" href="chunk-BQ4MHA2N.js"><link rel="modulepreload" href="chunk-53MEKFBB.js"><link rel="modulepreload" href="chunk-5JG7UUPK.js"><link rel="modulepreload" href="chunk-MXU7DO7X.js"><script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
+
+<script id="ng-state" type="application/json">{"__nghData__":[{},{"t":{"3":"t0"},"c":{"3":[]}},{"n":{"1":"0f3"},"d":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]},{"n":{"1":"0f3"},"d":[2,4],"t":{"4":"t1"}},{"t":{"0":"t14","1":"t17"},"c":{"0":[{"i":"t14","r":1,"t":{"1":"t15","2":"t16"},"c":{"1":[{"i":"t15","r":1}],"2":[]}}],"1":[]}},{"t":{"0":"t38","1":"t39"},"c":{"0":[],"1":[{"i":"t39","r":1}]}},{"t":{"25":"t40","33":"t41"},"c":{"25":[{"i":"t40","r":1,"x":4}],"33":[{"i":"t41","r":1,"x":4}]}},{"c":{"0":[{"i":"c1554758032","r":1}]}},{"c":{"1":[{"i":"c500453364","r":1}]}}]}</script></body></html>
