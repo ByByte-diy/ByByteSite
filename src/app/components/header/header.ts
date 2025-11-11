@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, ElementRef, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LangSwitcher } from '../../modules/language/components/lang-switcher/lang-switcher.js';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.js';
 import { TranslateModule } from '@ngx-translate/core';
 import { SocialLinks } from '../../shared/social-links/social-links.js';
@@ -24,7 +23,7 @@ import { LanguageModule } from '../../modules/language/language.module.js';
       <div class="header__inner">
         <a
           class="header__logo"
-          [routerLink]="routerService.getLocalizedRoute('/')"
+          [routerLink]="'/' | localizedRoute"
           [attr.aria-label]="'brand.name' | translate"
         >
           <img src="img/logo.png" [attr.alt]="'brand.name' | translate" class="logo-img" />
@@ -32,16 +31,16 @@ import { LanguageModule } from '../../modules/language/language.module.js';
         </a>
 
         <nav class="nav" [class.nav--open]="isMobileMenuOpen()">
-          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/build')">{{
+          <a class="nav__link" [routerLink]="'/build' | localizedRoute">{{
             'nav.build' | translate
           }}</a>
-          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/learn')">{{
+          <a class="nav__link" [routerLink]="'/learn' | localizedRoute">{{
             'nav.learning' | translate
           }}</a>
-          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/blog')">{{
+          <a class="nav__link" [routerLink]="'/blog' | localizedRoute">{{
             'nav.blog' | translate
           }}</a>
-          <a class="nav__link" [routerLink]="routerService.getLocalizedRoute('/community')">{{
+          <a class="nav__link" [routerLink]="'/community' | localizedRoute">{{
             'nav.community' | translate
           }}</a>
           <div class="nav__tools">

@@ -10,10 +10,7 @@ export class LocalizedRoutePipe implements PipeTransform {
   private readonly routerService = inject(RouterService);
 
   transform(path: string | null | undefined): string {
-    if (!path) {
-      return this.routerService.getLocalizedRoute('/');
-    }
-
+    if (!path) path = '/';
     return this.routerService.getLocalizedRoute(path);
   }
 }
