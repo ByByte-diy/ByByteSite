@@ -3,7 +3,8 @@ import { HeroCarouselComponent } from '../../components/hero-carousel/hero-carou
 import { AboutSectionComponent } from '../../components/about-section/about-section.js';
 import { WhyImportantComponent } from '../../components/why-important/why-important.js';
 import { CtaSectionComponent } from '../../components/cta-section/cta-section.js';
-import { SeoService } from '../../services/seo.service';
+import { SeoModule } from '../../modules/seo/seo.module';
+import { SeoService } from '../../modules/seo/services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { SeoService } from '../../services/seo.service';
     AboutSectionComponent,
     WhyImportantComponent,
     CtaSectionComponent,
+    SeoModule,
   ],
   template: `
     <app-hero-carousel></app-hero-carousel>
