@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/modules/lessons/lessons.routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\n\nexport const lessonsRoutes: Routes = [\n  {\n    path: '',\n    loadComponent: () =>\n      import('./pages/lessons-page/lessons-page.component').then((m) => m.LessonsPageComponent),\n  },\n  {\n    path: ':platform',\n    loadComponent: () =>\n      import('./pages/lessons-page/lessons-page.component').then((m) => m.LessonsPageComponent),\n  },\n  {\n    path: ':platform/:level',\n    loadComponent: () =>\n      import('./pages/lessons-page/lessons-page.component').then((m) => m.LessonsPageComponent),\n  },\n  {\n    path: ':platform/:level/:slug',\n    loadComponent: () =>\n      import('./pages/lesson-detail-page/lesson-detail-page.component').then(\n        (m) => m.LessonDetailPageComponent,\n      ),\n  },\n];\n"],
-  "mappings": ";;;;;AAEO,IAAM,gBAAwB;EACnC;IACE,MAAM;IACN,eAAe,MACb,OAAO,qBAA6C,EAAE,KAAK,CAAC,MAAM,EAAE,oBAAoB;;EAE5F;IACE,MAAM;IACN,eAAe,MACb,OAAO,qBAA6C,EAAE,KAAK,CAAC,MAAM,EAAE,oBAAoB;;EAE5F;IACE,MAAM;IACN,eAAe,MACb,OAAO,qBAA6C,EAAE,KAAK,CAAC,MAAM,EAAE,oBAAoB;;EAE5F;IACE,MAAM;IACN,eAAe,MACb,OAAO,qBAAyD,EAAE,KAChE,CAAC,MAAM,EAAE,yBAAyB;;;",
-  "names": []
-}
