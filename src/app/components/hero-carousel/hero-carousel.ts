@@ -112,11 +112,11 @@ export class HeroCarouselComponent {
       description: 'hero.slide1.description',
       buttons: [
         {
-          href: '/build',
+          href: 'build',
           color: 'primary',
           text: 'hero.buttons.letsBuild',
         },
-        { href: '/learn', color: 'accent', text: 'hero.buttons.letsLearn' },
+        { href: 'learn', color: 'accent', text: 'hero.buttons.letsLearn' },
       ],
     },
   ]);
