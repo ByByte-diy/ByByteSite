@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { LessonMeta } from '../../../../models/lesson.model';
-import { LessonIconsService } from '../../../../services/lesson-icons.service';
-import { RouterService } from '../../../../services/router.service';
+import { LessonMeta } from '../../models/lesson.model';
+import { LessonIconsService } from '../../services/lesson-icons.service';
+import { RouterService } from '../../../language/services/router.service';
 
 @Component({
   selector: 'app-lesson-card',

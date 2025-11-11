@@ -2,11 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LessonsService } from '../../../../services/lessons.service';
-import { LessonMeta } from '../../../../models/lesson.model';
+import { LessonsService } from '../../services/lessons.service';
+import { LessonMeta } from '../../models/lesson.model';
 import { LessonFilterComponent } from '../lesson-filter/lesson-filter.component';
 import { LessonCardComponent } from '../lesson-card/lesson-card.component';
-import { RouterService } from '../../../../services/router.service';
+import { RouterService } from '../../../language/services/router.service';
 
 @Component({
   selector: 'app-lessons-list',
@@ -18,7 +18,6 @@ import { RouterService } from '../../../../services/router.service';
 export class LessonsListComponent implements OnInit {
   protected readonly lessonsService = inject(LessonsService);
   private readonly _route = inject(ActivatedRoute);
-  private readonly _router = inject(Router);
   private readonly _routerService = inject(RouterService);
   private readonly _translate = inject(TranslateService);
 

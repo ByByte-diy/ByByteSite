@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Home } from '../../pages/home/home';
-import { SeoService } from '../../services/seo.service';
+import { SeoModule } from '../../modules/seo/seo.module';
+import { SeoService } from '../../modules/seo/services/seo.service';
 
 /**
  * Root page component that renders Home component with default language
@@ -9,7 +10,7 @@ import { SeoService } from '../../services/seo.service';
 @Component({
   selector: 'app-root-page',
   standalone: true,
-  imports: [Home],
+  imports: [Home, SeoModule],
   template: `<app-home></app-home>`,
   styles: '',
 })

@@ -7,7 +7,7 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideMarkdown } from 'ngx-markdown';
 import { provideCore } from './core/core.providers.js';
-import { provideI18n } from './i18n/i18n.providers.js';
+import { provideI18n } from './modules/language/providers/i18n.providers.js';
 
 import { routes } from './app.routes.js';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';

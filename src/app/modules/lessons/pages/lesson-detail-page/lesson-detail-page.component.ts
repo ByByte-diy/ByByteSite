@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { LessonsService } from '../../../../services/lessons.service';
+import { LessonsService } from '../../services/lessons.service';
 import { LessonViewComponent } from '../../components/lesson-view/lesson-view.component';
-import { Lesson } from '../../../../models/lesson.model';
-import { SeoService } from '../../../../services/seo.service';
-import { RouterService } from '../../../../services/router.service';
+import { Lesson } from '../../models/lesson.model';
+import { SeoModule } from '../../../seo/seo.module';
+import { SeoService } from '../../../seo/services/seo.service';
+import { RouterService } from '../../../language/services/router.service';
 
 @Component({
   selector: 'app-lesson-detail-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LessonViewComponent],
+  imports: [CommonModule, TranslateModule, LessonViewComponent, SeoModule],
   template: `
     <div class="lesson-detail-page">
       <div class="lesson-detail-page__nav">

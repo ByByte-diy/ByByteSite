@@ -3,12 +3,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card/benefit-card';
 import { ButtonComponent, BUTTON_PRESETS } from '../../shared/ui/button';
 import { environment } from '../../../environments/environment';
-import { SeoService } from '../../services/seo.service';
+import { SeoModule } from '../../modules/seo/seo.module';
+import { SeoService } from '../../modules/seo/services/seo.service';
 
 @Component({
   selector: 'app-community',
   standalone: true,
-  imports: [TranslateModule, BenefitCardComponent, ButtonComponent],
+  imports: [TranslateModule, BenefitCardComponent, ButtonComponent, SeoModule],
   template: `
     <div class="community-page">
       <div class="community-container">

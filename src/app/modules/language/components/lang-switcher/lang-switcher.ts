@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../environments/environment.js';
-import { DropdownButtonComponent } from '../ui/dropdown-button/dropdown-button.js';
+import { environment } from '../../../../../environments/environment.js';
 import { RouterService } from '../../services/router.service.js';
+import { DropdownButtonComponent } from '../../../../shared/ui/dropdown-button/dropdown-button.js';
 
 @Component({
   selector: 'app-lang-switcher',
@@ -54,7 +54,6 @@ export class LangSwitcher {
     this.open.set(false);
   }
   protected choose(lang: string) {
-    // Use RouterService to switch language and navigate
     this.routerService.switchLanguage(lang);
     this.current.set(lang);
     this.open.set(false);
