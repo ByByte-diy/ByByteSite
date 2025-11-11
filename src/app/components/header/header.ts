@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, ElementRef, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LangSwitcher } from '../../shared/lang-switcher/lang-switcher.js';
+import { LangSwitcher } from '../../modules/language/components/lang-switcher/lang-switcher.js';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.js';
 import { TranslateModule } from '@ngx-translate/core';
 import { SocialLinks } from '../../shared/social-links/social-links.js';
-import { RouterService } from '../../services/router.service.js';
+import { RouterService } from '../../modules/language/services/router.service.js';
+import { LanguageModule } from '../../modules/language/language.module.js';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ import { RouterService } from '../../services/router.service.js';
   imports: [
     CommonModule,
     RouterLink,
-    LangSwitcher,
+    LanguageModule,
     ThemeToggleComponent,
     TranslateModule,
     SocialLinks,

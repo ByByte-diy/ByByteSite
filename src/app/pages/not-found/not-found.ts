@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ButtonComponent } from '../../shared/ui/button/button';
 import { Title, Meta } from '@angular/platform-browser';
-import { SeoService } from '../../services/seo.service';
+import { SeoModule } from '../../modules/seo/seo.module';
+import { SeoService } from '../../modules/seo/services/seo.service';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [TranslateModule, ButtonComponent],
+  imports: [TranslateModule, ButtonComponent, SeoModule],
   template: `
     <div class="not-found">
       <div class="not-found__container">

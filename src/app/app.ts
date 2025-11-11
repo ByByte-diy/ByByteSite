@@ -2,8 +2,8 @@ import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
-import { HeaderComponent } from './layout/header/header';
-import { FooterComponent } from './layout/footer/footer';
+import { HeaderComponent } from './components/header/header';
+import { FooterComponent } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',

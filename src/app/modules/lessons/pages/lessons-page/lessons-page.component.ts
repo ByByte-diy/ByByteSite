@@ -1,15 +1,15 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { LessonsService } from '../../../../services/lessons.service';
+import { LessonsService } from '../../services/lessons.service';
 import { LessonsListComponent } from '../../components/lessons-list/lessons-list.component';
-import { SeoService } from '../../../../services/seo.service';
+import { SeoModule } from '../../../seo/seo.module';
+import { SeoService } from '../../../seo/services/seo.service';
 
 @Component({
   selector: 'app-lessons-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LessonsListComponent],
+  imports: [CommonModule, TranslateModule, LessonsListComponent, SeoModule],
   template: `
     <div class="lessons-page">
       <div class="lessons-page__header">

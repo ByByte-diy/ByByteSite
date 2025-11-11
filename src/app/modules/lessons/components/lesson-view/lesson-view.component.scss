@@ -237,6 +237,132 @@
   }
 }
 
+.image-preview-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000;
+  backdrop-filter: blur(2px);
+}
+
+.image-preview-content {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-preview-content img {
+  max-width: min(90vw, 1200px);
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.05s ease-out;
+}
+
+.image-preview-content.dragging img {
+  cursor: grabbing;
+}
+
+.image-preview-controls {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  z-index: 2100;
+}
+
+.control-btn {
+  min-width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.image-preview-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 2100;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  .image-preview-content {
+    gap: 0.75rem;
+  }
+
+  .image-preview-content img {
+    max-height: 75vh;
+  }
+
+  .image-preview-close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .image-preview-controls {
+    top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .control-btn {
+    min-width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .lesson-title {
     font-size: var(--text-3xl);

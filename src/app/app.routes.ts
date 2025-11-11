@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { LanguageWrapperComponent } from './components/language-wrapper/language-wrapper';
-import { languageGuard } from './guards/language.guard';
+import { LanguageWrapperComponent } from './modules/language/components/language-wrapper/language-wrapper';
+import { defaultLanguageRedirectGuard } from './modules/language/guards/default-language.guard';
+import { languageGuard } from './modules/language/guards/language.guard';
 
 /**
  * Shared route definitions used both with and without language prefix
@@ -12,20 +13,12 @@ const sharedRoutes: Routes = [
     loadComponent: () => import('./pages/home/home.js').then((m) => m.Home),
   },
   {
-    path: 'products',
-    loadComponent: () => import('./pages/products/products.js').then((m) => m.Products),
-  },
-  {
     path: 'build',
     loadComponent: () => import('./pages/build/build.js').then((m) => m.BuildPage),
   },
   {
     path: 'learn',
     loadChildren: () => import('./modules/lessons/lessons.routes.js').then((m) => m.lessonsRoutes),
-  },
-  {
-    path: 'docs',
-    loadComponent: () => import('./pages/docs/docs.js').then((m) => m.Docs),
   },
   {
     path: 'community',
@@ -47,6 +40,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    canMatch: [defaultLanguageRedirectGuard],
     loadComponent: () =>
       import('./components/root-page/root-page.component.js').then((m) => m.RootPageComponent),
   },

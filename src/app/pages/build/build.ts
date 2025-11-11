@@ -5,12 +5,19 @@ import { environment } from '../../../environments/environment';
 import { VideoHeroButton, VideoHeroComponent } from '../../shared/video-hero/video-hero';
 import { InfoCardComponent, InfoCardData } from '../../shared/info-card/info-card';
 import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card/benefit-card';
-import { SeoService } from '../../services/seo.service';
+import { SeoModule } from '../../modules/seo/seo.module';
+import { SeoService } from '../../modules/seo/services/seo.service';
 
 @Component({
   selector: 'app-build',
   standalone: true,
-  imports: [TranslateModule, VideoHeroComponent, InfoCardComponent, BenefitCardComponent],
+  imports: [
+    TranslateModule,
+    VideoHeroComponent,
+    InfoCardComponent,
+    BenefitCardComponent,
+    SeoModule,
+  ],
   template: `
     <app-video-hero
       [title]="'build.hero.title'"

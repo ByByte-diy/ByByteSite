@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageModule } from '../../modules/language/language.module';
 
 interface CarouselSlide {
   id: string;
@@ -29,7 +30,7 @@ interface FeatureCard {
 @Component({
   selector: 'app-hero-carousel',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, LanguageModule],
   template: `
     <section class="hero-carousel">
       <!-- Carousel Section -->
@@ -49,9 +50,12 @@ interface FeatureCard {
                   @if (slide.buttons?.length) {
                     <div class="carousel-buttons">
                       @for (btn of slide.buttons | slice: 0 : 2; track btn.href) {
-                        <a [href]="btn.href" class="btn" [ngClass]="'btn--' + btn.color">{{
-                          btn.text | translate
-                        }}</a>
+                        <a
+                          [href]="btn.href | localizedRoute"
+                          class="btn"
+                          [ngClass]="'btn--' + btn.color"
+                          >{{ btn.text | translate }}</a
+                        >
                       }
                     </div>
                   }

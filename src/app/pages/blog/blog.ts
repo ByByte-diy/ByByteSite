@@ -1,12 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { SeoService } from '../../services/seo.service';
+import { SeoModule } from '../../modules/seo/seo.module';
+import { SeoService } from '../../modules/seo/services/seo.service';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, SeoModule],
   template: `
     <div class="blog-page">
       <div class="blog-container">

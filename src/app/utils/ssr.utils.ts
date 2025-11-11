@@ -1,4 +1,4 @@
-import { getLangFromPath } from './lang.utils';
+import { getLangFromPath } from '../modules/language/utils/lang.utils';
 
 /**
  * Get REQUEST object from Angular SSR injector
