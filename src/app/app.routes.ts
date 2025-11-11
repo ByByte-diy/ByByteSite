@@ -29,6 +29,14 @@ const sharedRoutes: Routes = [
     loadComponent: () => import('./pages/blog/blog.js').then((m) => m.BlogComponent),
   },
   {
+    path: 'terms',
+    loadComponent: () => import('./pages/terms/terms.js').then((m) => m.TermsComponent),
+  },
+  {
+    path: 'privacy',
+    loadComponent: () => import('./pages/privacy/privacy.js').then((m) => m.PrivacyComponent),
+  },
+  {
     path: '**',
     loadComponent: () => import('./pages/not-found/not-found.js').then((m) => m.NotFoundComponent),
   },

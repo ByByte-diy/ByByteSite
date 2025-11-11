@@ -274,5 +274,11 @@
       "description": "Learn {{lessonTitle}} with {{platform}}. {{level}} level lesson covering {{topics}}. Step-by-step tutorial with code examples and practical exercises.",
       "keywords": "{{platform}} programming, {{level}} robotics, {{lessonTitle}}, DIY electronics, STEM education, hands-on learning"
     }
+  },
+  "terms": {
+    "title": "Terms & Conditions"
+  },
+  "privacy": {
+    "title": "Privacy Policy"
   }
 }
