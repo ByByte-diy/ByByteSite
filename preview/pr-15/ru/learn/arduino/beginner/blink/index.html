@@ -1,0 +1,796 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <title>ByByteSite</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0077CC">
+  <meta name="msapplication-TileColor" content="#0077CC">
+  <meta name="theme-color" content="#0077CC">
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  
+  <!-- Connect Emoji-Toolkit -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/extras/css/joypixels.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/lib/js/joypixels.min.js"></script>
+  
+  <!-- Connect styles for Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+  
+  <!-- Connect Prism.js before loading the app -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  
+  <!-- Programming languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-arduino.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+  
+  <!-- Language detection and redirect script -->
+  <script>
+    (function() {
+      // Only redirect if we're on root path
+      const currentPath = window.location.pathname;
+      const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+      const baseHrefNormalized = baseHref.replace(/^\/|\/$/g, '');
+      
+      // Check if we're on root path
+      const isOnRoot = currentPath === '/' || 
+                      currentPath === '/' + baseHrefNormalized ||
+                      currentPath === '/' + baseHrefNormalized + '/';
+      
+      if (isOnRoot) {
+        const supportedLangs = ['en', 'uk', 'ru'];
+        const defaultLang = 'en';
+        
+        // Get language from localStorage if available
+        let savedLang = null;
+        try {
+          savedLang = localStorage.getItem('app-lang');
+        } catch (e) {}
+        
+        // Get browser language
+        let browserLang = null;
+        if (typeof navigator !== 'undefined' && navigator.language) {
+          browserLang = navigator.language.split('-')[0].toLowerCase();
+        }
+        
+        // Determine target language
+        let targetLang = defaultLang;
+        if (savedLang && supportedLangs.includes(savedLang)) {
+          targetLang = savedLang;
+        } else if (browserLang && supportedLangs.includes(browserLang)) {
+          targetLang = browserLang;
+        }
+        
+        // Redirect to language route
+        const redirectPath = baseHref + targetLang;
+        const normalizedRedirect = redirectPath.replace(/([^:]\/)\/+/g, '$1');
+        window.location.replace(normalizedRedirect);
+      }
+    })();
+  </script>
+<link rel="stylesheet" href="styles.css"><style ng-app-id="ng">
+
+[_nghost-ng-c582792440] {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+app-header[_ngcontent-ng-c582792440] {
+  flex: 0 0 auto;
+}
+router-outlet[_ngcontent-ng-c582792440] {
+  flex: 1 0 auto;
+  display: block;
+}
+app-footer[_ngcontent-ng-c582792440] {
+  flex: 0 0 auto;
+}
+/*# sourceMappingURL=/app.css.map */</style><style ng-app-id="ng">
+
+.header[_ngcontent-ng-c3871101917] {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-soft);
+}
+.header__inner[_ngcontent-ng-c3871101917] {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+}
+.header__logo[_ngcontent-ng-c3871101917] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+}
+.logo-img[_ngcontent-ng-c3871101917] {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.logo-text[_ngcontent-ng-c3871101917] {
+  font-size: var(--text-2xl);
+  letter-spacing: 0.2px;
+  font-weight: var(--font-weight-bold);
+}
+.nav[_ngcontent-ng-c3871101917] {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nav__link[_ngcontent-ng-c3871101917] {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-2xl);
+}
+.nav__link[_ngcontent-ng-c3871101917]:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.actions[_ngcontent-ng-c3871101917] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.actions__socials[_ngcontent-ng-c3871101917] {
+  display: flex;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+.actions__socials--desktop[_ngcontent-ng-c3871101917] {
+  display: flex;
+}
+.actions__socials--in-menu[_ngcontent-ng-c3871101917] {
+  display: none;
+}
+.social[_ngcontent-ng-c3871101917] {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.social[_ngcontent-ng-c3871101917]:hover {
+  color: var(--text-primary);
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+}
+.social-icon[_ngcontent-ng-c3871101917] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+.actions__theme[_ngcontent-ng-c3871101917], 
+.actions__lang[_ngcontent-ng-c3871101917] {
+  display: inline-flex;
+}
+.nav__tools[_ngcontent-ng-c3871101917] {
+  display: none;
+}
+.burger[_ngcontent-ng-c3871101917] {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px;
+}
+.burger[_ngcontent-ng-c3871101917]   span[_ngcontent-ng-c3871101917] {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text-primary);
+}
+@media (max-width: 900px) {
+  .nav[_ngcontent-ng-c3871101917] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    padding: 12px 16px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-soft);
+    display: none;
+  }
+  .nav.nav--open[_ngcontent-ng-c3871101917] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .actions[_ngcontent-ng-c3871101917] {
+    gap: 0px;
+  }
+  .actions__socials[_ngcontent-ng-c3871101917] {
+    gap: 0px;
+  }
+  .burger[_ngcontent-ng-c3871101917] {
+    display: inline-flex;
+  }
+  .actions__theme[_ngcontent-ng-c3871101917], 
+   .actions__lang[_ngcontent-ng-c3871101917], 
+   .actions__socials--desktop[_ngcontent-ng-c3871101917] {
+    display: none;
+  }
+  .nav__tools[_ngcontent-ng-c3871101917] {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .actions__socials--in-menu[_ngcontent-ng-c3871101917] {
+    display: flex;
+    gap: 10px;
+  }
+  .logo-img[_ngcontent-ng-c3871101917] {
+    width: 28px;
+    height: 28px;
+  }
+}
+/*# sourceMappingURL=/header.css.map */</style><style ng-app-id="ng">
+
+.footer[_ngcontent-ng-c2556292501] {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+}
+.footer__inner[_ngcontent-ng-c2556292501] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+.footer__left[_ngcontent-ng-c2556292501] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer__links[_ngcontent-ng-c2556292501] {
+  display: inline-flex;
+  gap: 8px;
+}
+.footer__link[_ngcontent-ng-c2556292501] {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer__link[_ngcontent-ng-c2556292501]:hover {
+  color: var(--text-primary);
+}
+.footer__sep[_ngcontent-ng-c2556292501] {
+  color: var(--text-secondary);
+}
+.footer__right[_ngcontent-ng-c2556292501]   app-social-links[_ngcontent-ng-c2556292501] {
+  display: inline-flex;
+}
+@media (max-width: 768px) {
+  .footer__inner[_ngcontent-ng-c2556292501] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+/*# sourceMappingURL=/footer.css.map */</style><style ng-app-id="ng">
+
+[_nghost-ng-c1252698489] {
+  display: flex;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social[_ngcontent-ng-c1252698489] {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social[_ngcontent-ng-c1252698489]:hover {
+  color: var(--text-primary);
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social-icon[_ngcontent-ng-c1252698489] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">/* src/app/shared/ui/dropdown-button/dropdown-button.scss */
+.dropdown {
+  position: relative;
+}
+.dropdown__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 8px;
+}
+.dropdown__btn:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.dropdown__menu {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  min-width: 160px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 6px;
+  display: grid;
+  gap: 4px;
+  z-index: 100;
+}
+.dropdown__menu li {
+  list-style: none;
+}
+.dropdown__menu button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: transparent;
+  border: 0;
+  color: var(--text-primary);
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: none;
+}
+.dropdown__menu button:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.dropdown__flag {
+  font-size: 16px;
+  line-height: 1;
+}
+.dropdown__label {
+  font-size: 14px;
+}
+.dropdown__btn img {
+  filter: none;
+}
+.dropdown__btn svg,
+.dropdown__btn img[src$=".svg"] {
+  color: inherit;
+  fill: currentColor;
+}
+.icon-mask {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-color: var(--text-primary);
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+/*# sourceMappingURL=/dropdown-button.css.map */
+</style><style ng-app-id="ng">
+
+.lesson-detail-page[_ngcontent-ng-c343771007] {
+  padding: 2rem 1rem;
+}
+.lesson-detail-page__nav[_ngcontent-ng-c343771007] {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+}
+.back-button[_ngcontent-ng-c343771007] {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: var(--text-base);
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+.back-button[_ngcontent-ng-c343771007]:hover {
+  text-decoration: underline;
+}
+.lesson-detail-page__error[_ngcontent-ng-c343771007] {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.lesson-detail-page__error[_ngcontent-ng-c343771007]   .error-message[_ngcontent-ng-c343771007] {
+  font-size: var(--text-lg);
+  color: var(--color-error);
+  margin-bottom: 1.5rem;
+}
+/*# sourceMappingURL=/lesson-detail-page.component.css.map */</style><style ng-app-id="ng">
+
+.lesson-view[_ngcontent-ng-c493199287] {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.lesson-header[_ngcontent-ng-c493199287] {
+  margin-bottom: 2rem;
+}
+.lesson-meta[_ngcontent-ng-c493199287] {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.lesson-platform[_ngcontent-ng-c493199287], 
+.lesson-level[_ngcontent-ng-c493199287] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  background: var(--color-surface);
+  border-radius: 16px;
+}
+.platform-icon[_ngcontent-ng-c493199287], 
+.level-icon[_ngcontent-ng-c493199287] {
+  font-size: 1.2em;
+}
+.lesson-title[_ngcontent-ng-c493199287] {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.lesson-info[_ngcontent-ng-c493199287] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.lesson-tags[_ngcontent-ng-c493199287] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.lesson-tag[_ngcontent-ng-c493199287] {
+  padding: 0.25rem 0.75rem;
+  background: var(--color-bg);
+  border-radius: 16px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+.lesson-version[_ngcontent-ng-c493199287] {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+.lesson-content[_ngcontent-ng-c493199287] {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+  .markdown-content {
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+  .markdown-content h1, 
+  .markdown-content h2, 
+  .markdown-content h3, 
+  .markdown-content h4, 
+  .markdown-content h5, 
+  .markdown-content h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+  .markdown-content h1 {
+  font-size: var(--text-3xl);
+}
+  .markdown-content h2 {
+  font-size: var(--text-2xl);
+}
+  .markdown-content h3 {
+  font-size: var(--text-xl);
+}
+  .markdown-content p {
+  margin-bottom: 1.5em;
+}
+  .markdown-content ul, 
+  .markdown-content ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+  .markdown-content li {
+  margin-bottom: 0.5em;
+}
+  .markdown-content code:not([class*=language-]) {
+  font-family:
+    Consolas,
+    Monaco,
+    "Andale Mono",
+    "Ubuntu Mono",
+    monospace;
+  background: var(--color-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+  .markdown-content pre {
+  padding: 0;
+  margin-bottom: 1.5em;
+  border-radius: 8px;
+  overflow: auto;
+  scrollbar-width: auto;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+  .markdown-content pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+  .markdown-content pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+  .markdown-content pre::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+  .markdown-content pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+  .markdown-content pre:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+  .markdown-content pre code {
+  background: transparent;
+  padding: 0;
+}
+  .markdown-content pre[class*=language-] {
+  position: relative;
+  margin: 1em 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+  .markdown-content .line-numbers .line-numbers-rows {
+  padding: 1em 0;
+}
+  .markdown-content div.code-toolbar > .toolbar {
+  top: 0.3em;
+  right: 0.3em;
+  transition: opacity 0.3s ease;
+}
+  .markdown-content div.code-toolbar > .toolbar button {
+  cursor: pointer;
+}
+  .markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+}
+  .markdown-content blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+  .markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5em;
+}
+  .markdown-content table th, 
+  .markdown-content table td {
+  border: 1px solid var(--color-border);
+  padding: 0.5em;
+  text-align: left;
+}
+  .markdown-content table th {
+  background: var(--color-bg);
+  font-weight: var(--font-weight-medium);
+}
+  .markdown-content pre[class*=language-] {
+  text-shadow: none;
+}
+.lesson-loading[_ngcontent-ng-c493199287] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+.lesson-loading[_ngcontent-ng-c493199287]   p[_ngcontent-ng-c493199287] {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+}
+.image-preview-overlay[_ngcontent-ng-c493199287] {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.image-preview-content[_ngcontent-ng-c493199287] {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.image-preview-content[_ngcontent-ng-c493199287]   img[_ngcontent-ng-c493199287] {
+  max-width: min(90vw, 1200px);
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 0.05s ease-out;
+}
+.image-preview-content.dragging[_ngcontent-ng-c493199287]   img[_ngcontent-ng-c493199287] {
+  cursor: grabbing;
+}
+.image-preview-controls[_ngcontent-ng-c493199287] {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  z-index: 2100;
+}
+.control-btn[_ngcontent-ng-c493199287] {
+  min-width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+.control-btn[_ngcontent-ng-c493199287]:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-1px);
+}
+.control-btn[_ngcontent-ng-c493199287]:active {
+  transform: scale(0.95);
+}
+.image-preview-close[_ngcontent-ng-c493199287] {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 2100;
+}
+.image-preview-close[_ngcontent-ng-c493199287]:hover {
+  background: rgba(0, 0, 0, 0.85);
+  transform: translateY(-1px);
+}
+.image-preview-close[_ngcontent-ng-c493199287]:active {
+  transform: scale(0.95);
+}
+@media (max-width: 768px) {
+  .image-preview-content[_ngcontent-ng-c493199287] {
+    gap: 0.75rem;
+  }
+  .image-preview-content[_ngcontent-ng-c493199287]   img[_ngcontent-ng-c493199287] {
+    max-height: 75vh;
+  }
+  .image-preview-close[_ngcontent-ng-c493199287] {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+  .image-preview-controls[_ngcontent-ng-c493199287] {
+    top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+  .control-btn[_ngcontent-ng-c493199287] {
+    min-width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .lesson-title[_ngcontent-ng-c493199287] {
+    font-size: var(--text-3xl);
+  }
+  .lesson-content[_ngcontent-ng-c493199287] {
+    padding: 1.5rem;
+  }
+}
+/*# sourceMappingURL=/lesson-view.component.css.map */</style></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click","focusin","keydown"],[]);</script>
+  <app-root ng-version="20.3.7" _nghost-ng-c582792440="" ngh="7" ng-server-context="ssg"><app-header _ngcontent-ng-c582792440="" _nghost-ng-c3871101917="" ngh="0"><header _ngcontent-ng-c3871101917="" class="header"><div _ngcontent-ng-c3871101917="" class="header__inner"><a _ngcontent-ng-c3871101917="" class="header__logo" aria-label="БАБАЙ.DIY" href="/ru" jsaction="click:;"><img _ngcontent-ng-c3871101917="" src="img/logo.png" class="logo-img" alt="БАБАЙ.DIY"><span _ngcontent-ng-c3871101917="" class="logo-text">БАБАЙ.DIY</span></a><nav _ngcontent-ng-c3871101917="" class="nav"><a _ngcontent-ng-c3871101917="" class="nav__link" href="/ru/build" jsaction="click:;">Сборка</a><a _ngcontent-ng-c3871101917="" class="nav__link" href="/ru/learn" jsaction="click:;">Обучение</a><a _ngcontent-ng-c3871101917="" class="nav__link" href="/ru/blog" jsaction="click:;">Блог</a><a _ngcontent-ng-c3871101917="" class="nav__link" href="/ru/community" jsaction="click:;">Сообщество</a><div _ngcontent-ng-c3871101917="" class="nav__tools"><app-social-links _ngcontent-ng-c3871101917="" class="actions__socials actions__socials--in-menu" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links><app-theme-toggle _ngcontent-ng-c3871101917="" ngh="2"><app-dropdown-button arialabel="Theme" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Theme" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/sun.svg);"></span></button><!--container--></div></app-dropdown-button></app-theme-toggle><app-lang-switcher _ngcontent-ng-c3871101917="" ngh="3"><app-dropdown-button arialabel="Language" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Language" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/globe.svg);"></span></button><!--container--></div></app-dropdown-button></app-lang-switcher></div></nav><div _ngcontent-ng-c3871101917="" class="actions"><app-social-links _ngcontent-ng-c3871101917="" class="actions__socials actions__socials--desktop" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links><app-theme-toggle _ngcontent-ng-c3871101917="" class="actions__theme" ngh="2"><app-dropdown-button arialabel="Theme" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Theme" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/sun.svg);"></span></button><!--container--></div></app-dropdown-button></app-theme-toggle><app-lang-switcher _ngcontent-ng-c3871101917="" class="actions__lang" ngh="3"><app-dropdown-button arialabel="Language" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Language" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/globe.svg);"></span></button><!--container--></div></app-dropdown-button></app-lang-switcher><button _ngcontent-ng-c3871101917="" type="button" aria-label="Menu" class="burger" jsaction="click:;"><span _ngcontent-ng-c3871101917=""></span><span _ngcontent-ng-c3871101917=""></span><span _ngcontent-ng-c3871101917=""></span></button></div></div></header></app-header><router-outlet _ngcontent-ng-c582792440=""></router-outlet><app-language-wrapper ngh="6"><router-outlet></router-outlet><app-lesson-detail-page _nghost-ng-c343771007="" ngh="5"><div _ngcontent-ng-c343771007="" class="lesson-detail-page"><div _ngcontent-ng-c343771007="" class="lesson-detail-page__nav"><button _ngcontent-ng-c343771007="" class="back-button" jsaction="click:;"> ← Вернуться к списку уроков </button></div><app-lesson-view _ngcontent-ng-c343771007="" _nghost-ng-c493199287="" ngh="4"><!--container--><div _ngcontent-ng-c493199287="" class="lesson-loading"><p _ngcontent-ng-c493199287="">Загрузка уроков...</p></div><!--container--></app-lesson-view><div _ngcontent-ng-c343771007="" class="lesson-detail-page__error"><p _ngcontent-ng-c343771007="" class="error-message">Lesson not found: blink</p><button _ngcontent-ng-c343771007="" class="back-button" jsaction="click:;"> ← Вернуться к списку уроков </button></div><!--container--></div></app-lesson-detail-page><!--container--></app-language-wrapper><!--container--><app-footer _ngcontent-ng-c582792440="" _nghost-ng-c2556292501="" ngh="0"><footer _ngcontent-ng-c2556292501="" class="footer"><div _ngcontent-ng-c2556292501="" class="footer__inner"><div _ngcontent-ng-c2556292501="" class="footer__left"><div _ngcontent-ng-c2556292501="" class="footer__legal"><span _ngcontent-ng-c2556292501="">©2025 All rights reserved | БАБАЙ (ByByte.diy)</span></div><nav _ngcontent-ng-c2556292501="" class="footer__links"><a _ngcontent-ng-c2556292501="" href="/terms" class="footer__link">Terms &amp; Conditions</a><span _ngcontent-ng-c2556292501="" class="footer__sep">·</span><a _ngcontent-ng-c2556292501="" href="/privacy" class="footer__link">Privacy Policy</a></nav></div><div _ngcontent-ng-c2556292501="" class="footer__right"><app-social-links _ngcontent-ng-c2556292501="" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links></div></div></footer></app-footer></app-root>
+<link rel="modulepreload" href="chunk-OIGCI7V4.js"><link rel="modulepreload" href="chunk-G5KYBNYL.js"><link rel="modulepreload" href="chunk-XIY4EXV4.js"><link rel="modulepreload" href="chunk-5IILHPIS.js"><link rel="modulepreload" href="chunk-MXU7DO7X.js"><script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
+
+<script id="ng-state" type="application/json">{"__nghData__":[{},{"t":{"3":"t0"},"c":{"3":[]}},{"n":{"1":"0f3"},"d":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]},{"n":{"1":"0f3"},"d":[2,4],"t":{"4":"t1"}},{"t":{"0":"t42","1":"t43"},"c":{"0":[],"1":[{"i":"t43","r":1}]}},{"t":{"6":"t44"},"c":{"6":[{"i":"t44","r":1}]}},{"c":{"0":[{"i":"c343771007","r":1}]}},{"c":{"1":[{"i":"c500453364","r":1}]}}]}</script></body></html>
