@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/lessons/pages/lessons-page/lessons-page.component.ts"],
+  "sourcesContent": ["\n      .lessons-page {\n        padding: 2rem 1rem;\n      }\n\n      .lessons-page__header {\n        max-width: 1200px;\n        margin: 0 auto 2rem;\n        text-align: center;\n      }\n\n      .page-title {\n        font-family: var(--font-display);\n        font-size: var(--text-5xl);\n        font-weight: var(--font-weight-bold);\n        margin-bottom: 1rem;\n        color: var(--text-primary);\n      }\n\n      .page-description {\n        font-size: var(--text-xl);\n        color: var(--text-secondary);\n        max-width: 800px;\n        margin: 0 auto;\n      }\n\n      @media (max-width: 768px) {\n        .page-title {\n          font-size: var(--text-4xl);\n        }\n\n        .page-description {\n          font-size: var(--text-lg);\n        }\n      }\n    "],
+  "mappings": ";AACM,CAAA;AACE,WAAA,KAAA;;AAGF,CAAA;AACE,aAAA;AACA,UAAA,EAAA,KAAA;AACA,cAAA;;AAGF,CAAA;AACE,eAAA,IAAA;AACA,aAAA,IAAA;AACA,eAAA,IAAA;AACA,iBAAA;AACA,SAAA,IAAA;;AAGF,CAAA;AACE,aAAA,IAAA;AACA,SAAA,IAAA;AACA,aAAA;AACA,UAAA,EAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AACE,GAhBF;AAiBI,eAAA,IAAA;;AAGF,GAZF;AAaI,eAAA,IAAA;;;",
+  "names": []
+}
