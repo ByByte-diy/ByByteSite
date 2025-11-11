@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/footer/footer.scss"],
+  "sourcesContent": [".footer {\n  background: var(--bg-surface);\n  border-top: 1px solid var(--border-soft);\n  color: var(--text-secondary);\n}\n\n.footer__inner {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 16px;\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  justify-content: space-between;\n}\n\n.footer__left {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  flex-wrap: wrap;\n}\n\n.footer__links {\n  display: inline-flex;\n  gap: 8px;\n}\n\n.footer__link {\n  color: var(--text-secondary);\n  text-decoration: none;\n}\n\n.footer__link:hover {\n  color: var(--text-primary);\n}\n\n.footer__sep {\n  color: var(--text-secondary);\n}\n\n.footer__right app-social-links {\n  display: inline-flex;\n}\n\n@media (max-width: 768px) {\n  .footer__inner {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 12px;\n  }\n}\n\n\n"],
+  "mappings": ";AAAA,CAAA;AACE,cAAA,IAAA;AACA,cAAA,IAAA,MAAA,IAAA;AACA,SAAA,IAAA;;AAGF,CAAA;AACE,aAAA;AACA,UAAA,EAAA;AACA,WAAA;AACA,WAAA;AACA,eAAA;AACA,OAAA;AACA,mBAAA;;AAGF,CAAA;AACE,WAAA;AACA,eAAA;AACA,OAAA;AACA,aAAA;;AAGF,CAAA;AACE,WAAA;AACA,OAAA;;AAGF,CAAA;AACE,SAAA,IAAA;AACA,mBAAA;;AAGF,CALA,YAKA;AACE,SAAA,IAAA;;AAGF,CAAA;AACE,SAAA,IAAA;;AAGF,CAAA,cAAA;AACE,WAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AACE,GAxCF;AAyCI,oBAAA;AACA,iBAAA;AACA,SAAA;;;",
+  "names": []
+}
