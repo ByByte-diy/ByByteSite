@@ -29,10 +29,10 @@ export class RouterService {
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
     if (!cleanPath) {
-      return `/${targetLang}`;
+      return `${targetLang}`;
     }
 
-    return `/${targetLang}/${cleanPath}`;
+    return `${targetLang}/${cleanPath}`;
   }
 
   navigateTo(path: string, lang?: string): void {
