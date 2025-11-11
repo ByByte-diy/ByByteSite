@@ -55,24 +55,24 @@
             [style.transform]="previewTransformStyle"
             draggable="false"
           />
+        </div>
 
-          <div class="image-preview-controls">
-            <button type="button" class="control-btn" (click)="changeZoom(0.2)" aria-label="Zoom in">+</button>
-            <button type="button" class="control-btn" (click)="changeZoom(-0.2)" aria-label="Zoom out">-</button>
-            <button type="button" class="control-btn" (click)="resetPreviewTransform()" aria-label="Reset zoom">
-              Reset
-            </button>
-          </div>
-
-          <button
-            type="button"
-            class="image-preview-close"
-            (click)="closePreview()"
-            aria-label="Close image preview"
-          >
-            Close
+        <div class="image-preview-controls">
+          <button type="button" class="control-btn" (click)="changeZoom(0.2)" aria-label="Zoom in">+</button>
+          <button type="button" class="control-btn" (click)="changeZoom(-0.2)" aria-label="Zoom out">-</button>
+          <button type="button" class="control-btn" (click)="resetPreviewTransform()" aria-label="Reset zoom">
+            Reset
           </button>
         </div>
+
+        <button
+          type="button"
+          class="image-preview-close"
+          (click)="closePreview()"
+          aria-label="Close image preview"
+        >
+          Close
+        </button>
       </div>
     }
   </div>
