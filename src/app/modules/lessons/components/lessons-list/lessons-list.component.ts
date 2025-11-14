@@ -57,7 +57,7 @@ export class LessonsListComponent implements OnInit {
    */
   private _applyFilters(): void {
     // Get current language from TranslateService
-    const currentLang = this._translate.currentLang || this._translate.defaultLang || '';
+    const currentLang = this._translate.getCurrentLang() || this._translate.getFallbackLang() || '';
 
     this.filteredLessons = this.lessonsService.filterLessons({
       platform: this.platform || undefined,
