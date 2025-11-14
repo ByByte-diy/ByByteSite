@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/social-links/social-links.ts"],
+  "sourcesContent": ["\n      .social:hover {\n        color: var(--text-primary);\n        background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);\n      }\n    "],
+  "mappings": ";AACM,CAAA,MAAA;AACE,SAAA,IAAA;AACA,cAAA,UAAA,GAAA,KAAA,EAAA,IAAA,kBAAA,GAAA,EAAA;;",
+  "names": []
+}

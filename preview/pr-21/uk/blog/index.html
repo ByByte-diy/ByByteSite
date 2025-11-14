@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <title>Блог БАБАЙ - Робототехнічні туторіали та поради</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0077CC">
+  <meta name="msapplication-TileColor" content="#0077CC">
+  <meta name="theme-color" content="#0077CC">
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  
+  <!-- Connect Emoji-Toolkit -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/extras/css/joypixels.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@7.0.0/lib/js/joypixels.min.js"></script>
+  
+  <!-- Connect styles for Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+  
+  <!-- Connect Prism.js before loading the app -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  
+  <!-- Programming languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-arduino.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+  
+  <!-- Language detection and redirect script -->
+  <script>
+    (function() {
+      // Only redirect if we're on root path
+      const currentPath = window.location.pathname;
+      const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+      const baseHrefNormalized = baseHref.replace(/^\/|\/$/g, '');
+      
+      // Check if we're on root path
+      const isOnRoot = currentPath === '/' || 
+                      currentPath === '/' + baseHrefNormalized ||
+                      currentPath === '/' + baseHrefNormalized + '/';
+      
+      if (isOnRoot) {
+        const supportedLangs = ['en', 'uk', 'ru'];
+        const defaultLang = 'en';
+        
+        // Get language from localStorage if available
+        let savedLang = null;
+        try {
+          savedLang = localStorage.getItem('app-lang');
+        } catch (e) {}
+        
+        // Get browser language
+        let browserLang = null;
+        if (typeof navigator !== 'undefined' && navigator.language) {
+          browserLang = navigator.language.split('-')[0].toLowerCase();
+        }
+        
+        // Determine target language
+        let targetLang = defaultLang;
+        if (savedLang && supportedLangs.includes(savedLang)) {
+          targetLang = savedLang;
+        } else if (browserLang && supportedLangs.includes(browserLang)) {
+          targetLang = browserLang;
+        }
+        
+        // Redirect to language route
+        const redirectPath = baseHref + targetLang;
+        const normalizedRedirect = redirectPath.replace(/([^:]\/)\/+/g, '$1');
+        window.location.replace(normalizedRedirect);
+      }
+    })();
+  </script>
+<link rel="stylesheet" href="styles.css"><style ng-app-id="ng">
+
+[_nghost-ng-c582792440] {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+app-header[_ngcontent-ng-c582792440] {
+  flex: 0 0 auto;
+}
+router-outlet[_ngcontent-ng-c582792440] {
+  flex: 1 0 auto;
+  display: block;
+}
+app-footer[_ngcontent-ng-c582792440] {
+  flex: 0 0 auto;
+}
+/*# sourceMappingURL=/app.css.map */</style><style ng-app-id="ng">
+
+.header[_ngcontent-ng-c2213708567] {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-soft);
+}
+.header__inner[_ngcontent-ng-c2213708567] {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+}
+.header__logo[_ngcontent-ng-c2213708567] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+}
+.logo-img[_ngcontent-ng-c2213708567] {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.logo-text[_ngcontent-ng-c2213708567] {
+  font-size: var(--text-2xl);
+  letter-spacing: 0.2px;
+  font-weight: var(--font-weight-bold);
+}
+.nav[_ngcontent-ng-c2213708567] {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nav__link[_ngcontent-ng-c2213708567] {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-2xl);
+}
+.nav__link[_ngcontent-ng-c2213708567]:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.actions[_ngcontent-ng-c2213708567] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.actions__socials[_ngcontent-ng-c2213708567] {
+  display: flex;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+.actions__socials--desktop[_ngcontent-ng-c2213708567] {
+  display: flex;
+}
+.actions__socials--in-menu[_ngcontent-ng-c2213708567] {
+  display: none;
+}
+.social[_ngcontent-ng-c2213708567] {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.social[_ngcontent-ng-c2213708567]:hover {
+  color: var(--text-primary);
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+}
+.social-icon[_ngcontent-ng-c2213708567] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+.actions__theme[_ngcontent-ng-c2213708567], 
+.actions__lang[_ngcontent-ng-c2213708567] {
+  display: inline-flex;
+}
+.nav__tools[_ngcontent-ng-c2213708567] {
+  display: none;
+}
+.burger[_ngcontent-ng-c2213708567] {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px;
+}
+.burger[_ngcontent-ng-c2213708567]   span[_ngcontent-ng-c2213708567] {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text-primary);
+}
+@media (max-width: 900px) {
+  .nav[_ngcontent-ng-c2213708567] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    padding: 12px 16px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-soft);
+    display: none;
+  }
+  .nav.nav--open[_ngcontent-ng-c2213708567] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .actions[_ngcontent-ng-c2213708567] {
+    gap: 0px;
+  }
+  .actions__socials[_ngcontent-ng-c2213708567] {
+    gap: 0px;
+  }
+  .burger[_ngcontent-ng-c2213708567] {
+    display: inline-flex;
+  }
+  .actions__theme[_ngcontent-ng-c2213708567], 
+   .actions__lang[_ngcontent-ng-c2213708567], 
+   .actions__socials--desktop[_ngcontent-ng-c2213708567] {
+    display: none;
+  }
+  .nav__tools[_ngcontent-ng-c2213708567] {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .actions__socials--in-menu[_ngcontent-ng-c2213708567] {
+    display: flex;
+    gap: 10px;
+  }
+  .logo-img[_ngcontent-ng-c2213708567] {
+    width: 28px;
+    height: 28px;
+  }
+}
+/*# sourceMappingURL=/header.css.map */</style><style ng-app-id="ng">
+
+.footer[_ngcontent-ng-c386709719] {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+}
+.footer__inner[_ngcontent-ng-c386709719] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+.footer__left[_ngcontent-ng-c386709719] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer__links[_ngcontent-ng-c386709719] {
+  display: inline-flex;
+  gap: 8px;
+}
+.footer__link[_ngcontent-ng-c386709719] {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer__link[_ngcontent-ng-c386709719]:hover {
+  color: var(--text-primary);
+}
+.footer__sep[_ngcontent-ng-c386709719] {
+  color: var(--text-secondary);
+}
+.footer__right[_ngcontent-ng-c386709719]   app-social-links[_ngcontent-ng-c386709719] {
+  display: inline-flex;
+}
+@media (max-width: 768px) {
+  .footer__inner[_ngcontent-ng-c386709719] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+/*# sourceMappingURL=/footer.css.map */</style><style ng-app-id="ng">
+
+[_nghost-ng-c1252698489] {
+  display: flex;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social[_ngcontent-ng-c1252698489] {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social[_ngcontent-ng-c1252698489]:hover {
+  color: var(--text-primary);
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">
+
+.social-icon[_ngcontent-ng-c1252698489] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+/*# sourceMappingURL=/social-links.css.map */</style><style ng-app-id="ng">/* src/app/shared/ui/dropdown-button/dropdown-button.scss */
+.dropdown {
+  position: relative;
+}
+.dropdown__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 8px;
+}
+.dropdown__btn:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.dropdown__menu {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  min-width: 160px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 6px;
+  display: grid;
+  gap: 4px;
+  z-index: 100;
+}
+.dropdown__menu li {
+  list-style: none;
+}
+.dropdown__menu button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: transparent;
+  border: 0;
+  color: var(--text-primary);
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: none;
+}
+.dropdown__menu button:hover {
+  background: color-mix(in oklab, var(--btn-primary-bg) 10%, transparent);
+  color: #fff;
+}
+.dropdown__flag {
+  font-size: 16px;
+  line-height: 1;
+}
+.dropdown__label {
+  font-size: 14px;
+}
+.dropdown__btn img {
+  filter: none;
+}
+.dropdown__btn svg,
+.dropdown__btn img[src$=".svg"] {
+  color: inherit;
+  fill: currentColor;
+}
+.icon-mask {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-color: var(--text-primary);
+  -webkit-mask: var(--icon) no-repeat center/contain;
+  mask: var(--icon) no-repeat center/contain;
+}
+/*# sourceMappingURL=/dropdown-button.css.map */
+</style><style ng-app-id="ng">
+
+.blog-page[_ngcontent-ng-c4116020998] {
+  min-height: 100vh;
+  background: var(--bg-app);
+  padding: 2rem 0;
+}
+.blog-container[_ngcontent-ng-c4116020998] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.blog-hero[_ngcontent-ng-c4116020998] {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.blog-hero__title[_ngcontent-ng-c4116020998] {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+}
+.blog-hero__description[_ngcontent-ng-c4116020998] {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.blog-placeholder[_ngcontent-ng-c4116020998] {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--bg-surface);
+  border-radius: 1rem;
+  border: 1px solid var(--border-soft);
+}
+.blog-placeholder__icon[_ngcontent-ng-c4116020998] {
+  margin-bottom: 2rem;
+}
+.blog-placeholder__emoji[_ngcontent-ng-c4116020998] {
+  font-size: 4rem;
+  display: block;
+}
+.blog-placeholder__title[_ngcontent-ng-c4116020998] {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+.blog-placeholder__description[_ngcontent-ng-c4116020998] {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+.blog-placeholder__features[_ngcontent-ng-c4116020998] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.blog-feature[_ngcontent-ng-c4116020998] {
+  text-align: left;
+  padding: 1.5rem;
+  background: var(--bg-app);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-soft);
+}
+.blog-feature__icon[_ngcontent-ng-c4116020998] {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+.blog-feature__title[_ngcontent-ng-c4116020998] {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+.blog-feature__description[_ngcontent-ng-c4116020998] {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .blog-hero__title[_ngcontent-ng-c4116020998] {
+    font-size: 2rem;
+  }
+  .blog-placeholder__features[_ngcontent-ng-c4116020998] {
+    grid-template-columns: 1fr;
+  }
+}
+/*# sourceMappingURL=/blog.css.map */</style><meta name="description" content="Будьте в курсі останніх робототехнічних туторіалів, порад та проектів від нашої спільноти. Вчіться у досвідчених майстрів та діліться власними творами."><meta name="keywords" content="робототехнічний блог, DIY туторіали, поради майстрів, робототехнічні проекти, STEM блог, освітній контент"><meta property="og:title" content="Блог БАБАЙ - Робототехнічні туторіали та поради"><meta property="og:description" content="Будьте в курсі останніх робототехнічних туторіалів, порад та проектів від нашої спільноти. Вчіться у досвідчених майстрів та діліться власними творами."><meta property="og:image" content="/assets/img/logo.png"><meta property="og:url" content="http://localhost:4200"><meta property="og:type" content="website"><meta property="og:site_name" content="ByByte STEM School"><meta property="og:locale" content="uk"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@bybyte_diy"><meta name="twitter:title" content="Блог БАБАЙ - Робототехнічні туторіали та поради"><meta name="twitter:description" content="Будьте в курсі останніх робототехнічних туторіалів, порад та проектів від нашої спільноти. Вчіться у досвідчених майстрів та діліться власними творами."><meta name="twitter:image" content="/assets/img/logo.png"></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click","focusin"],[]);</script>
+  <app-root ng-version="20.3.7" _nghost-ng-c582792440="" ngh="5" ng-server-context="ssg"><app-header _ngcontent-ng-c582792440="" _nghost-ng-c2213708567="" ngh="0"><header _ngcontent-ng-c2213708567="" class="header"><div _ngcontent-ng-c2213708567="" class="header__inner"><a _ngcontent-ng-c2213708567="" class="header__logo" aria-label="БАБАЙ.DIY" href="/uk" jsaction="click:;"><img _ngcontent-ng-c2213708567="" src="img/logo.png" class="logo-img" alt="БАБАЙ.DIY"><span _ngcontent-ng-c2213708567="" class="logo-text">БАБАЙ.DIY</span></a><nav _ngcontent-ng-c2213708567="" class="nav"><a _ngcontent-ng-c2213708567="" class="nav__link" href="/uk/build" jsaction="click:;">Збірка</a><a _ngcontent-ng-c2213708567="" class="nav__link" href="/uk/learn" jsaction="click:;">Навчання</a><a _ngcontent-ng-c2213708567="" class="nav__link" href="/uk/blog" jsaction="click:;">Блог</a><a _ngcontent-ng-c2213708567="" class="nav__link" href="/uk/community" jsaction="click:;">Спільнота</a><div _ngcontent-ng-c2213708567="" class="nav__tools"><app-social-links _ngcontent-ng-c2213708567="" class="actions__socials actions__socials--in-menu" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links><app-theme-toggle _ngcontent-ng-c2213708567="" ngh="2"><app-dropdown-button arialabel="Theme" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Theme" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/sun.svg);"></span></button><!--container--></div></app-dropdown-button></app-theme-toggle><app-lang-switcher _ngcontent-ng-c2213708567="" ngh="3"><app-dropdown-button arialabel="Language" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Language" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/globe.svg);"></span></button><!--container--></div></app-dropdown-button></app-lang-switcher></div></nav><div _ngcontent-ng-c2213708567="" class="actions"><app-social-links _ngcontent-ng-c2213708567="" class="actions__socials actions__socials--desktop" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links><app-theme-toggle _ngcontent-ng-c2213708567="" class="actions__theme" ngh="2"><app-dropdown-button arialabel="Theme" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Theme" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/sun.svg);"></span></button><!--container--></div></app-dropdown-button></app-theme-toggle><app-lang-switcher _ngcontent-ng-c2213708567="" class="actions__lang" ngh="3"><app-dropdown-button arialabel="Language" ngh="1"><div class="dropdown"><button type="button" aria-haspopup="listbox" class="dropdown__btn" aria-label="Language" aria-expanded="false" jsaction="click:;"><span dropdowntrigger="" aria-hidden="true" class="icon-mask" style="--icon: url(icons/globe.svg);"></span></button><!--container--></div></app-dropdown-button></app-lang-switcher><button _ngcontent-ng-c2213708567="" type="button" aria-label="Menu" class="burger" jsaction="click:;"><span _ngcontent-ng-c2213708567=""></span><span _ngcontent-ng-c2213708567=""></span><span _ngcontent-ng-c2213708567=""></span></button></div></div></header></app-header><router-outlet _ngcontent-ng-c582792440=""></router-outlet><app-language-wrapper ngh="4"><router-outlet></router-outlet><app-blog _nghost-ng-c4116020998="" ngh="0"><div _ngcontent-ng-c4116020998="" class="blog-page"><div _ngcontent-ng-c4116020998="" class="blog-container"><div _ngcontent-ng-c4116020998="" class="blog-hero"><h1 _ngcontent-ng-c4116020998="" class="blog-hero__title">Блог</h1><p _ngcontent-ng-c4116020998="" class="blog-hero__description">Будьте в курсі останніх навчальних матеріалів, порад та проектів від нашої спільноти.</p></div><div _ngcontent-ng-c4116020998="" class="blog-content"><div _ngcontent-ng-c4116020998="" class="blog-placeholder"><div _ngcontent-ng-c4116020998="" class="blog-placeholder__icon"><span _ngcontent-ng-c4116020998="" class="blog-placeholder__emoji">📝</span></div><h2 _ngcontent-ng-c4116020998="" class="blog-placeholder__title">Незабаром</h2><p _ngcontent-ng-c4116020998="" class="blog-placeholder__description"> Ми працюємо над створенням чудового контенту. Слідкуйте за навчальними матеріалами, порадами та проектами спільноти! </p><div _ngcontent-ng-c4116020998="" class="blog-placeholder__features"><div _ngcontent-ng-c4116020998="" class="blog-feature"><span _ngcontent-ng-c4116020998="" class="blog-feature__icon">🔧</span><h3 _ngcontent-ng-c4116020998="" class="blog-feature__title"> Покрокові навчальні матеріали </h3><p _ngcontent-ng-c4116020998="" class="blog-feature__description"> Вивчайте робототехніку та програмування з детальними, зрозумілими посібниками. </p></div><div _ngcontent-ng-c4116020998="" class="blog-feature"><span _ngcontent-ng-c4116020998="" class="blog-feature__icon">💡</span><h3 _ngcontent-ng-c4116020998="" class="blog-feature__title">Професійні поради та трюки</h3><p _ngcontent-ng-c4116020998="" class="blog-feature__description"> Отримуйте ексклюзивні знання та найкращі практики від досвідчених майстрів. </p></div><div _ngcontent-ng-c4116020998="" class="blog-feature"><span _ngcontent-ng-c4116020998="" class="blog-feature__icon">🚀</span><h3 _ngcontent-ng-c4116020998="" class="blog-feature__title"> Проекти спільноти </h3><p _ngcontent-ng-c4116020998="" class="blog-feature__description"> Відкривайте надихаючі проекти та діліться власними творами. </p></div></div></div></div></div></div></app-blog><!--container--></app-language-wrapper><!--container--><app-footer _ngcontent-ng-c582792440="" _nghost-ng-c386709719="" ngh="0"><footer _ngcontent-ng-c386709719="" class="footer"><div _ngcontent-ng-c386709719="" class="footer__inner"><div _ngcontent-ng-c386709719="" class="footer__left"><div _ngcontent-ng-c386709719="" class="footer__legal"><span _ngcontent-ng-c386709719="">©2025 All rights reserved | БАБАЙ (ByByte.diy)</span></div><nav _ngcontent-ng-c386709719="" class="footer__links"><a _ngcontent-ng-c386709719="" class="footer__link" href="/uk/terms" jsaction="click:;">Умови використання</a><span _ngcontent-ng-c386709719="" class="footer__sep">·</span><a _ngcontent-ng-c386709719="" class="footer__link" href="/uk/privacy" jsaction="click:;">Політика конфіденційності</a></nav></div><div _ngcontent-ng-c386709719="" class="footer__right"><app-social-links _ngcontent-ng-c386709719="" _nghost-ng-c1252698489="" ngh="0"><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Instagram" class="social" href="https://www.instagram.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/instagram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Facebook" class="social" href="https://www.facebook.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/facebook.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Telegram" class="social" href="https://t.me"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/telegram.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="Discord" class="social" href="https://discord.com"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/discord.svg);"></span></a><a _ngcontent-ng-c1252698489="" target="_blank" rel="noopener" aria-label="GitHub" class="social" href="https://github.com/ByByte-diy"><span _ngcontent-ng-c1252698489="" class="social-icon" style="--icon: url(icons/github.svg);"></span></a></app-social-links></div></div></footer></app-footer></app-root>
+<link rel="modulepreload" href="chunk-JB3PLJGY.js"><link rel="modulepreload" href="chunk-EMLHKIY4.js"><link rel="modulepreload" href="chunk-MZS2D3LT.js"><link rel="modulepreload" href="chunk-6LT3BS5M.js"><link rel="modulepreload" href="chunk-MXU7DO7X.js"><script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
+
+<script id="ng-state" type="application/json">{"__nghData__":[{},{"t":{"3":"t0"},"c":{"3":[]}},{"n":{"1":"0f3"},"d":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]},{"n":{"1":"0f3"},"d":[2,4],"t":{"4":"t1"}},{"c":{"0":[{"i":"c4116020998","r":1}]}},{"c":{"1":[{"i":"c500453364","r":1}]}}]}</script></body></html>

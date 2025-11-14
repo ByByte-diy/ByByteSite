@@ -1,0 +1,287 @@
+{
+  "nav": {
+    "build": "Build",
+    "learning": "Learning",
+    "blog": "Blog",
+    "community": "Community"
+  },
+  "brand": {
+    "name": "ByByte.DIY"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Go to Home",
+    "goBack": "Go Back"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Stay updated with the latest tutorials, tips, and projects from our community.",
+    "comingSoon": {
+      "title": "Coming Soon",
+      "description": "We're working on bringing you amazing content. Stay tuned for tutorials, tips, and community projects!"
+    },
+    "features": {
+      "tutorials": {
+        "title": "Step-by-Step Tutorials",
+        "description": "Learn robotics and programming with detailed, easy-to-follow guides."
+      },
+      "tips": {
+        "title": "Pro Tips & Tricks",
+        "description": "Get insider knowledge and best practices from experienced makers."
+      },
+      "projects": {
+        "title": "Community Projects",
+        "description": "Discover inspiring projects and share your own creations."
+      }
+    }
+  },
+  "hero": {
+    "slide1": {
+      "title": "Welcome to ByByte.DIY",
+      "subtitle": "STEM Robotics Platform",
+      "description": "Learn robotics, programming, and engineering through hands-on projects with our innovative educational platform."
+    },
+    "feature1": {
+      "title": "Easy to Assemble",
+      "description": "All components are modular and simple to connect, so even beginners can build the robot with ease."
+    },
+    "feature2": {
+      "title": "Affordable & Open",
+      "description": "The project is open-source and based on widely available parts, making it accessible to everyone."
+    },
+    "feature3": {
+      "title": "Learn by Doing",
+      "description": "Students gain practical skills in electronics, programming, and robotics through real experiments."
+    },
+    "feature4": {
+      "title": "Expandable Platform",
+      "description": "Start with the basics and gradually add sensors and modules to explore advanced robotics."
+    },
+    "buttons": {
+      "letsBuild": "Lets Build",
+      "letsLearn": "Lets Learn"
+    }
+  },
+  "about": {
+    "title": "What is ByByte?",
+    "description": "ByByte is an open educational robotics platform designed for children and students aged 7 to 16. We have developed two levels of robots:",
+    "mega": {
+      "title": "ByByteMega",
+      "subtitle": "Maximum platform with all possible sensors",
+      "features": [
+        "Complete sensor suite",
+        "Advanced programming capabilities",
+        "Modular expansion system",
+        "Professional-grade components"
+      ]
+    },
+    "nano": {
+      "title": "ByByteNano",
+      "subtitle": "Lightweight version with minimal components for quick and easy assembly",
+      "features": [
+        "Essential sensors only",
+        "Beginner-friendly design",
+        "Quick assembly time",
+        "Affordable components"
+      ]
+    },
+    "compatibility": "Both options are fully compatible with Arduino IDE, have open schematics, code and documentation."
+  },
+  "whyImportant": {
+    "title": "Learning the future – available today",
+    "points": [
+      {
+        "icon": "📚",
+        "title": "Practical knowledge",
+        "description": "Children learn not only theory, but also real skills."
+      },
+      {
+        "icon": "🛠️",
+        "title": "Accessibility",
+        "description": "Simple modules, easy assembly, minimal tools required."
+      },
+      {
+        "icon": "🌍",
+        "title": "Openness",
+        "description": "Anyone can download schematics and lessons."
+      },
+      {
+        "icon": "🚀",
+        "title": "Interest development",
+        "description": "From basic experiments to robot competitions."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Start your robotics journey",
+    "steps": [
+      {
+        "number": "1️⃣",
+        "title": "Download schematics and instructions from GitHub"
+      },
+      {
+        "number": "2️⃣", 
+        "title": "Assemble the robot from available parts"
+      },
+      {
+        "number": "3️⃣",
+        "title": "Start programming with ready-made lessons"
+      }
+    ],
+    "buttons": {
+      "github": "GitHub Repository",
+      "lessons": "Lessons & Examples"
+    }
+  },
+  "community": {
+    "hero": {
+      "title": "ByByte community",
+      "description": "We share knowledge, solve problems, give support to overcome obstacles, you can meet like minded people but at the same time we are the most diverse DIY robot community in the world!",
+      "tagline": "A free network of robot builders, beginners, makers, parents and educators.",
+      "joinButton": "Join the community"
+    },
+    "benefits": {
+      "title": "What does community participation give?",
+      "support": {
+        "title": "Support",
+        "description": "Get help from other participants and teachers."
+      },
+      "ideas": {
+        "title": "Ideas & Inspiration",
+        "description": "Share your own projects and learn about new ones."
+      },
+      "resources": {
+        "title": "Shared Resources",
+        "description": "Access to libraries, lessons, code examples."
+      },
+      "growth": {
+        "title": "Development",
+        "description": "Competitions, challenges and educational initiatives."
+      }
+    },
+    "contribute": {
+      "title": "How can you help?",
+      "codeExample": "Add your own code example or lesson.",
+      "documentation": "Help with documentation.",
+      "testing": "Test platforms and leave feedback.",
+      "ideas": "Suggest new ideas for sensors or projects.",
+      "button": "Make a contribution"
+    }
+  },
+  "build": {
+    "title": "Robot Assembly",
+    "description": "Here we will add steps, guides and resources for assembling the robot.",
+    "hero": {
+      "title": "Build your first robot with ByByte",
+      "subtitle": "Simple assembly from ready-made modules. All you need is some time, a soldering iron and curiosity.",
+      "ctaMega": "Build MEGA",
+      "ctaNano": "Build NANO"
+    },
+    "steps": {
+      "title": "How it works?",
+      "items": [
+        { "title": "Components", "description": "Prepare all parts, modules and boards." },
+        { "title": "Electronics", "description": "Assemble all components and modules on the board." },
+        { "title": "Mechanics", "description": "Connect the chassis, motors and wheels." },
+        { "title": "Power", "description": "Connect the battery and check operation." }
+      ]
+    },
+    "docs": {
+      "title": "Documentation & Instructions",
+      "description": "We have prepared all detailed manuals in a convenient format. Choose what you need:",
+      "items": [
+        { "title": "Complete Assembly Guide", "description": "Detailed assembly instructions with all steps and tips." },
+        { "title": "Programming", "description": "Learn robot programming with code examples and tasks." },
+        { "title": "Lessons", "description": "Step-by-step lessons for beginners with practical tasks." }
+      ]
+    }
+  },
+  "lessons": {
+    "pageTitle": "Lessons and Learning Materials",
+    "pageDescription": "Learn robotics with ByByte through practical lessons of varying difficulty levels",
+    "title": "Available Lessons",
+    "loading": "Loading lessons...",
+    "noLessons": "No lessons found. Try changing the filters.",
+    "backToList": "Back to lessons list",
+    "filter": {
+      "platform": "Platform",
+      "level": "Difficulty Level",
+      "tags": "Tags",
+      "search": "Search lessons...",
+      "all": "All",
+      "reset": "Reset filters"
+    },
+    "platform": {
+      "arduino": "Arduino",
+      "bybyte_mega": "ByByte Mega",
+      "bybyte_nano": "ByByte Nano",
+      "default": "ByByte"
+    },
+    "level": {
+      "starter": "Baby",
+      "beginner": "Newbie",
+      "middle": "Middle",
+      "advanced": "Advanced",
+      "expert": "Expert",
+      "default": "Default"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "ByByte.DIY - STEM Robotics Platform",
+      "description": "Learn robotics, programming, and engineering through hands-on projects with our innovative educational platform. Build robots with Arduino, ESP32, and Raspberry Pi.",
+      "keywords": "robotics, programming, Arduino, ESP32, Raspberry Pi, STEM education, DIY robots, electronics, engineering",
+      "image": "/assets/img/logo.png",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ByByte.DIY",
+        "description": "STEM Robotics Platform for learning robotics, programming, and engineering",
+        "url": "https://bybyte-diy.github.io",
+        "logo": "https://bybyte-diy.github.io/assets/img/logo.png"
+      }
+    },
+    "build": {
+      "title": "Build Your Robot - ByByte.DIY",
+      "description": "Step-by-step guide to building your first robot with ByByte. Simple assembly from ready-made modules. All you need is time, a soldering iron, and curiosity.",
+      "keywords": "robot assembly, DIY robot, Arduino robot, electronics assembly, robotics tutorial, STEM project"
+    },
+    "community": {
+      "title": "ByByte Community - Join Robot Builders",
+      "description": "Join our diverse DIY robot community. Share knowledge, solve problems, get support, and meet like-minded people in the world's most diverse robot building community.",
+      "keywords": "robot community, DIY community, robotics forum, maker community, STEM community, robot builders"
+    },
+    "products": {
+      "title": "ByByte Products - Educational Robotics Kits",
+      "description": "Discover ByByteMega and ByByteNano educational robotics kits. Open-source, modular, and designed for students aged 7-16. Learn robotics through hands-on projects.",
+      "keywords": "educational robotics, robot kits, STEM kits, Arduino kits, educational technology, learning robots"
+    },
+    "docs": {
+      "title": "ByByte Documentation - Assembly Guides & Tutorials",
+      "description": "Complete documentation for ByByte robotics platform. Assembly guides, programming tutorials, and educational resources for teachers and students.",
+      "keywords": "robotics documentation, assembly guides, programming tutorials, educational resources, STEM documentation"
+    },
+    "blog": {
+      "title": "ByByte Blog - Robotics Tutorials & Tips",
+      "description": "Stay updated with the latest robotics tutorials, tips, and projects from our community. Learn from experienced makers and share your own creations.",
+      "keywords": "robotics blog, DIY tutorials, maker tips, robotics projects, STEM blog, educational content"
+    },
+    "learn": {
+      "title": "Learn Robotics - ByByte Educational Platform",
+      "description": "Master robotics and programming with ByByte's comprehensive learning platform. Interactive lessons, hands-on projects, and step-by-step tutorials for all skill levels.",
+      "keywords": "learn robotics, programming education, STEM learning, robotics courses, educational platform, hands-on learning"
+    },
+    "lesson": {
+      "title": "{{lessonTitle}} - {{platform}} {{level}} Lesson",
+      "description": "Learn {{lessonTitle}} with {{platform}}. {{level}} level lesson covering {{topics}}. Step-by-step tutorial with code examples and practical exercises.",
+      "keywords": "{{platform}} programming, {{level}} robotics, {{lessonTitle}}, DIY electronics, STEM education, hands-on learning"
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions"
+  },
+  "privacy": {
+    "title": "Privacy Policy"
+  }
+}
