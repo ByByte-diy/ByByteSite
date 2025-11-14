@@ -34,7 +34,9 @@
 
 .platform-icon,
 .level-icon {
-  font-size: 1.2em;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
 }
 
 .lesson-card__content {

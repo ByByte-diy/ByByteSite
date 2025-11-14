@@ -4,26 +4,37 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LessonIconsService {
-  getPlatformIcon(platform: string): string {
-    const icons: Record<string, string> = {
-      arduino: '🔌',
-      raspberry: '🍓',
-      esp8266: '📡',
-      esp32: '📡',
-      default: '🤖',
-    };
+  private readonly platformIconMap: Record<string, string> = {
+    arduino: 'assets/icons/platforms/arduino.svg',
+    bybyte_mega: 'assets/icons/platforms/bybyte.svg',
+    bybyte_nano: 'assets/icons/platforms/bybyte.svg',
+    default: 'assets/icons/platforms/default.svg',
+  };
 
-    return icons[platform] || icons['default'];
+  private readonly levelIconMap: Record<string, string> = {
+    starter: 'assets/icons/levels/starter.svg',
+    beginner: 'assets/icons/levels/beginner.svg',
+    middle: 'assets/icons/levels/middle.svg',
+    advanced: 'assets/icons/levels/advanced.svg',
+    expert: 'assets/icons/levels/expert.svg',
+    default: 'assets/icons/levels/default.svg',
+  };
+
+  getPlatformIcon(platform: string | null | undefined): string {
+    if (!platform) {
+      return this.platformIconMap['default'];
+    }
+
+    const normalized = platform.toLowerCase();
+    return this.platformIconMap[normalized] ?? this.platformIconMap['default'];
   }
 
-  getLevelIcon(level: string): string {
-    const icons: Record<string, string> = {
-      beginner: '🟢',
-      intermediate: '🟡',
-      advanced: '🔴',
-      default: '⚪',
-    };
+  getLevelIcon(level: string | null | undefined): string {
+    if (!level) {
+      return this.levelIconMap['default'];
+    }
 
-    return icons[level] || icons['default'];
+    const normalized = level.toLowerCase();
+    return this.levelIconMap[normalized] ?? this.levelIconMap['default'];
   }
 }
