@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { SocialLinks } from '../../shared/social-links/social-links.js';
+import { LanguageModule } from '../../modules/language/language.module.js';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, SocialLinks],
+  imports: [CommonModule, SocialLinks, RouterLink, LanguageModule, TranslateModule],
   template: `
     <footer class="footer">
       <div class="footer__inner">
@@ -14,9 +17,13 @@ import { SocialLinks } from '../../shared/social-links/social-links.js';
             <span>©{{ currentYear }} All rights reserved | БАБАЙ (ByByte.diy)</span>
           </div>
           <nav class="footer__links">
-            <a href="/terms" class="footer__link">Terms & Conditions</a>
+            <a [routerLink]="'/terms' | localizedRoute" class="footer__link">{{
+              'terms.title' | translate
+            }}</a>
             <span class="footer__sep">·</span>
-            <a href="/privacy" class="footer__link">Privacy Policy</a>
+            <a [routerLink]="'/privacy' | localizedRoute" class="footer__link">{{
+              'privacy.title' | translate
+            }}</a>
           </nav>
         </div>
         <div class="footer__right">

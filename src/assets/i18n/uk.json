@@ -214,14 +214,17 @@
     },
     "platform": {
       "arduino": "Arduino",
-      "raspberry": "Raspberry Pi",
-      "esp8266": "ESP8266",
-      "esp32": "ESP32"
+      "bybyte_mega": "ByByte Mega",
+      "bybyte_nano": "ByByte Nano",
+      "default": "ByByte"
     },
     "level": {
-      "beginner": "Початковий",
-      "intermediate": "Середній",
-      "advanced": "Просунутий"
+      "starter": "Малюк",
+      "beginner": "Нубік",
+      "middle": "Бабайка",
+      "advanced": "Профі",
+      "expert": "Експерт",
+      "default": "По умолчанию"
     }
   },
   "seo": {
@@ -274,5 +277,11 @@
       "description": "Вивчай {{lessonTitle}} з {{platform}}. {{level}} рівень уроку, що охоплює {{topics}}. Покроковий туторіал з прикладами коду та практичними вправами.",
       "keywords": "{{platform}} програмування, {{level}} робототехніка, {{lessonTitle}}, DIY електроніка, STEM освіта, практичне навчання"
     }
+  },
+  "terms": {
+    "title": "Умови використання"
+  },
+  "privacy": {
+    "title": "Політика конфіденційності"
   }
 }
