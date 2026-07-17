@@ -19,14 +19,14 @@ const VALID_LEVELS = ['beginner', 'intermediate', 'advanced'];
 
 // Функція для парсингу frontmatter
 function parseFrontmatter(content) {
-  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+  const frontmatterMatch = content.match(/^---(?:\r?\n)([\s\S]*?)(?:\r?\n)---(?:\r?\n|$)/);
   if (!frontmatterMatch) return null;
 
   const frontmatter = frontmatterMatch[1];
 
   try {
     const metadata = yaml.load(frontmatter);
-    return metadata || {};
+    return metadata ?? {};
   } catch (error) {
     console.error('Error parsing YAML frontmatter:', error.message);
     return null;
