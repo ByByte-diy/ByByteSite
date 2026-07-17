@@ -298,7 +298,7 @@ var sharedRoutes = [
   }, false ? { \u0275entryName: "src/app/pages/build/build.ts" } : {}),
   __spreadValues({
     path: "learn",
-    loadChildren: () => import("./chunk-SVPLD52Y.js").then((m) => m.lessonsRoutes)
+    loadChildren: () => import("./chunk-4YTIYIWH.js").then((m) => m.lessonsRoutes)
   }, false ? { \u0275entryName: "src/app/modules/lessons/lessons.routes.ts" } : {}),
   __spreadValues({
     path: "community",

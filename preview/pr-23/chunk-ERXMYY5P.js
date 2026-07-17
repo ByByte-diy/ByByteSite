@@ -85,7 +85,7 @@ var content_default = {
     "en",
     "uk"
   ],
-  generatedAt: "2026-07-17T16:51:50.569Z",
+  generatedAt: "2026-07-17T18:28:25.125Z",
   totalLessons: 2
 };
 
@@ -269,4 +269,4 @@ export {
   LessonsService,
   LessonIconsService
 };
-//# sourceMappingURL=chunk-BXZ4X3YY.js.map
+//# sourceMappingURL=chunk-ERXMYY5P.js.map

@@ -6,22 +6,22 @@ import {
 var lessonsRoutes = [
   __spreadValues({
     path: "",
-    loadComponent: () => import("./chunk-BILSHZPB.js").then((m) => m.LessonsPageComponent)
+    loadComponent: () => import("./chunk-CBZ66B2Z.js").then((m) => m.LessonsPageComponent)
   }, false ? { \u0275entryName: "src/app/modules/lessons/pages/lessons-page/lessons-page.component.ts" } : {}),
   __spreadValues({
     path: ":platform",
-    loadComponent: () => import("./chunk-BILSHZPB.js").then((m) => m.LessonsPageComponent)
+    loadComponent: () => import("./chunk-CBZ66B2Z.js").then((m) => m.LessonsPageComponent)
   }, false ? { \u0275entryName: "src/app/modules/lessons/pages/lessons-page/lessons-page.component.ts" } : {}),
   __spreadValues({
     path: ":platform/:level",
-    loadComponent: () => import("./chunk-BILSHZPB.js").then((m) => m.LessonsPageComponent)
+    loadComponent: () => import("./chunk-CBZ66B2Z.js").then((m) => m.LessonsPageComponent)
   }, false ? { \u0275entryName: "src/app/modules/lessons/pages/lessons-page/lessons-page.component.ts" } : {}),
   __spreadValues({
     path: ":platform/:level/:slug",
-    loadComponent: () => import("./chunk-RWT5DJTQ.js").then((m) => m.LessonDetailPageComponent)
+    loadComponent: () => import("./chunk-7DXF4SIN.js").then((m) => m.LessonDetailPageComponent)
   }, false ? { \u0275entryName: "src/app/modules/lessons/pages/lesson-detail-page/lesson-detail-page.component.ts" } : {})
 ];
 export {
   lessonsRoutes
 };
-//# sourceMappingURL=chunk-SVPLD52Y.js.map
+//# sourceMappingURL=chunk-4YTIYIWH.js.map
