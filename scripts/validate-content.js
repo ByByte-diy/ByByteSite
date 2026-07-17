@@ -66,9 +66,9 @@ function validateLesson(filePath, metadata) {
 
   // Перевіряємо slug (має бути унікальним)
   if (metadata.slug) {
-    const slugPattern = /^[a-z0-9-]+$/;
-    if (!slugPattern.test(metadata.slug)) {
-      errors.push(`Invalid slug format: ${metadata.slug}. Use lowercase letters, numbers, and hyphens only.`);
+    const slugPattern = /^[a-z0-9_-]+$/;
+    if (typeof metadata.slug !== 'string' || !slugPattern.test(metadata.slug)) {
+      errors.push(`Invalid slug format: ${metadata.slug}. Use lowercase letters, numbers, underscores, and hyphens only.`);
     }
   }
 
