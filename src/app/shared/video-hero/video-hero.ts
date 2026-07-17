@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ButtonComponent } from '../ui/button/button';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { HttpParams } from '@angular/common/http';
 
 export interface VideoHeroButton {
   href: string;
@@ -20,6 +21,23 @@ export interface VideoHeroButton {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   target?: string;
 }
+
+type YoutubeEmbedParamsT = {
+  autoplay?: boolean;
+  mute?: boolean;
+  playsinline?: boolean;
+  controls?: boolean;
+  modestbranding?: boolean;
+  iv_load_policy?: number;
+  cc_load_policy?: number;
+  cc_lang_pref?: string;
+  fs?: boolean;
+  disablekb?: boolean;
+  loop: boolean;
+  playlist?: string;
+  start?: number; // in seconds
+  end?: number; // in seconds
+};
 
 @Component({
   selector: 'app-video-hero',
@@ -72,19 +90,20 @@ export class VideoHeroComponent implements OnInit, OnChanges {
   @Input() buttons: ReadonlyArray<VideoHeroButton> = [];
 
   private readonly _sanitizer = inject(DomSanitizer);
+  private readonly _translate = inject(TranslateService);
   protected _safeUrl!: SafeResourceUrl;
 
   ngOnInit(): void {
-    this._safeUrl = this.buildSafeUrl(this.videoUrl);
+    this._safeUrl = this._buildSafeUrl(this.videoUrl);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['videoUrl']) {
-      this._safeUrl = this.buildSafeUrl(this.videoUrl);
+      this._safeUrl = this._buildSafeUrl(this.videoUrl);
     }
   }
 
-  private buildSafeUrl(raw: string): SafeResourceUrl {
+  private _buildSafeUrl(raw: string): SafeResourceUrl {
     const base = raw || 'https://www.youtube.com/embed/';
     const hasQuery = base.includes('?');
     const sep = hasQuery ? '&' : '?';
@@ -92,8 +111,27 @@ export class VideoHeroComponent implements OnInit, OnChanges {
     let vid = '';
     const m = base.match(/\/embed\/([^?&#/]+)/);
     if (m && m[1]) vid = m[1];
-    const loopParams = vid ? `&loop=1&playlist=${vid}` : '';
-    const full = `${base}${sep}autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1${loopParams}`;
+    const embedParams = {
+      autoplay: true,
+      mute: true,
+      playsinline: true,
+      controls: false,
+      modestbranding: true,
+      iv_load_policy: 3,
+      fs: false,
+      disablekb: true,
+      start: 120,
+      cc_load_policy: 0,
+    } as YoutubeEmbedParamsT;
+    if (vid) {
+      embedParams.loop = true;
+      embedParams.playlist = vid;
+    }
+    const lang = this._translate.getCurrentLang();
+    if (lang) embedParams.cc_lang_pref = lang;
+
+    const params = new HttpParams({ fromObject: embedParams });
+    const full = `${base}${sep}${params.toString()}`;
     return this._sanitizer.bypassSecurityTrustResourceUrl(full);
   }
 

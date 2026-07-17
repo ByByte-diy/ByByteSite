@@ -50,9 +50,10 @@ describe('AboutSectionComponent', () => {
 
   it('should have robots configuration', () => {
     const robots = (component as any).robots();
-    expect(robots.length).toBe(2);
+    expect(robots.length).toBe(3);
     expect(robots[0].title).toBe('about.mega.title');
     expect(robots[1].title).toBe('about.nano.title');
+    expect(robots[2].title).toBe('about.nanoboy.title');
   });
 
   it('each robot should expose 4 features', () => {

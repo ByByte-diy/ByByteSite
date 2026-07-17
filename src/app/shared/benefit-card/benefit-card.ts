@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 export interface BenefitCardData {
@@ -7,14 +8,29 @@ export interface BenefitCardData {
   description: string;
   color: string;
   href?: string;
+  routerLink?: string | any[];
 }
 
 @Component({
   selector: 'app-benefit-card',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, RouterLink],
   template: `
-    @if (data.href) {
+    @if (data.routerLink) {
+      <a
+        class="benefit-card benefit-card--link"
+        [style.background-color]="data.color"
+        [routerLink]="data.routerLink"
+      >
+        <div class="benefit-card__icon">
+          <span class="benefit-icon">{{ data.icon }}</span>
+        </div>
+        <div class="benefit-card__content">
+          <h3 class="benefit-card__title">{{ data.title | translate }}</h3>
+          <p class="benefit-card__description">{{ data.description | translate }}</p>
+        </div>
+      </a>
+    } @else if (data.href) {
       <a
         class="benefit-card benefit-card--link"
         [style.background-color]="data.color"

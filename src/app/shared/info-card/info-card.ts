@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 export interface InfoCardData {
-  icon: string;
+  image: string;
   title: string;
   subtitle?: string;
   description?: string;
@@ -20,7 +20,7 @@ export interface InfoCardData {
     <div class="info-card" [ngClass]="data.class" [style.background-color]="data.color">
       <div class="info-card__image">
         <div class="image-placeholder">
-          <span class="placeholder-icon">{{ data.icon }}</span>
+          <img [src]="data.image" [alt]="data.title" class="placeholder-icon" />
         </div>
       </div>
       <div class="info-card__content">

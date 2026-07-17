@@ -131,9 +131,15 @@
 }
 
 .benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
+
+  app-benefit-card {
+    flex: 0 1 calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
+  }
 }
 
 /* Contribute Section */
@@ -268,8 +274,14 @@
   }
 
   .benefits-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
+  }
+
+  .benefits-grid app-benefit-card {
+    flex: 0 1 100%;
+    max-width: 100%;
   }
 
   .contribute-section {

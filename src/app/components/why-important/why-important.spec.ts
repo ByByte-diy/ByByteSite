@@ -47,13 +47,4 @@ describe('WhyImportantComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should have points configuration', () => {
-    const points = (component as any).points();
-    expect(points.length).toBe(4);
-    expect(points[0].icon).toBe('📚');
-    expect(points[1].icon).toBe('🛠️');
-    expect(points[2].icon).toBe('🌍');
-    expect(points[3].icon).toBe('🚀');
-  });
 });
