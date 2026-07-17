@@ -1,7 +1,7 @@
 import {
   LessonIconsService,
   LessonsService
-} from "./chunk-OTJQDHJ6.js";
+} from "./chunk-6STIE2JX.js";
 import {
   RouterService
 } from "./chunk-LEFWHALA.js";
@@ -870,4 +870,4 @@ var LessonsPageComponent = class _LessonsPageComponent {
 export {
   LessonsPageComponent
 };
-//# sourceMappingURL=chunk-G5QJDYD4.js.map
+//# sourceMappingURL=chunk-FTDBRC3X.js.map
