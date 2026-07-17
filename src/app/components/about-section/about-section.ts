@@ -32,7 +32,7 @@ import { InfoCardComponent, InfoCardData } from '../../shared/info-card/info-car
 export class AboutSectionComponent {
   protected robots = signal<InfoCardData[]>([
     {
-      icon: '🤖',
+      image: 'assets/img/bybyte-mega-256.png',
       title: 'about.mega.title',
       subtitle: 'about.mega.subtitle',
       features: [
@@ -44,7 +44,7 @@ export class AboutSectionComponent {
       class: 'info-card--mega',
     },
     {
-      icon: '🔧',
+      image: 'assets/img/bybyte-nano-256.png',
       title: 'about.nano.title',
       subtitle: 'about.nano.subtitle',
       features: [
@@ -54,6 +54,18 @@ export class AboutSectionComponent {
         'about.nano.features.3',
       ],
       class: 'info-card--nano',
+    },
+    {
+      image: 'assets/img/bybyte-nanoboy-256.png',
+      title: 'about.nanoboy.title',
+      subtitle: 'about.nanoboy.subtitle',
+      features: [
+        'about.nanoboy.features.0',
+        'about.nanoboy.features.1',
+        'about.nanoboy.features.2',
+        'about.nanoboy.features.3',
+      ],
+      class: 'info-card--nanoboy',
     },
   ]);
 }
