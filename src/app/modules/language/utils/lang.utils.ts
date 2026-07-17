@@ -23,3 +23,14 @@ export function getRedirectPathToDefaultLang(currentUrl: string): string {
 
   return `/${environment.defaultLang}${currentPath}`;
 }
+
+export function getLocaleFromLang(lang: string): string {
+  switch (lang) {
+    case 'uk':
+      return 'uk-ua';
+    case 'en':
+    case 'ru':
+    default:
+      return lang;
+  }
+}

@@ -65,7 +65,7 @@
   },
   "about": {
     "title": "What is ByByte?",
-    "description": "ByByte is an open educational robotics platform designed for children and students aged 7 to 16. We have developed two levels of robots:",
+    "description": "ByByte is an open educational robotics platform designed for children and students at 7 years old. We have developing multiple levels of robots:",
     "mega": {
       "title": "ByByteMega",
       "subtitle": "Maximum platform with all possible sensors",
@@ -86,7 +86,17 @@
         "Affordable components"
       ]
     },
-    "compatibility": "Both options are fully compatible with Arduino IDE, have open schematics, code and documentation."
+    "nanoboy": {
+      "title": "ByByte NanoBoy",
+      "subtitle": "Minimal console version for quick and easy assembly",
+      "features": [
+        "Simple architecture",
+        "Beginner-friendly design",
+        "Perfect for learning programming",
+        "Affordable components"
+      ]
+    },
+    "compatibility": "All platforms are fully compatible with Arduino IDE, have open schematics, code and documentation."
   },
   "whyImportant": {
     "title": "Learning the future – available today",
@@ -175,8 +185,8 @@
     "hero": {
       "title": "Build your first robot with ByByte",
       "subtitle": "Simple assembly from ready-made modules. All you need is some time, a soldering iron and curiosity.",
-      "ctaMega": "Build MEGA",
-      "ctaNano": "Build NANO"
+      "ctaNano": "Build NANO",
+      "ctaNanoboy": "Build NANOBOY"
     },
     "steps": {
       "title": "How it works?",
@@ -192,7 +202,6 @@
       "description": "We have prepared all detailed manuals in a convenient format. Choose what you need:",
       "items": [
         { "title": "Complete Assembly Guide", "description": "Detailed assembly instructions with all steps and tips." },
-        { "title": "Programming", "description": "Learn robot programming with code examples and tasks." },
         { "title": "Lessons", "description": "Step-by-step lessons for beginners with practical tasks." }
       ]
     }

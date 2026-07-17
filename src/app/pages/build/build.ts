@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BUTTON_PRESETS } from '../../shared/ui/button';
 import { environment } from '../../../environments/environment';
 import { VideoHeroButton, VideoHeroComponent } from '../../shared/video-hero/video-hero';
@@ -7,6 +7,7 @@ import { InfoCardComponent, InfoCardData } from '../../shared/info-card/info-car
 import { BenefitCardComponent, BenefitCardData } from '../../shared/benefit-card/benefit-card';
 import { SeoModule } from '../../modules/seo/seo.module';
 import { SeoService } from '../../modules/seo/services/seo.service';
+import { getLocaleFromLang } from '../../modules/language/utils/lang.utils';
 
 @Component({
   selector: 'app-build',
@@ -59,6 +60,7 @@ import { SeoService } from '../../modules/seo/services/seo.service';
 })
 export class BuildPage implements OnInit {
   private readonly seoService = inject(SeoService);
+  private readonly _translate = inject(TranslateService);
   protected env = environment;
 
   ngOnInit(): void {
@@ -69,20 +71,20 @@ export class BuildPage implements OnInit {
       type: 'website',
     });
   }
-  protected megaBtn = () => BUTTON_PRESETS.cta('build.hero.ctaMega', '🤖');
-  protected nanoBtn = () => BUTTON_PRESETS.cta('build.hero.ctaNano', '🔧');
+  protected megaBtn = () => BUTTON_PRESETS.cta('build.hero.ctaNanoboy', '🕹️');
+  protected nanoBtn = () => BUTTON_PRESETS.cta('build.hero.ctaNano', '🤖');
   protected videoButtons: VideoHeroButton[] = [
     {
-      text: 'build.hero.ctaMega',
+      text: 'build.hero.ctaNano',
       icon: '🤖',
-      href: this.env.links.megaBuild,
+      href: `${this.env.links.buildGuide}/${getLocaleFromLang(this._translate.getCurrentLang())}/latest/${this.env.links.nanoBuild}`,
       variant: 'primary',
       size: 'lg',
     },
     {
-      text: 'build.hero.ctaNano',
-      icon: '🔧',
-      href: this.env.links.nanoBuild,
+      text: 'build.hero.ctaNanoboy',
+      icon: '🕹️',
+      href: this.env.links.nanoboyBuild,
       variant: 'accent',
       size: 'lg',
     },
@@ -90,25 +92,25 @@ export class BuildPage implements OnInit {
 
   protected steps: InfoCardData[] = [
     {
-      icon: '🧰',
+      image: 'assets/img/chip-3d-256.png',
       title: 'build.steps.items.0.title',
       description: 'build.steps.items.0.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      icon: '🔌',
+      image: 'assets/img/pcb-3d-256.png',
       title: 'build.steps.items.1.title',
       description: 'build.steps.items.1.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      icon: '⚙️',
+      image: 'assets/img/motor-3d-256.png',
       title: 'build.steps.items.2.title',
       description: 'build.steps.items.2.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      icon: '🔋',
+      image: 'assets/img/battery-3D-256.png',
       title: 'build.steps.items.3.title',
       description: 'build.steps.items.3.description',
       class: 'info-card--point info-card--compact',
@@ -121,21 +123,14 @@ export class BuildPage implements OnInit {
       title: 'build.docs.items.0.title',
       description: 'build.docs.items.0.description',
       color: 'var(--color-primary)',
-      href: this.env.links.buildGuide,
-    },
-    {
-      icon: '💻',
-      title: 'build.docs.items.1.title',
-      description: 'build.docs.items.1.description',
-      color: 'var(--color-success)',
-      href: this.env.links.programmingGuide,
+      href: `${this.env.links.buildGuide}/${getLocaleFromLang(this._translate.getCurrentLang())}/`,
     },
     {
       icon: '🧑‍🎓',
-      title: 'build.docs.items.2.title',
-      description: 'build.docs.items.2.description',
+      title: 'build.docs.items.1.title',
+      description: 'build.docs.items.1.description',
       color: 'var(--color-warning)',
-      href: this.env.links.lessons,
+      routerLink: '/learn',
     },
   ];
 }
