@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/social-links/social-links.ts"],
+  "sourcesContent": ["\n      .social-icon {\n        width: 20px;\n        height: 20px;\n        display: inline-block;\n        background-color: currentColor;\n        -webkit-mask: var(--icon) no-repeat center/contain;\n        mask: var(--icon) no-repeat center/contain;\n      }\n    "],
+  "mappings": ";AACM,CAAA;AACE,SAAA;AACA,UAAA;AACA,WAAA;AACA,oBAAA;AACA,gBAAA,IAAA,QAAA,UAAA,MAAA,CAAA;AACA,QAAA,IAAA,QAAA,UAAA,MAAA,CAAA;;",
+  "names": []
+}
