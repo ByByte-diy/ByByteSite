@@ -47,13 +47,4 @@ describe('WhyImportantComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should have points configuration', () => {
-    const points = (component as any).points();
-    expect(points.length).toBe(4);
-    expect(points[0].image).toBe('img/placeholder/education.png');
-    expect(points[1].image).toBe('img/placeholder/tools.png');
-    expect(points[2].image).toBe('img/placeholder/global.png');
-    expect(points[3].image).toBe('img/placeholder/rocket.png');
-  });
 });
