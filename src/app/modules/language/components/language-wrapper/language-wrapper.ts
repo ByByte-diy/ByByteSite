@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../../environments/environment.js';
+import { saveLanguagePreference } from '../../utils/lang.utils';
 
 @Component({
   selector: 'app-language-wrapper',
@@ -20,9 +21,7 @@ export class LanguageWrapperComponent implements OnInit {
 
     if (lang && environment.supportedLangs.includes(lang)) {
       this.translate.use(lang);
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('app-lang', lang);
-      }
+      saveLanguagePreference(lang);
     } else {
       const currentPath = this.router.url.replace(/^\/[a-z]{2}/, '');
       this.router.navigate([`/${environment.defaultLang}${currentPath}`]);

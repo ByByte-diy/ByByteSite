@@ -314,7 +314,7 @@ export class SeoService {
   }
 
   private getDefaultImage(): string {
-    return `${this.siteUrl}/assets/img/logo.png`;
+    return `${this.siteUrl}/img/logo.png`;
   }
 
   private generateLessonStructuredData(
@@ -341,7 +341,7 @@ export class SeoService {
         name: this.siteName,
         logo: {
           '@type': 'ImageObject',
-          url: `${this.siteUrl}/assets/img/logo.png`,
+          url: `${this.siteUrl}/img/logo.png`,
         },
       },
       datePublished: lesson.createdAt || new Date().toISOString(),

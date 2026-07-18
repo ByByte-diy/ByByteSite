@@ -92,25 +92,25 @@ export class BuildPage implements OnInit {
 
   protected steps: InfoCardData[] = [
     {
-      image: 'assets/img/chip-3d-256.png',
+      image: 'img/chip-3d-256.png',
       title: 'build.steps.items.0.title',
       description: 'build.steps.items.0.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      image: 'assets/img/pcb-3d-256.png',
+      image: 'img/pcb-3d-256.png',
       title: 'build.steps.items.1.title',
       description: 'build.steps.items.1.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      image: 'assets/img/motor-3d-256.png',
+      image: 'img/motor-3d-256.png',
       title: 'build.steps.items.2.title',
       description: 'build.steps.items.2.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      image: 'assets/img/battery-3D-256.png',
+      image: 'img/battery-3D-256.png',
       title: 'build.steps.items.3.title',
       description: 'build.steps.items.3.description',
       class: 'info-card--point info-card--compact',
