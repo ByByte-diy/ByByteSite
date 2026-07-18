@@ -34,3 +34,15 @@ export function getLocaleFromLang(lang: string): string {
       return lang;
   }
 }
+
+export function saveLanguagePreference(lang: string): void {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem('app-lang', lang);
+  } catch {
+    // Ignore storage errors in non-browser environments or restricted contexts.
+  }
+}

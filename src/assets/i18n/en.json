@@ -241,14 +241,14 @@
       "title": "ByByte.DIY - STEM Robotics Platform",
       "description": "Learn robotics, programming, and engineering through hands-on projects with our innovative educational platform. Build robots with Arduino, ESP32, and Raspberry Pi.",
       "keywords": "robotics, programming, Arduino, ESP32, Raspberry Pi, STEM education, DIY robots, electronics, engineering",
-      "image": "/assets/img/logo.png",
+      "image": "/img/logo.png",
       "structuredData": {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "ByByte.DIY",
         "description": "STEM Robotics Platform for learning robotics, programming, and engineering",
         "url": "https://www.bybyte.diy",
-        "logo": "https://www.bybyte.diy/assets/img/logo.png"
+        "logo": "https://www.bybyte.diy/img/logo.png"
       }
     },
     "build": {

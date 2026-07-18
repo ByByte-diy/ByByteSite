@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
-import { getLangFromPath, isValidLanguage } from '../utils/lang.utils';
+import { getLangFromPath, isValidLanguage, saveLanguagePreference } from '../utils/lang.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -64,10 +64,7 @@ export class RouterService {
     }
 
     this.translate.use(lang);
-
-    try {
-      localStorage.setItem('app-lang', lang);
-    } catch {}
+    saveLanguagePreference(lang);
 
     const newRoute = this.getLocalizedRoute(path, lang);
     this.router.navigate([newRoute]);

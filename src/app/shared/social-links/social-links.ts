@@ -9,21 +9,12 @@ import { environment } from '../../../environments/environment';
   template: `
     <a
       class="social"
-      [href]="env.links.instagram"
+      [href]="env.links.youtubeChannel"
       target="_blank"
       rel="noopener"
-      aria-label="Instagram"
+      aria-label="YouTube"
     >
-      <span class="social-icon" style="--icon: url(icons/instagram.svg)"></span>
-    </a>
-    <a
-      class="social"
-      [href]="env.links.facebook"
-      target="_blank"
-      rel="noopener"
-      aria-label="Facebook"
-    >
-      <span class="social-icon" style="--icon: url(icons/facebook.svg)"></span>
+      <span class="social-icon" style="--icon: url(icons/youtube.svg)"></span>
     </a>
     <a
       class="social"

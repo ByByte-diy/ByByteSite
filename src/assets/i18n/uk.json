@@ -146,7 +146,7 @@
   },
   "community": {
     "hero": {
-      "title": "Спільнота ByByte",
+      "title": "Спільнота БАБАЙ.DIY",
       "description": "Ми ділимося знаннями, вирішуємо проблеми, надаємо підтримку для подолання перешкод, ви можете зустріти однодумців, але в той же час ми найрізноманітніша DIY робототехнічна спільнота у світі!",
       "tagline": "Безкоштовна мережа роботобудівників, початківців, майстрів, батьків та викладачів.",
       "joinButton": "Приєднатися до спільноти"
@@ -183,7 +183,7 @@
     "title": "Збірка робота",
     "description": "Тут додамо кроки, інструкції та ресурси для збірки робота.",
     "hero": {
-      "title": "Збери свого першого робота з ByByte",
+      "title": "Збери свого першого робота з БАБАЙ.DIY",
       "subtitle": "Проста збірка з готових модулів. Все, що потрібно — це трохи часу, паяльник і цікавість.",
       "ctaNano": "Зібрати NANO",
       "ctaNanoboy": "Зібрати NANOBOY"
@@ -208,7 +208,7 @@
   },
   "lessons": {
     "pageTitle": "Уроки та навчальні матеріали",
-    "pageDescription": "Вивчайте робототехніку з ByByte через практичні уроки різного рівня складності",
+    "pageDescription": "Вивчайте робототехніку з БАБАЙ.DIY через практичні уроки різного рівня складності",
     "title": "Доступні уроки",
     "loading": "Завантаження уроків...",
     "noLessons": "Уроки не знайдено. Спробуйте змінити фільтри.",
@@ -223,9 +223,9 @@
     },
     "platform": {
       "arduino": "Arduino",
-      "bybyte_mega": "ByByte Mega",
-      "bybyte_nano": "ByByte Nano",
-      "default": "ByByte"
+      "bybyte_mega": "БАБАЙ Mega",
+      "bybyte_nano": "БАБАЙ Nano",
+      "default": "БАБАЙ"
     },
     "level": {
       "starter": "Малюк",
@@ -241,14 +241,14 @@
       "title": "БАБАЙ.DIY - STEM Роботизована Платформа",
       "description": "Вивчайте робототехніку, програмування та інженерію через практичні проекти з нашою інноваційною освітньою платформою. Створюйте роботів з Arduino, ESP32 та Raspberry Pi.",
       "keywords": "робототехніка, програмування, Arduino, ESP32, Raspberry Pi, STEM освіта, DIY роботи, електроніка, інженерія",
-      "image": "/assets/img/logo.png",
+      "image": "/img/logo.png",
       "structuredData": {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "БАБАЙ.DIY",
         "description": "STEM Роботизована Платформа для вивчення робототехніки, програмування та інженерії",
         "url": "https://www.bybyte.diy",
-        "logo": "https://www.bybyte.diy/assets/img/logo.png"
+        "logo": "https://www.bybyte.diy/img/logo.png"
       }
     },
     "build": {

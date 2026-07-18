@@ -3,9 +3,9 @@ export const environment = {
   defaultLang: 'en',
   supportedLangs: ['en', 'uk', 'ru'],
   contentBasePath: 'assets/content',
-  siteName: 'ByByte STEM School',
+  siteName: 'ByByte.DIY STEM School',
   siteUrl: 'https://www.bybyte.diy',
-  siteDescription: 'Learn robotics and programming with ByByte STEM School',
+  siteDescription: 'Learn robotics and programming with ByByte.DIY STEM School',
   links: {
     telegram: 'https://t.me/bybytediy',
     facebook: 'https://www.facebook.com',
@@ -17,8 +17,9 @@ export const environment = {
     nanoboyBuild: 'https://github.com/ByByte-diy/ByByteNanoBoy',
     nanoBuild: 'platforms/bybyte-nano-assembly-guide.html',
     contributeGuide: 'https://github.com/ByByte-diy/.github/blob/main/CONTRIBUTING.md',
+    youtubeChannel: 'https://www.youtube.com/@bybyte-diy',
     youtubeIntroEmbed: 'https://www.youtube.com/embed/9_2A6fj84Rg',
-    buildGuide: 'https://bybytedoc.readthedocs.io',
+    buildGuide: 'https://docs.bybyte.diy',
     lessons: 'https://github.com/ByByte-diy/ByByteMega/wiki/Lessons',
   },
 };

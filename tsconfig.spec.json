@@ -3,14 +3,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "rootDir": "./src",
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
       "node"
     ],
-    "esModuleInterop": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": false
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*.ts"
