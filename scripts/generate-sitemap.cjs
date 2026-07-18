@@ -7,7 +7,7 @@ const prerenderRoutesFile = path.join(__dirname, '../prerendered-routes.txt');
 const sitemapFile = path.join(__dirname, '../dist/ByByteSite/browser/sitemap.xml');
 
 // Site URL - should match environment.siteUrl for production
-const siteUrl = 'https://bybyte-diy.github.io/ByByteSite';
+const siteUrl = 'https://www.bybyte.diy'; // Update this to your actual production URL
 
 // Supported languages
 const supportedLangs = ['en', 'uk', 'ru'];
@@ -21,23 +21,23 @@ function getPriority(route) {
   if (route === '/' || route === '') {
     return '1.0';
   }
-  
+
   // Language root routes (e.g., /en, /uk, /ru)
   if (supportedLangs.some(lang => route === `/${lang}` || route === `/${lang}/`)) {
     return '0.9';
   }
-  
+
   // Main pages (build, learn, docs, etc.)
   const mainPages = ['/build', '/learn', '/docs', '/blog', '/community', '/products'];
   if (mainPages.some(page => route.includes(page) && !route.match(/\/learn\/[^/]+\/[^/]+\/[^/]+/))) {
     return '0.8';
   }
-  
+
   // Lesson pages have lower priority
   if (route.includes('/learn/')) {
     return '0.6';
   }
-  
+
   // Default priority
   return '0.7';
 }
@@ -50,18 +50,18 @@ function getChangeFreq(route) {
   if (route === '/' || supportedLangs.some(lang => route === `/${lang}` || route === `/${lang}/`)) {
     return 'weekly';
   }
-  
+
   // Main pages change monthly
   const mainPages = ['/build', '/learn', '/docs', '/blog', '/community', '/products'];
   if (mainPages.some(page => route.includes(page))) {
     return 'monthly';
   }
-  
+
   // Lesson pages change less frequently
   if (route.includes('/learn/')) {
     return 'monthly';
   }
-  
+
   return 'monthly';
 }
 
@@ -105,46 +105,46 @@ function generateSitemap() {
   routes.forEach(route => {
     // Normalize route (ensure it starts with /)
     let normalizedRoute = route.startsWith('/') ? route : `/${route}`;
-    
-    // Remove baseHref from route if present (routes in prerendered-routes.txt might include it)
-    const baseHref = '/ByByteSite/';
-    if (normalizedRoute.startsWith(baseHref)) {
-      normalizedRoute = normalizedRoute.substring(baseHref.length - 1); // -1 to keep leading /
+
+    // Normalize route for the custom domain root.
+    // Routes in prerendered-routes.txt are already relative to the site root.
+    if (normalizedRoute === '//') {
+      normalizedRoute = '/';
     }
-    
+
     // Build full URL (baseHref is already in siteUrl)
     const fullUrl = `${siteUrl}${normalizedRoute}`;
-    
+
     // Get priority and change frequency
     const priority = getPriority(normalizedRoute);
     const changefreq = getChangeFreq(normalizedRoute);
-    
+
     // Check if this is a language-specific route
     const langMatch = normalizedRoute.match(/^\/(en|uk|ru)(\/|$)/);
-    
+
     if (langMatch) {
       // Language-specific route - add alternate language links
       const currentLang = langMatch[1];
       const routeWithoutLang = normalizedRoute.replace(/^\/(en|uk|ru)/, '') || '/';
-      
+
       sitemap += `  <url>
     <loc>${fullUrl}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>`;
-      
+
       // Add alternate language links
       supportedLangs.forEach(lang => {
         const altUrl = `${siteUrl}/${lang}${routeWithoutLang === '/' ? '' : routeWithoutLang}`;
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${altUrl}"/>`;
       });
-      
+
       // Add x-default (usually default language)
       const defaultUrl = `${siteUrl}/${defaultLang}${routeWithoutLang === '/' ? '' : routeWithoutLang}`;
       sitemap += `
     <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}"/>`;
-      
+
       sitemap += `
   </url>
 `;
@@ -155,7 +155,7 @@ function generateSitemap() {
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>`;
-      
+
       // For root route, add alternate language links
       if (normalizedRoute === '/') {
         supportedLangs.forEach(lang => {
@@ -166,7 +166,7 @@ function generateSitemap() {
         sitemap += `
     <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/${defaultLang}"/>`;
       }
-      
+
       sitemap += `
   </url>
 `;
