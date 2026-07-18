@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/app.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  min-height: 100vh;\n  flex-direction: column;\n}\n\napp-header {\n  flex: 0 0 auto;\n}\n\nrouter-outlet {\n  flex: 1 0 auto;\n  display: block;\n}\n\napp-footer {\n  flex: 0 0 auto;\n}\n\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,cAAA;AACA,kBAAA;;AAGF;AACE,QAAA,EAAA,EAAA;;AAGF;AACE,QAAA,EAAA,EAAA;AACA,WAAA;;AAGF;AACE,QAAA,EAAA,EAAA;;",
-  "names": []
-}
