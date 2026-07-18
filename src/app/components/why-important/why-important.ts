@@ -27,25 +27,25 @@ import { InfoCardComponent, InfoCardData } from '../../shared/info-card/info-car
 export class WhyImportantComponent {
   protected points = signal<InfoCardData[]>([
     {
-      image: 'assets/img/children-make-robot-256.png',
+      image: 'img/children-make-robot-256.png',
       title: 'whyImportant.points.0.title',
       description: 'whyImportant.points.0.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      image: 'assets/img/arduino-uno-256.png',
+      image: 'img/arduino-uno-256.png',
       title: 'whyImportant.points.1.title',
       description: 'whyImportant.points.1.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      image: 'assets/img/open-source-global-earth-256.png',
+      image: 'img/open-source-global-earth-256.png',
       title: 'whyImportant.points.2.title',
       description: 'whyImportant.points.2.description',
       class: 'info-card--point info-card--compact',
     },
     {
-      image: 'assets/img/rocket-256.png',
+      image: 'img/rocket-256.png',
       title: 'whyImportant.points.3.title',
       description: 'whyImportant.points.3.description',
       class: 'info-card--point info-card--compact',
