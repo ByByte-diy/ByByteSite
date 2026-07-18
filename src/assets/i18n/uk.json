@@ -247,8 +247,8 @@
         "@type": "Organization",
         "name": "БАБАЙ.DIY",
         "description": "STEM Роботизована Платформа для вивчення робототехніки, програмування та інженерії",
-        "url": "https://bybyte-diy.github.io",
-        "logo": "https://bybyte-diy.github.io/assets/img/logo.png"
+        "url": "https://www.bybyte.diy",
+        "logo": "https://www.bybyte.diy/assets/img/logo.png"
       }
     },
     "build": {
