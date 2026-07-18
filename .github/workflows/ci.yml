@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 # Налаштування permissions для GitHub Pages та коментарів
@@ -16,9 +16,9 @@ permissions:
   issues: write
 
 env:
-  NODE_VERSION: '22'
-  CONTENT_REPO: 'ByByte-diy/ByByteLessons'
-  CONTENT_BRANCH: 'main'
+  NODE_VERSION: "22"
+  CONTENT_REPO: "ByByte-diy/ByByteLessons"
+  CONTENT_BRANCH: "main"
 
 jobs:
   # Job для підвантаження та валідації контенту
@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -91,7 +91,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -180,5 +180,5 @@ jobs:
       - name: Preview deployed notification
         run: |
           echo "🚀 Preview deployed!"
-          echo "Preview URL: https://bybyte-diy.github.io/ByByteSite/preview/pr-${{ github.event.number }}/"
+          echo "Preview URL: https://www.bybyte.diy/preview/pr-${{ github.event.number }}/"
           echo "This preview will be automatically updated when you push new commits to this PR."

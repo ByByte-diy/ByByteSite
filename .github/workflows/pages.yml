@@ -31,8 +31,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: "22"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -97,7 +97,9 @@ jobs:
       - name: Create 404.html for GitHub Pages
         run: |
           cp dist/ByByteSite/browser/index.html dist/ByByteSite/browser/404.html
+          printf 'www.bybyte.diy\n' > dist/ByByteSite/browser/CNAME
           echo "404.html created successfully"
+          echo "CNAME created successfully"
 
       - name: Verify build output
         run: |
@@ -114,7 +116,6 @@ jobs:
             ls -la dist/ByByteSite/browser/assets/ || echo "Assets directory not found"
           fi
 
-          
       - name: Verify static JSON import
         run: |
           echo "Checking if static JSON import works:"
@@ -125,7 +126,7 @@ jobs:
           else
             echo "❌ Static JSON file not found"
           fi
-          
+
       - name: Verify build summary
         run: |
           echo "🎉 Build Summary:"

@@ -247,8 +247,8 @@
         "@type": "Organization",
         "name": "ByByte.DIY",
         "description": "STEM Robotics Platform for learning robotics, programming, and engineering",
-        "url": "https://bybyte-diy.github.io",
-        "logo": "https://bybyte-diy.github.io/assets/img/logo.png"
+        "url": "https://www.bybyte.diy",
+        "logo": "https://www.bybyte.diy/assets/img/logo.png"
       }
     },
     "build": {
