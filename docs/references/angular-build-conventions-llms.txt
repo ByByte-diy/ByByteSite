@@ -1,0 +1,211 @@
+# Angular Build Conventions Reference (llms.txt)
+
+> Dense reference for Angular 20 patterns used in this project. Optimized for AI agents.
+
+## Standalone Components — All Components
+
+Every component, pipe, directive is standalone. No NgModules except `TranslateModule.forRoot()`.
+
+### Template
+
+```typescript
+@Component({
+  selector: 'app-my-thing',
+  standalone: true,
+  imports: [CommonModule, TranslateModule, RouterModule],  // Declare deps here
+  templateUrl: './my-thing.html',
+  styleUrls: ['./my-thing.scss'],
+})
+export class MyThing implements OnInit {
+  ngOnInit(): void {
+    // SEO setup required
+  }
+}
+```
+
+## Dependency Injection
+
+Use `inject()` exclusively. No constructor-based DI.
+
+```typescript
+private readonly seoService = inject(SeoService);
+private readonly translate = inject(TranslateService);
+private readonly routerService = inject(RouterService);
+```
+
+## Routing
+
+### Route Definition Pattern
+
+```typescript
+// app.routes.ts
+export const routes: Routes = [
+  {
+    path: ':lang',
+    component: LanguageWrapperComponent,
+    canActivate: [languageGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () => import('./pages/home/home.js').then(m => m.Home),
+      },
+      {
+        path: 'build',
+        loadComponent: () => import('./pages/build/build.js').then(m => m.BuildPage),
+      },
+      {
+        path: 'learn',
+        loadChildren: () => import('./modules/lessons/lessons.routes.js').then(m => m.lessonsRoutes),
+      },
+    ],
+  },
+];
+```
+
+### Lazy Loading
+
+Always use `loadComponent` (not `component`) for route page components. Use `loadChildren` for modules with sub-routes.
+
+```typescript
+// ❌ Don't
+{ path: 'build', component: BuildPage }
+
+// ✅ Do
+{ path: 'build', loadComponent: () => import('./pages/build/build.js').then(m => m.BuildPage) }
+```
+
+## SEO Pattern (Required for Every Page)
+
+```typescript
+export class MyPage implements OnInit {
+  private readonly seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.updateSeoFromConfig({
+      titleKey: 'seo.myPage.title',
+      descriptionKey: 'seo.myPage.description',
+      keywordsKey: 'seo.myPage.keywords',
+      type: 'website',
+    });
+  }
+}
+```
+
+**Rules:**
+- Always call in `ngOnInit()`, never in constructor
+- Always use translation keys (not hardcoded strings)
+- Keys must exist in ALL 3 language files
+
+## Language-Aware Navigation
+
+Use `RouterService` instead of raw `Router`:
+
+```typescript
+// ❌ Don't
+this.router.navigate(['/build']);
+
+// ✅ Do
+this.routerService.navigateTo('/build');
+this.routerService.switchLanguage('uk');
+this.routerService.getLocalizedRoute('/build', 'en');  // Returns 'en/build'
+```
+
+## Functional Providers
+
+Application config uses functional providers:
+
+```typescript
+// app.config.ts
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
+    provideHttpClient(withFetch()),
+    provideMarkdown(),
+    provideCore(),
+    provideI18n(),
+    provideClientHydration(withEventReplay()),
+  ],
+};
+```
+
+## Signals
+
+Angular signals for reactive state:
+
+```typescript
+// In services
+count = signal(0);
+doubleCount = computed(() => this.count() * 2);
+
+// In components (using signal from service)
+readonly theme = this.themeService.theme;  // Signal<Theme>
+effect(() => {
+  console.log('Theme changed:', this.theme());
+});
+```
+
+## SCSS Conventions
+
+- BEM-like class naming: `.block__element--modifier`
+- CSS custom properties for all themeable values
+- Mixins for media queries (defined in shared SCSS files)
+- `overflow-x: hidden` globally on body
+- Safe image defaults to prevent horizontal scroll
+
+## i18n Provider Pattern
+
+```typescript
+// Provide i18n with SSR-aware loader
+export function provideI18n(): Array<Provider | EnvironmentProviders> {
+  return [
+    makeEnvironmentProviders([
+      TranslateModule.forRoot({
+        fallbackLang: environment.defaultLang,
+        loader: {
+          provide: TranslateLoader,
+          useFactory: httpTranslateLoaderFactory,
+          deps: [HttpClient, PLATFORM_ID, INJECTOR],
+        },
+      }).providers!,
+    ]),
+    provideEnvironmentInitializer(() => {
+      const translate = inject(TranslateService);
+      // Set up languages, detection, initial lang
+    }),
+  ];
+}
+```
+
+## Translation in Templates
+
+```html
+<h1>{{ 'nav.home' | translate }}</h1>
+<h1>{{ 'hero.slide1.title' | translate }}</h1>
+```
+
+## Translation in Code
+
+```typescript
+const title = this.translate.instant('seo.home.title');
+```
+
+## Build Scripts
+
+| Script | Purpose |
+|---|---|
+| `npm run build` | Production build with prerendering |
+| `npm start` | Dev server with live reload |
+| `npm test` | Karma + Jasmine (Firefox headless) |
+| `npm run generate-prerender-routes` | Generate route list for prerender |
+| `npm run generate-index` | Parse lesson content into index.json |
+| `npm run validate-content` | Validate lesson frontmatter |
+| `npm run lint` | ESLint (flat config) |
+
+## Angular.json Key Config
+
+- Builder: `@angular/build:application`
+- Output: `dist/ByByteSite/`
+- Prerender: enabled, reads `prerendered-routes.txt`
+- i18n: not using Angular i18n (using @ngx-translate instead)

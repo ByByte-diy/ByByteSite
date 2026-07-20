@@ -64,7 +64,7 @@ export class LessonsPageComponent implements OnInit {
   private readonly _seoService = inject(SeoService);
 
   ngOnInit(): void {
-    // Завантажуємо індекс уроків
+    // Load lessons index
     this._lessonsService.loadLessonsIndex().subscribe();
 
     // Setup SEO with translations

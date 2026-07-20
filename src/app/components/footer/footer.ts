@@ -14,7 +14,7 @@ import { LanguageModule } from '../../modules/language/language.module.js';
       <div class="footer__inner">
         <div class="footer__left">
           <div class="footer__legal">
-            <span>©{{ currentYear }} All rights reserved | БАБАЙ (ByByte.diy)</span>
+            <span>©{{ currentYear }} All rights reserved | ByByte.DIY</span>
           </div>
           <nav class="footer__links">
             <a [routerLink]="'/terms' | localizedRoute" class="footer__link">{{

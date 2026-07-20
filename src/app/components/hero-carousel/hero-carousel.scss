@@ -56,7 +56,7 @@
   color: white;
   max-width: 800px;
   padding: 0 2rem;
-  // Збільшуємо відступ знизу для кращого розділення з плитками переваг
+  // Increase bottom padding for better separation from benefit cards
   padding-bottom: 2rem;
 }
 
@@ -174,7 +174,7 @@
 
 .feature-icon {
   position: relative;
-  // Масштабуємо іконки відносно екрану
+  // Scale icons relative to screen
   width: clamp(50px, 8vw, 100px);
   height: clamp(50px, 8vw, 100px);
   border-radius: 50%;

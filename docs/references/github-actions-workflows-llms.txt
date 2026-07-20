@@ -1,0 +1,160 @@
+# GitHub Actions Workflows Reference (llms.txt)
+
+> Optimized for AI agent consumption. One workflow per section, key structure only.
+
+## ci.yml
+
+Path: `.github/workflows/ci.yml`
+Triggers: push (main, develop), pull_request (main), workflow_dispatch
+
+### Jobs
+
+```
+content-validation:
+  steps:
+    - Checkout
+    - Clone ByByteLessons repo (if event is push/PR to main/develop)
+    - Copy content/ → src/assets/content/
+    - Run npm ci
+    - Run npm run generate-index
+    - Run npm run validate-content
+
+build-and-test:
+  needs: content-validation
+  steps:
+    - Checkout
+    - npm ci
+    - npm run lint
+    - npm run test (Karma FirefoxHeadless)
+    - npm run build (production)
+
+deploy:
+  needs: build-and-test
+  if: github.ref == 'refs/heads/main'
+  environment: github-pages
+  steps:
+    - Deploy dist/ByByteSite/browser to GitHub Pages
+
+preview-deploy:
+  if: github.event_name == 'pull_request'
+  needs: build-and-test
+  steps:
+    - Deploy preview to GitHub Pages PR environment
+    - Comment PR with preview URL
+```
+
+## pages.yml
+
+Path: `.github/workflows/pages.yml`
+Triggers: push to main
+
+```
+jobs:
+  deploy:
+    environment: github-pages
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - Checkout
+      - npm ci
+      - npm run build
+      - Upload Pages artifact
+      - Deploy to GitHub Pages
+```
+
+## update-content.yml
+
+Path: `.github/workflows/update-content.yml`
+Triggers: workflow_dispatch (manual)
+
+```
+on:
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update all content'
+        type: boolean
+        default: false
+
+jobs:
+  update:
+    steps:
+      - Checkout ByByteSite
+      - Clone ByByteLessons
+      - Copy content/ → src/assets/content/
+      - npm ci
+      - npm run generate-index
+      - npm run validate-content
+      - Commit and push changes (triggers ci.yml → deploy)
+```
+
+## content-updated.yml
+
+Path: `.github/workflows/content-updated.yml`
+Triggers: repository_dispatch
+
+```
+on:
+  repository_dispatch:
+    types: [content-updated]
+
+jobs:
+  build-and-deploy:
+    steps:
+      - Checkout
+      - Clone ByByteLessons
+      - Copy content
+      - npm ci && npm run build
+      - Deploy to GitHub Pages
+```
+
+## preview.yml
+
+Path: `.github/workflows/preview.yml`
+Triggers: pull_request
+
+```
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preview:
+    steps:
+      - Checkout
+      - Clone ByByteLessons
+      - Copy content
+      - npm ci && npm run build
+      - Deploy preview to GitHub Pages (PR-specific path)
+      - Comment PR with preview URL
+```
+
+## Environment Variables (shared)
+
+```yaml
+NODE_VERSION: '22'
+CONTENT_REPO: 'ByByte-diy/ByByteLessons'
+CONTENT_BRANCH: 'main'
+```
+
+## Secrets Used
+
+- `GITHUB_TOKEN` — auto-provisioned, scoped to current repo
+
+## Permissions Required
+
+| Permission | Used By |
+|---|---|
+| `contents: read` | All (checkout) |
+| `pages: write` | Deploy jobs |
+| `id-token: write` | GitHub Pages deployment |
+
+## Key Scripts Referenced
+
+| Script | Purpose |
+|---|---|
+| `scripts/generate-index.js` | Parse lesson frontmatter → index.json |
+| `scripts/validate-content.js` | Validate frontmatter fields and uniqueness |
+| `scripts/generate-prerender-routes.cjs` | Generate prerendered route list |
+| `scripts/generate-sitemap.cjs` | Generate sitemap.xml post-build |

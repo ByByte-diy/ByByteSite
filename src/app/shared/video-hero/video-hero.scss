@@ -78,18 +78,18 @@
 
 @media (max-width: 768px) {
   .video-hero { 
-    // Висота адаптується до контенту
+    // Height adapts to content
     min-height: auto;
     padding: 0;
-    // Контейнер розтягується на висоту контенту
+    // Container stretches to content height
     display: block;
   }
   
   .video-hero__content {
     padding: 2rem 1.5rem;
-    // Висота визначається контентом (заголовок, підзаголовок, кнопки)
+    // Height determined by content (title, subtitle, buttons)
     min-height: auto;
-    // Додаємо мінімальну висоту для безпеки
+    // Add minimum height as safety
     min-height: 300px;
   }
   
@@ -109,7 +109,7 @@
     max-width: 100%;
   }
   
-  // На мобільних - відео заповнює висоту контейнера, обрізається по краях
+  // On mobile — video fills container height, clipped at edges
   .video-hero__iframe {
     height: 100%;
     width: 300vw;
@@ -120,13 +120,13 @@
     transform: translate(-50%, -50%);
   }
   
-  // Контейнер відео встановлюємо на повну висоту контейнера
+  // Video container set to full container height
   .video-hero__video {
     width: 100%;
     height: 100%;
   }
   
-  // Медіа-контейнер також встановлюємо на повну висоту
+  // Media container also set to full height
   .video-hero__media {
     height: 100%;
   }

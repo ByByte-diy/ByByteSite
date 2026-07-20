@@ -144,7 +144,7 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked, OnDestr
     const languageMap: Record<string, string> = {
       'c++': 'cpp',
       c: 'c',
-      arduino: 'arduino', // Prism підтримує Arduino
+      arduino: 'arduino', // Prism supports Arduino
       js: 'javascript',
       javascript: 'javascript',
       ts: 'typescript',
