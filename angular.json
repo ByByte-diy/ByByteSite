@@ -41,6 +41,16 @@
                 "output": "/assets"
               },
               {
+                "glob": "**/*",
+                "input": "submodules/ByByteLessons/content",
+                "output": "/assets/content"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/generated/content",
+                "output": "/assets/content"
+              },
+              {
                 "glob": "robots.txt",
                 "input": "src",
                 "output": "/"

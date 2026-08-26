@@ -1,12 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
 import yaml from 'js-yaml';
+
+const require = createRequire(import.meta.url);
+const { CONTENT_ROOT, assertContentRootExists } = require('./content-config.cjs');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const contentDir = path.join(__dirname, '../src/assets/content');
+const contentDir = CONTENT_ROOT;
 
 // Обов'язкові поля в frontmatter
 const REQUIRED_FIELDS = ['title', 'slug', 'lang', 'platforms', 'level'];
@@ -142,6 +146,9 @@ function validateDirectory(dir, relativePath = '') {
 // Головна функція валідації
 function validateContent() {
   console.log('Validating content structure...');
+  console.log('Content source:', contentDir);
+
+  assertContentRootExists();
 
   if (!fs.existsSync(contentDir)) {
     console.error('Content directory not found:', contentDir);

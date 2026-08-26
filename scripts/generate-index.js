@@ -1,13 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import yaml from 'js-yaml';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const contentDir = path.join(__dirname, '../src/assets/content');
-const indexPath = path.join(__dirname, '../src/assets/content/index.json');
+const require = createRequire(import.meta.url);
+const {
+  CONTENT_ROOT,
+  GENERATED_INDEX_PATH,
+  assertContentRootExists,
+  ensureGeneratedContentDir,
+} = require('./content-config.cjs');
 
 // Функція для парсингу frontmatter
 function parseFrontmatter(content) {
@@ -34,7 +36,7 @@ function processDirectory(dir, relativePath = '') {
   const tags = new Set();
   const languages = new Set();
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
 
@@ -42,16 +44,15 @@ function processDirectory(dir, relativePath = '') {
       const subPath = path.join(relativePath, item);
       const subResult = processDirectory(fullPath, subPath);
       lessons.push(...subResult.lessons);
-      subResult.platforms.forEach(p => platforms.add(p));
-      subResult.levels.forEach(l => levels.add(l));
-      subResult.tags.forEach(t => tags.add(t));
-      subResult.languages.forEach(l => languages.add(l));
+      subResult.platforms.forEach((p) => platforms.add(p));
+      subResult.levels.forEach((l) => levels.add(l));
+      subResult.tags.forEach((t) => tags.add(t));
+      subResult.languages.forEach((l) => languages.add(l));
     } else if (item.endsWith('.md')) {
       const content = fs.readFileSync(fullPath, 'utf8');
       const metadata = parseFrontmatter(content);
 
       if (metadata && metadata.published !== false) {
-        // Визначаємо мову з шляху
         const pathParts = relativePath.split(path.sep);
         const lang = pathParts[0] || 'en';
 
@@ -66,15 +67,14 @@ function processDirectory(dir, relativePath = '') {
           version: metadata.version || '1.0.0',
           description: metadata.description || '',
           duration: metadata.duration || null,
-          difficulty: metadata.difficulty || null
+          difficulty: metadata.difficulty || null,
         };
 
         lessons.push(lesson);
 
-        // Додаємо до наборів для індексу
-        lesson.platforms.forEach(p => platforms.add(p));
+        lesson.platforms.forEach((p) => platforms.add(p));
         levels.add(lesson.level);
-        lesson.tags.forEach(t => tags.add(t));
+        lesson.tags.forEach((t) => tags.add(t));
         languages.add(lesson.lang);
       }
     }
@@ -85,20 +85,18 @@ function processDirectory(dir, relativePath = '') {
     platforms: Array.from(platforms),
     levels: Array.from(levels),
     tags: Array.from(tags),
-    languages: Array.from(languages)
+    languages: Array.from(languages),
   };
 }
 
-// Головна функція
 function generateIndex() {
   console.log('Generating lessons index...');
+  console.log('Content source:', CONTENT_ROOT);
 
-  if (!fs.existsSync(contentDir)) {
-    console.error('Content directory not found:', contentDir);
-    process.exit(1);
-  }
+  assertContentRootExists();
+  ensureGeneratedContentDir();
 
-  const result = processDirectory(contentDir);
+  const result = processDirectory(CONTENT_ROOT);
 
   const index = {
     lessons: result.lessons,
@@ -107,20 +105,18 @@ function generateIndex() {
     tags: result.tags.sort(),
     languages: result.languages.sort(),
     generatedAt: new Date().toISOString(),
-    totalLessons: result.lessons.length
+    totalLessons: result.lessons.length,
   };
 
-  // Зберігаємо індекс
-  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2), 'utf8');
+  fs.writeFileSync(GENERATED_INDEX_PATH, JSON.stringify(index, null, 2), 'utf8');
 
-  console.log(`Index generated successfully!`);
+  console.log('Index generated successfully!');
   console.log(`- Total lessons: ${index.totalLessons}`);
   console.log(`- Platforms: ${index.platforms.join(', ')}`);
   console.log(`- Levels: ${index.levels.join(', ')}`);
   console.log(`- Languages: ${index.languages.join(', ')}`);
   console.log(`- Tags: ${index.tags.length} unique tags`);
-  console.log(`- Index saved to: ${indexPath}`);
+  console.log(`- Index saved to: ${GENERATED_INDEX_PATH}`);
 }
 
-// Запускаємо генерацію
 generateIndex();

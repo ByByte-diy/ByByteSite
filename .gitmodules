@@ -1,0 +1,3 @@
+[submodule "submodules/ByByteLessons"]
+	path = submodules/ByByteLessons
+	url = https://github.com/ByByte-diy/ByByteLessons.git

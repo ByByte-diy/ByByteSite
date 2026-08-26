@@ -19,7 +19,8 @@
     "validate-content": "node scripts/validate-content.js",
     "generate-prerender-routes": "node scripts/generate-prerender-routes.cjs",
     "generate-sitemap": "node scripts/generate-sitemap.cjs",
-    "prebuild": "npm run generate-prerender-routes || true",
+    "prestart": "npm run generate-index",
+    "prebuild": "npm run generate-index && npm run generate-prerender-routes",
     "postbuild": "node scripts/generate-sitemap.cjs",
     "serve:ssr:ByByteSite": "node dist/ByByteSite/server/server.mjs"
   },

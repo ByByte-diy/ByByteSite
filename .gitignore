@@ -45,3 +45,6 @@ Thumbs.db
 # AI instruments
 .continue
 .pi
+
+# Generated build artifacts
+/src/generated/

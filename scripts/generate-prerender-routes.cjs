@@ -2,8 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const { GENERATED_INDEX_PATH } = require('./content-config.cjs');
 
-const indexPath = path.join(__dirname, '../src/assets/content/index.json');
+const indexPath = GENERATED_INDEX_PATH;
 const prerenderRoutesFile = path.join(__dirname, '../prerendered-routes.txt');
 
 // Supported languages - should match environment.supportedLangs

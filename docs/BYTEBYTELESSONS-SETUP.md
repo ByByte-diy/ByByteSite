@@ -213,20 +213,49 @@ jobs:
 
 ## Інтеграція з ByByteSite
 
-### Автоматичне підвантаження
+ByByteLessons підключений до ByByteSite як **git submodule** у `submodules/ByByteLessons`.
 
-ByByteSite автоматично підвантажує контент з ByByteLessons:
+### Локальна розробка
 
-1. **Щоденне оновлення** - о 2:00 UTC
-2. **Валідація контенту** - перевірка структури
-3. **Генерація індексу** - створення JSON індексу
-4. **Деплой** - автоматичний деплой на GitHub Pages
+```bash
+# Клонування репозиторію з submodule
+git clone --recurse-submodules https://github.com/ByByte-diy/ByByteSite.git
 
-### Моніторинг
+# Або ініціалізація submodule в існуючому клоні
+git submodule update --init --recursive
 
-- **GitHub Actions** - статус валідації
-- **Issues** - автоматичні створення при помилках
-- **Notifications** - сповіщення про оновлення
+# Генерація індексу уроків
+npm run generate-index
+
+# Запуск dev-сервера (prestart автоматично генерує індекс)
+npm start
+```
+
+### Шляхи контенту
+
+| Що | Де |
+|----|-----|
+| Markdown-уроки | `submodules/ByByteLessons/content/` |
+| Generated index | `src/generated/content/index.json` (не в git) |
+| Runtime URL | `assets/content/...` (через `angular.json` assets) |
+
+### Оновлення контенту
+
+1. Зміни вносяться в репозиторій **ByByteLessons**
+2. В ByByteSite оновлюється pointer submodule:
+   ```bash
+   git submodule update --remote submodules/ByByteLessons
+   git add submodules/ByByteLessons
+   git commit -m "chore: bump ByByteLessons submodule"
+   ```
+3. Або через GitHub Actions workflow **Update Lessons Submodule** (`update-content.yml`)
+
+### CI/CD
+
+- Checkout з `submodules: recursive`
+- `npm run generate-index` — сканує submodule, пише index у `src/generated/`
+- `npm run validate-content` — валідує frontmatter у submodule
+- Angular build підключає обидва asset sources до `assets/content/`
 
 ## Best Practices
 
