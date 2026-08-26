@@ -1,0 +1,129 @@
+/**
+ * ByByte — зразкова тема для PDF-експорту уроків
+ *
+ * Як перевірити:
+ * 1. Відкрийте урок → «Зберегти PDF»
+ * 2. У полі «Завантажити власний CSS» оберіть цей файл
+ * 3. Тема автоматично перемкнеться на «Custom»
+ * 4. Згенеруйте PDF і порівняйте зі стандартною темою
+ *
+ * Доступні селектори: .pdf-page, .pdf-block, .pdf-section-title,
+ * .pdf-split-layout, .pdf-split-layout__text, .pdf-split-layout__media
+ */
+
+/* ── Базова сторінка ── */
+.pdf-page {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #1e293b;
+  background: #fafbff;
+}
+
+/* ── Заголовки секцій (STEP 1, STEP 2…) ── */
+.pdf-section-title {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0077cc;
+  border-bottom: 2px solid #0077cc;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Markdown-заголовки ── */
+.pdf-page h1 {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.6rem;
+  color: #0077cc;
+  border-left: 4px solid #0077cc;
+  padding-left: 0.75rem;
+  margin: 0 0 0.85rem;
+}
+
+.pdf-page h2 {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.2rem;
+  color: #0f172a;
+  margin: 1rem 0 0.5rem;
+}
+
+.pdf-page h3 {
+  font-size: 1rem;
+  color: #475569;
+  font-style: italic;
+  margin: 0.75rem 0 0.4rem;
+}
+
+/* ── Списки ── */
+.pdf-page ul,
+.pdf-page ol {
+  margin: 0 0 0.85rem 1.1rem;
+  padding: 0;
+}
+
+.pdf-page li {
+  margin-bottom: 0.25rem;
+}
+
+.pdf-page li::marker {
+  color: #0077cc;
+}
+
+/* ── Код ── */
+.pdf-page pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 11px;
+  border-left: 4px solid #0077cc;
+  margin: 0 0 1rem;
+}
+
+.pdf-page code {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  color: #0077cc;
+}
+
+.pdf-page pre code {
+  color: #e2e8f0;
+}
+
+/* ── Зображення ── */
+.pdf-page img,
+.pdf-block--media img {
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 119, 204, 0.15);
+  padding: 4px;
+  background: #fff;
+}
+
+/* ── Альбомний layout: текст зліва, схема праворуч ── */
+.pdf-split-layout {
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 16px;
+  gap: 20px;
+}
+
+.pdf-split-layout__text {
+  border-right: 1px dashed #93c5fd;
+  padding-right: 16px;
+}
+
+.pdf-split-layout__media {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* ── Блоки ── */
+.pdf-block {
+  padding: 6px 0;
+}

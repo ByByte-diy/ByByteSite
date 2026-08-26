@@ -26,6 +26,10 @@ import { LessonIconsService } from '../../services/lesson-icons.service';
 })
 export class LessonViewComponent implements OnChanges, AfterViewChecked, OnDestroy {
   @Input() lesson: Lesson | null = null;
+  @Input() markdownOverride: string | null = null;
+  @Input() showHeader = true;
+  @Input() hideContent = false;
+  @Input() revealedBlockIds: string[] = [];
   @ViewChild('markdownContainer') markdownContentRef?: ElementRef;
   @ViewChild('previewImage') previewImageRef?: ElementRef<HTMLImageElement>;
 
@@ -56,12 +60,24 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked, OnDestr
   isPreviewDragging = false;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['lesson'] && this.lesson) {
-      // Process Markdown content
-      this.markdownContent = this.extractMarkdownContent(this.lesson.content);
-
-      // Reset rendering flag when lesson changes
+    if (changes['lesson'] || changes['markdownOverride']) {
+      this._updateMarkdownContent();
       this.resetContentRendered();
+    }
+
+    if (changes['revealedBlockIds']) {
+      setTimeout(() => this.applyRevealedBlocks(), 100);
+    }
+  }
+
+  private _updateMarkdownContent(): void {
+    if (this.markdownOverride !== null && this.markdownOverride !== undefined) {
+      this.markdownContent = this.processCodeBlocks(this.markdownOverride);
+      return;
+    }
+
+    if (this.lesson) {
+      this.markdownContent = this.extractMarkdownContent(this.lesson.content);
     }
   }
 
@@ -168,20 +184,37 @@ export class LessonViewComponent implements OnChanges, AfterViewChecked, OnDestr
    * Initialize Prism.js for syntax highlighting after rendering
    */
   ngAfterViewChecked() {
-    // Check if content exists and if it has not been processed
-    if (this.lesson && !this._contentRendered && this.markdownContentRef) {
+    const hasContent = this.markdownContent && this.markdownContentRef;
+    if (hasContent && !this._contentRendered) {
       this._contentRendered = true;
 
-      // Use setTimeout to ensure DOM is fully updated
       setTimeout(() => {
-        // Use standard Prism.js highlighting
         if (this.markdownContentRef && typeof window !== 'undefined' && (window as any).Prism) {
           (window as any).Prism.highlightAll();
         }
 
         this.enhanceImagesForPreview();
+        this.applyRevealedBlocks();
       }, 500);
     }
+  }
+
+  private applyRevealedBlocks(): void {
+    if (!this.markdownContentRef) return;
+
+    const container: HTMLElement = this.markdownContentRef.nativeElement;
+    const blocks = container.querySelectorAll<HTMLElement>('[data-step-block]');
+
+    blocks.forEach((block) => {
+      const blockId = block.getAttribute('data-step-block');
+      if (blockId && this.revealedBlockIds.includes(blockId)) {
+        block.removeAttribute('hidden');
+        block.classList.remove('step-block--hidden');
+      } else {
+        block.setAttribute('hidden', '');
+        block.classList.add('step-block--hidden');
+      }
+    });
   }
 
   /**

@@ -1,0 +1,153 @@
+<div class="lesson-step-flow">
+  @if (showFullLesson()) {
+    <section class="lesson-step-flow__full">
+      <div class="lesson-step-flow__full-nav">
+        <button type="button" class="lesson-step-flow__link-btn" (click)="backFromFullLesson()">
+          ← {{ 'lessons.steps.completed.backToSummary' | translate }}
+        </button>
+      </div>
+      <app-lesson-view
+        [lesson]="parsedLesson"
+        [showHeader]="false"
+        [markdownOverride]="fullLessonContent()"
+        [revealedBlockIds]="[]"
+      ></app-lesson-view>
+    </section>
+  } @else {
+    <app-lesson-view
+      [lesson]="parsedLesson"
+      [showHeader]="true"
+      [hideContent]="true"
+      [markdownOverride]="null"
+      [revealedBlockIds]="[]"
+    ></app-lesson-view>
+
+    @if (engine.phase() === 'intro') {
+      <section class="lesson-step-flow__intro">
+        <app-lesson-view
+          [lesson]="parsedLesson"
+          [showHeader]="false"
+          [markdownOverride]="parsedLesson.introStep?.content ?? ''"
+          [revealedBlockIds]="[]"
+        ></app-lesson-view>
+
+        <div class="lesson-step-flow__actions">
+          <app-button
+            [data]="{ text: 'lessons.steps.intro.start', variant: 'primary', size: 'lg' }"
+            (click)="startLesson()"
+          />
+        </div>
+      </section>
+    }
+
+    @if (engine.phase() === 'step') {
+      <section class="lesson-step-flow__step">
+        <div class="lesson-step-flow__progress">
+          <span class="lesson-step-flow__progress-label">
+            {{
+              'lessons.steps.progress.step'
+                | translate
+                  : {
+                      current: engine.currentStepIndex() + 1,
+                      total: engine.totalTaskSteps(),
+                    }
+            }}
+          </span>
+          <div class="lesson-step-flow__progress-bar">
+            <div
+              class="lesson-step-flow__progress-fill"
+              [style.width.%]="((engine.currentStepIndex() + 1) / engine.totalTaskSteps()) * 100"
+            ></div>
+          </div>
+        </div>
+
+        <app-lesson-view
+          [lesson]="parsedLesson"
+          [showHeader]="false"
+          [markdownOverride]="engine.currentTaskStep()?.content ?? ''"
+          [revealedBlockIds]="engine.revealedBlocks()"
+        ></app-lesson-view>
+
+        @if (engine.timerRemaining() !== null && engine.timerRemaining()! > 0) {
+          <div class="lesson-step-flow__timer">
+            {{ 'lessons.steps.timer.remaining' | translate }}:
+            <strong>{{ formatTimer(engine.timerRemaining()!) }}</strong>
+          </div>
+        }
+
+        @if (engine.currentTaskStep()?.actions?.length) {
+          <div class="lesson-step-flow__step-actions">
+            @for (action of engine.currentTaskStep()!.actions; track action.id) {
+              <button
+                type="button"
+                class="step-action-btn"
+                [class.step-action-btn--used]="engine.isActionUsed(action.id)"
+                (click)="onAction(action)"
+              >
+                @if (isCustomLabel(action)) {
+                  {{ action.label }}
+                } @else {
+                  {{ engine.getActionLabelKey(action) | translate }}
+                }
+              </button>
+            }
+          </div>
+        }
+
+        @if (engine.canAdvance()) {
+          <div class="lesson-step-flow__actions">
+            <app-button
+              [data]="{
+                text: engine.isLastStep() ? 'lessons.steps.actions.finish' : 'lessons.steps.actions.next',
+                variant: 'primary',
+                size: 'lg',
+              }"
+              (click)="advanceStep()"
+            />
+          </div>
+        } @else if (engine.timerRemaining() !== null && engine.timerRemaining()! > 0) {
+          <p class="lesson-step-flow__wait">{{ 'lessons.steps.actions.wait' | translate }}</p>
+        }
+      </section>
+    }
+
+    @if (engine.phase() === 'completed') {
+      <section class="lesson-step-flow__completed">
+        <h2>{{ 'lessons.steps.progress.completed' | translate }}</h2>
+        <p>{{ 'lessons.steps.progress.completedMessage' | translate }}</p>
+
+        <div class="lesson-step-flow__completed-actions">
+          <app-button
+            [data]="{ text: 'lessons.steps.completed.restart', variant: 'outline', size: 'lg' }"
+            (click)="restartLesson()"
+          />
+          <app-button
+            [data]="{ text: 'lessons.steps.completed.viewFull', variant: 'primary', size: 'lg' }"
+            (click)="viewFullLesson()"
+          />
+        </div>
+      </section>
+    }
+  }
+
+  @if (isHintModalOpen()) {
+    <div class="hint-modal-overlay" (click)="closeHintModal()">
+      <div class="hint-modal" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+        <div class="hint-modal__header">
+          <h3>{{ 'lessons.steps.hint.title' | translate }}</h3>
+          <button
+            type="button"
+            class="hint-modal__close"
+            (click)="closeHintModal()"
+            [attr.aria-label]="'lessons.steps.hint.close' | translate"
+          >
+            ×
+          </button>
+        </div>
+        <div class="hint-modal__body">
+          <markdown [data]="hintModalContent()" class="markdown-content" emoji></markdown>
+        </div>
+      </div>
+    </div>
+  }
+</div>

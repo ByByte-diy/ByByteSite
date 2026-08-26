@@ -234,6 +234,69 @@
       "advanced": "Профи",
       "expert": "Эксперт",
       "default": "По умолчанию"
+    },
+    "steps": {
+      "intro": {
+        "start": "Начнём"
+      },
+      "actions": {
+        "hint": "Подсказка",
+        "knowAnswer": "Знаю ответ",
+        "dontUnderstand": "Не понимаю",
+        "next": "Далее",
+        "finish": "Завершить",
+        "wait": "Используйте время для решения задачи или используйте доступные кнопки"
+      },
+      "timer": {
+        "remaining": "Осталось"
+      },
+      "progress": {
+        "step": "Шаг {{current}} из {{total}}",
+        "completed": "Урок завершён!",
+        "completedMessage": "Отличная работа! Вы прошли все шаги этого урока."
+      },
+      "completed": {
+        "restart": "Начать заново",
+        "viewFull": "Просмотреть полный урок",
+        "backToSummary": "Назад к итогу"
+      },
+      "hint": {
+        "title": "Подсказка",
+        "close": "Закрыть"
+      }
+    }
+  },
+  "pdfExport": {
+    "export": "Сохранить PDF",
+    "title": "Экспорт в PDF",
+    "close": "Закрыть",
+    "cancel": "Отмена",
+    "download": "Скачать PDF",
+    "generating": "Генерация PDF…",
+    "orientation": "Ориентация",
+    "format": "Формат страницы",
+    "theme": "Тема",
+    "scope": "Объём контента",
+    "includeIntro": "Включить введение",
+    "uploadStyles": "Загрузить свой CSS (необязательно)",
+    "orientationOptions": {
+      "portrait": "Книжная",
+      "landscape": "Альбомная"
+    },
+    "themeOptions": {
+      "default": "Стандартная",
+      "compact": "Компактная",
+      "custom": "Своя"
+    },
+    "scopeOptions": {
+      "all_steps": "Все шаги",
+      "completed_steps": "Только пройденные шаги",
+      "current_step": "Только текущий шаг"
+    },
+    "errors": {
+      "noSections": "Нет контента для экспорта. Попробуйте изменить настройки объёма.",
+      "generation": "Не удалось сгенерировать PDF. Попробуйте ещё раз.",
+      "cssRead": "Не удалось прочитать CSS-файл."
     }
   },
   "seo": {

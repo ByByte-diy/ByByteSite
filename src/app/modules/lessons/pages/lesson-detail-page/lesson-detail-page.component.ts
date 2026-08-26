@@ -1,11 +1,16 @@
-import { Component, OnInit, OnDestroy, inject, effect } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { LessonsService } from '../../services/lessons.service';
+import { LessonParserService } from '../../services/lesson-parser.service';
+import { LessonProgressService } from '../../services/lesson-progress.service';
+import { LessonPdfTriggerService } from '../../services/lesson-pdf-trigger.service';
 import { LessonViewComponent } from '../../components/lesson-view/lesson-view.component';
-import { Lesson } from '../../models/lesson.model';
+import { LessonStepFlowComponent } from '../../components/lesson-step-flow/lesson-step-flow.component';
+import { Lesson, ParsedLesson, buildLessonKey } from '../../models/lesson.model';
+import { toPdfExportSource } from '../../adapters/lesson-pdf.adapter';
 import { SeoModule } from '../../../seo/seo.module';
 import { SeoService } from '../../../seo/services/seo.service';
 import { RouterService } from '../../../language/services/router.service';
@@ -13,16 +18,44 @@ import { RouterService } from '../../../language/services/router.service';
 @Component({
   selector: 'app-lesson-detail-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LessonViewComponent, SeoModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    LessonViewComponent,
+    LessonStepFlowComponent,
+    SeoModule,
+  ],
   template: `
     <div class="lesson-detail-page">
       <div class="lesson-detail-page__nav">
         <button class="back-button" (click)="goBack()">
           ← {{ 'lessons.backToList' | translate }}
         </button>
+
+        @if (parsedLesson() || lessonsService.currentLesson()) {
+          <button
+            type="button"
+            class="export-pdf-button"
+            [disabled]="isExportingPdf()"
+            (click)="exportToPdf()"
+          >
+            @if (isExportingPdf()) {
+              {{ 'pdfExport.generating' | translate }}
+            } @else {
+              {{ 'pdfExport.export' | translate }}
+            }
+          </button>
+        }
       </div>
 
-      <app-lesson-view [lesson]="lessonsService.currentLesson()"></app-lesson-view>
+      @if (parsedLesson()?.mode === 'stepped') {
+        <app-lesson-step-flow
+          [parsedLesson]="parsedLesson()!"
+          [routeParams]="routeParams()!"
+        />
+      } @else if (lessonsService.currentLesson()) {
+        <app-lesson-view [lesson]="lessonsService.currentLesson()"></app-lesson-view>
+      }
 
       @if (lessonsService.error()) {
         <div class="lesson-detail-page__error">
@@ -43,6 +76,31 @@ import { RouterService } from '../../../language/services/router.service';
       .lesson-detail-page__nav {
         max-width: 900px;
         margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .export-pdf-button {
+        background: var(--color-surface);
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        font-size: var(--text-sm);
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+
+        &:hover:not(:disabled) {
+          background: var(--color-primary);
+          color: #fff;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
       }
 
       .back-button {
@@ -78,24 +136,34 @@ import { RouterService } from '../../../language/services/router.service';
 })
 export class LessonDetailPageComponent implements OnInit, OnDestroy {
   protected readonly lessonsService = inject(LessonsService);
+  private readonly _parser = inject(LessonParserService);
+  private readonly _progressService = inject(LessonProgressService);
+  private readonly _pdfTrigger = inject(LessonPdfTriggerService);
   private readonly _route = inject(ActivatedRoute);
   private readonly _routerService = inject(RouterService);
   private readonly _translate = inject(TranslateService);
   private readonly _seoService = inject(SeoService);
   private _paramMapSubscription?: Subscription;
 
+  protected readonly parsedLesson = signal<ParsedLesson | null>(null);
+  protected readonly isExportingPdf = signal(false);
+  protected readonly routeParams = signal<{
+    lang: string;
+    platform: string;
+    level: string;
+  } | null>(null);
+
   constructor() {
-    // Watch lesson changes for SEO updates
     effect(() => {
       const lesson = this.lessonsService.currentLesson();
       if (lesson) {
         this._updateSEOTags(lesson);
+        this.parsedLesson.set(this._parser.parse(lesson));
       }
     });
   }
 
   ngOnInit(): void {
-    // Load lessons index, if it's not loaded yet
     if (!this.lessonsService.lessonsIndex()) {
       this.lessonsService.loadLessonsIndex().subscribe(() => {
         this._loadLesson();
@@ -110,6 +178,30 @@ export class LessonDetailPageComponent implements OnInit, OnDestroy {
    */
   goBack(): void {
     this._routerService.navigateTo('/learn');
+  }
+
+  async exportToPdf(): Promise<void> {
+    const parsed = this.parsedLesson();
+    const params = this.routeParams();
+    if (!parsed || !params || this.isExportingPdf()) {
+      return;
+    }
+
+    this.isExportingPdf.set(true);
+
+    try {
+      const lessonKey = buildLessonKey(params.lang, params.platform, params.level, parsed.slug);
+      const progress = this._progressService.getProgress(lessonKey);
+      const source = toPdfExportSource(parsed, this._parser, {
+        lang: params.lang,
+        platform: params.platform,
+        level: params.level,
+        progress,
+      });
+      await this._pdfTrigger.openExport(source);
+    } finally {
+      this.isExportingPdf.set(false);
+    }
   }
 
   /**
@@ -137,19 +229,14 @@ export class LessonDetailPageComponent implements OnInit, OnDestroy {
 
       // Get current language from TranslateService
       const currentLang = this._translate.currentLang || this._translate.defaultLang || '';
-
+      this.routeParams.set({ lang: currentLang, platform, level });
       this.lessonsService.loadLesson(slug, currentLang, platform).subscribe();
     });
   }
 
-  /**
-   * Update SEO meta tags for the lesson
-   */
   private _updateSEOTags(lesson: Lesson): void {
     const platforms = lesson.platforms || [];
     const primaryPlatform = platforms[0] || 'arduino';
-
-    // Use the new SEO service for lesson pages
     this._seoService.updateLessonSeo(lesson, primaryPlatform, lesson.level, lesson.slug);
   }
 }

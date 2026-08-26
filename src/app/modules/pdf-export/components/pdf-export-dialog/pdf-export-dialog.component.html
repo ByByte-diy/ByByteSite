@@ -1,0 +1,116 @@
+<div class="pdf-export-overlay" (click)="close()">
+  <div class="pdf-export-dialog" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+    <div class="pdf-export-dialog__header">
+      <h2>{{ 'pdfExport.title' | translate }}</h2>
+      <button
+        type="button"
+        class="pdf-export-dialog__close"
+        (click)="close()"
+        [disabled]="isGenerating()"
+        [attr.aria-label]="'pdfExport.close' | translate"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="pdf-export-dialog__body">
+      <p class="pdf-export-dialog__lesson-title">{{ source.title }}</p>
+
+      <div class="pdf-export-dialog__field">
+        <label>{{ 'pdfExport.orientation' | translate }}</label>
+        <select
+          [ngModel]="settings().orientation"
+          (ngModelChange)="updateOrientation($event)"
+          [disabled]="isGenerating()"
+        >
+          @for (option of orientations; track option) {
+            <option [value]="option">{{ 'pdfExport.orientationOptions.' + option | translate }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="pdf-export-dialog__field">
+        <label>{{ 'pdfExport.format' | translate }}</label>
+        <select
+          [ngModel]="settings().format"
+          (ngModelChange)="updateFormat($event)"
+          [disabled]="isGenerating()"
+        >
+          @for (option of formats; track option) {
+            <option [value]="option">{{ option | uppercase }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="pdf-export-dialog__field">
+        <label>{{ 'pdfExport.theme' | translate }}</label>
+        <select
+          [ngModel]="settings().theme"
+          (ngModelChange)="updateTheme($event)"
+          [disabled]="isGenerating()"
+        >
+          @for (option of themes; track option) {
+            <option [value]="option">{{ 'pdfExport.themeOptions.' + option | translate }}</option>
+          }
+        </select>
+      </div>
+
+      @if (hasStepSections) {
+        <div class="pdf-export-dialog__field">
+          <label>{{ 'pdfExport.scope' | translate }}</label>
+          <select
+            [ngModel]="settings().scope"
+            (ngModelChange)="updateScope($event)"
+            [disabled]="isGenerating()"
+          >
+            @for (option of scopes; track option) {
+              <option [value]="option">{{ 'pdfExport.scopeOptions.' + option | translate }}</option>
+            }
+          </select>
+        </div>
+      }
+
+      @if (hasIntroSection) {
+        <label class="pdf-export-dialog__checkbox">
+          <input
+            type="checkbox"
+            [checked]="settings().includeIntro"
+            (change)="updateIncludeIntro($any($event.target).checked)"
+            [disabled]="isGenerating()"
+          />
+          {{ 'pdfExport.includeIntro' | translate }}
+        </label>
+      }
+
+      <div class="pdf-export-dialog__field">
+        <label>{{ 'pdfExport.uploadStyles' | translate }}</label>
+        <input
+          type="file"
+          accept="{{ customCssAccept }}"
+          (change)="onCssFileSelected($event)"
+          [disabled]="isGenerating()"
+        />
+      </div>
+
+      @if (errorMessage()) {
+        <p class="pdf-export-dialog__error">{{ errorMessage()! | translate }}</p>
+      }
+    </div>
+
+    <div class="pdf-export-dialog__actions">
+      <button type="button" class="pdf-export-dialog__cancel" (click)="close()" [disabled]="isGenerating()">
+        {{ 'pdfExport.cancel' | translate }}
+      </button>
+      <app-button
+        [data]="{
+          text: isGenerating() ? 'pdfExport.generating' : 'pdfExport.download',
+          variant: 'primary',
+          size: 'md',
+          loading: isGenerating(),
+          disabled: isGenerating(),
+        }"
+        (click)="generateAndDownload()"
+      />
+    </div>
+  </div>
+</div>

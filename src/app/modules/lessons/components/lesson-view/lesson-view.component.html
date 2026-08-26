@@ -1,6 +1,7 @@
 @if (lesson) {
   <div class="lesson-view">
-    <div class="lesson-header">
+    @if (showHeader) {
+      <div class="lesson-header">
       <div class="lesson-meta">
         <div class="lesson-platform">
           <img
@@ -37,11 +38,14 @@
           </div>
         }
       </div>
-    </div>
-    
-    <div #markdownContainer class="lesson-content">
-      <markdown [data]="markdownContent" class="markdown-content" lineNumbers emoji></markdown>
-    </div>
+      </div>
+    }
+
+    @if (!hideContent) {
+      <div #markdownContainer class="lesson-content">
+        <markdown [data]="markdownContent" class="markdown-content" lineNumbers emoji></markdown>
+      </div>
+    }
 
     @if (isPreviewOpen) {
       <div class="image-preview-overlay" (click)="closePreview()">

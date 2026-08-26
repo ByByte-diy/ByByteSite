@@ -234,6 +234,69 @@
       "advanced": "Advanced",
       "expert": "Expert",
       "default": "Default"
+    },
+    "steps": {
+      "intro": {
+        "start": "Let's start"
+      },
+      "actions": {
+        "hint": "Hint",
+        "knowAnswer": "I know the answer",
+        "dontUnderstand": "I don't understand",
+        "next": "Next",
+        "finish": "Finish",
+        "wait": "Use the time to solve the task or use the available buttons"
+      },
+      "timer": {
+        "remaining": "Time remaining"
+      },
+      "progress": {
+        "step": "Step {{current}} of {{total}}",
+        "completed": "Lesson completed!",
+        "completedMessage": "Great job! You have completed all steps of this lesson."
+      },
+      "completed": {
+        "restart": "Start over",
+        "viewFull": "View full lesson",
+        "backToSummary": "Back to summary"
+      },
+      "hint": {
+        "title": "Hint",
+        "close": "Close"
+      }
+    }
+  },
+  "pdfExport": {
+    "export": "Save as PDF",
+    "title": "Export to PDF",
+    "close": "Close",
+    "cancel": "Cancel",
+    "download": "Download PDF",
+    "generating": "Generating PDF…",
+    "orientation": "Orientation",
+    "format": "Page format",
+    "theme": "Theme",
+    "scope": "Content scope",
+    "includeIntro": "Include introduction",
+    "uploadStyles": "Upload custom CSS (optional)",
+    "orientationOptions": {
+      "portrait": "Portrait",
+      "landscape": "Landscape"
+    },
+    "themeOptions": {
+      "default": "Default",
+      "compact": "Compact",
+      "custom": "Custom"
+    },
+    "scopeOptions": {
+      "all_steps": "All steps",
+      "completed_steps": "Completed steps only",
+      "current_step": "Current step only"
+    },
+    "errors": {
+      "noSections": "No content selected for export. Try changing the scope settings.",
+      "generation": "Failed to generate PDF. Please try again.",
+      "cssRead": "Could not read the CSS file."
     }
   },
   "seo": {

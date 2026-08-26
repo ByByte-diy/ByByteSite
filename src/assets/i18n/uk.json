@@ -234,6 +234,69 @@
       "advanced": "Профі",
       "expert": "Експерт",
       "default": "По умолчанию"
+    },
+    "steps": {
+      "intro": {
+        "start": "Почнемо"
+      },
+      "actions": {
+        "hint": "Підказка",
+        "knowAnswer": "Знаю відповідь",
+        "dontUnderstand": "Не розумію",
+        "next": "Далі",
+        "finish": "Завершити",
+        "wait": "Використовуйте час для вирішення завдання або скористайтеся доступними кнопками"
+      },
+      "timer": {
+        "remaining": "Залишилось"
+      },
+      "progress": {
+        "step": "Крок {{current}} з {{total}}",
+        "completed": "Урок завершено!",
+        "completedMessage": "Чудова робота! Ви пройшли всі кроки цього уроку."
+      },
+      "completed": {
+        "restart": "Почати заново",
+        "viewFull": "Переглянути повний урок",
+        "backToSummary": "Назад до підсумку"
+      },
+      "hint": {
+        "title": "Підказка",
+        "close": "Закрити"
+      }
+    }
+  },
+  "pdfExport": {
+    "export": "Зберегти PDF",
+    "title": "Експорт у PDF",
+    "close": "Закрити",
+    "cancel": "Скасувати",
+    "download": "Завантажити PDF",
+    "generating": "Генерація PDF…",
+    "orientation": "Орієнтація",
+    "format": "Формат сторінки",
+    "theme": "Тема",
+    "scope": "Обсяг контенту",
+    "includeIntro": "Включити вступ",
+    "uploadStyles": "Завантажити власний CSS (необов'язково)",
+    "orientationOptions": {
+      "portrait": "Книжкова",
+      "landscape": "Альбомна"
+    },
+    "themeOptions": {
+      "default": "Стандартна",
+      "compact": "Компактна",
+      "custom": "Власна"
+    },
+    "scopeOptions": {
+      "all_steps": "Усі кроки",
+      "completed_steps": "Лише пройдені кроки",
+      "current_step": "Лише поточний крок"
+    },
+    "errors": {
+      "noSections": "Немає контенту для експорту. Спробуйте змінити налаштування обсягу.",
+      "generation": "Не вдалося згенерувати PDF. Спробуйте ще раз.",
+      "cssRead": "Не вдалося прочитати CSS-файл."
     }
   },
   "seo": {
